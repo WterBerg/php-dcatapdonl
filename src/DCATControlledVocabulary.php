@@ -35,7 +35,7 @@ class DCATControlledVocabulary {
     ];
 
     /** @var DCATControlledVocabulary[] */
-    private static $LISTS = [];
+    protected static $LISTS = [];
 
     /**
      * Retrieves the DCATControlledVocabulary that matches the given name. If it
@@ -92,13 +92,13 @@ class DCATControlledVocabulary {
     }
 
     /** @var string */
-    private $name;
+    protected $name;
 
     /** @var string */
-    private $source;
+    protected $source;
 
     /** @var string[] */
-    private $entries;
+    protected $entries;
 
     /**
      * DCATControlledVocabulary constructor.
@@ -107,7 +107,7 @@ class DCATControlledVocabulary {
      * @param null|string $source The online source of this controlled
      * vocabulary
      */
-    private function __construct(string $name, string $source = null)
+    protected function __construct(string $name, string $source = null)
     {
         $this->name = $name;
         $this->source = $source;
@@ -119,7 +119,7 @@ class DCATControlledVocabulary {
      * @throws DCATException If, for any reason, the vocabulary was unable to
      * load the entries from the remote source
      */
-    private function loadEntries(): void
+    protected function loadEntries(): void
     {
         $this->entries = [];
 
@@ -158,7 +158,7 @@ class DCATControlledVocabulary {
      *
      * @param string[] $entries The entries to use
      */
-    private function setEntries(array $entries): void
+    protected function setEntries(array $entries): void
     {
         $this->entries = $entries;
     }

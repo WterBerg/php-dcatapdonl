@@ -20,32 +20,32 @@ use DCAT_AP_DONL\DCATValidationResult;
 class ContactPoint extends DCATComplexEntity {
 
     /** @var string[] */
-    private static $PROPERTIES = [
+    protected static $PROPERTIES = [
         'fullName', 'address', 'title', 'email', 'webpage', 'phone'
     ];
 
     /** @var string[] */
-    private static $REQUIRED_PROPERTIES = [
+    protected static $REQUIRED_PROPERTIES = [
         'fullName'
     ];
 
     /** @var DCATProperty */
-    private $fullName;
+    protected $fullName;
 
     /** @var DCATProperty */
-    private $address;
+    protected $address;
 
     /** @var DCATProperty */
-    private $title;
+    protected $title;
 
     /** @var DCATProperty */
-    private $email;
+    protected $email;
 
     /** @var DCATURI */
-    private $webpage;
+    protected $webpage;
 
     /** @var DCATProperty */
-    private $phone;
+    protected $phone;
 
     /**
      * ContactPoint constructor.

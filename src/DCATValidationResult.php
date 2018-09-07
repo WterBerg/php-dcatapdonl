@@ -13,10 +13,10 @@ namespace DCAT_AP_DONL;
 class DCATValidationResult {
 
     /** @var string[] */
-    private $messages;
+    protected $messages;
 
     /** @var string[] */
-    private $notices;
+    protected $notices;
 
     /**
      * DCATValidationResult constructor.

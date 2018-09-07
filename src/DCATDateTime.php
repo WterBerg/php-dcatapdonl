@@ -15,7 +15,7 @@ use DateTime;
 class DCATDateTime extends DCATProperty {
 
     /** @var string */
-    private $format;
+    protected $format;
 
     /**
      * DCATDateTime constructor.

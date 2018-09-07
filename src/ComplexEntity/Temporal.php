@@ -19,22 +19,22 @@ use DCAT_AP_DONL\DCATValidationResult;
 class Temporal extends DCATComplexEntity {
 
     /** @var string[] */
-    private static $PROPERTIES = [
+    protected static $PROPERTIES = [
         'start', 'end', 'label'
     ];
 
     /** @var string[] */
-    private static $REQUIRED_PROPERTIES = [
+    protected static $REQUIRED_PROPERTIES = [
     ];
 
     /** @var DCATDateTime */
-    private $start;
+    protected $start;
 
     /** @var DCATDateTime */
-    private $end;
+    protected $end;
 
     /** @var DCATProperty */
-    private $label;
+    protected $label;
 
     /**
      * Temporal constructor.

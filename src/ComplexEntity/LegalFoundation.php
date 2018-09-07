@@ -19,23 +19,23 @@ use DCAT_AP_DONL\DCATValidationResult;
 class LegalFoundation extends DCATComplexEntity {
 
     /** @var string[] */
-    private static $PROPERTIES = [
+    protected static $PROPERTIES = [
         'reference', 'uri', 'label'
     ];
 
     /** @var string[] */
-    private static $REQUIRED_PROPERTIES = [
+    protected static $REQUIRED_PROPERTIES = [
         'reference', 'uri', 'label'
     ];
 
     /** @var DCATProperty */
-    private $reference;
+    protected $reference;
 
     /** @var DCATURI */
-    private $uri;
+    protected $uri;
 
     /** @var DCATProperty */
-    private $label;
+    protected $label;
 
     /**
      * LegalFoundation constructor.

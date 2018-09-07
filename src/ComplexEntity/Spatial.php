@@ -22,20 +22,20 @@ use DCAT_AP_DONL\DCATException;
 class Spatial extends DCATComplexEntity {
 
     /** @var string[] */
-    private static $PROPERTIES = [
+    protected static $PROPERTIES = [
         'scheme', 'value'
     ];
 
     /** @var string[] */
-    private static $REQUIRED_PROPERTIES = [
+    protected static $REQUIRED_PROPERTIES = [
         'scheme', 'value'
     ];
 
     /** @var DCATControlledVocabularyEntry */
-    private $scheme;
+    protected $scheme;
 
     /** @var DCATProperty */
-    private $value;
+    protected $value;
 
     /**
      * Spatial constructor.
@@ -162,7 +162,7 @@ class Spatial extends DCATComplexEntity {
      * @throws DCATException Thrown when the scheme references a vocabulary
      * which does not exist
      */
-    private function valueMatchesScheme(): bool
+    protected function valueMatchesScheme(): bool
     {
         $listValidators = [
             'https://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.gemeente'          => 'Overheid:SpatialGemeente',
@@ -196,7 +196,7 @@ class Spatial extends DCATComplexEntity {
      *
      * @return bool Whether or not it is a valid EPSG28992
      */
-    private function validEPSG28992(): bool
+    protected function validEPSG28992(): bool
     {
         $match = preg_match(
             '^\d{6}(\.\d{3})? \d{6}(\.\d{3})?$',
@@ -212,7 +212,7 @@ class Spatial extends DCATComplexEntity {
      *
      * @return bool Whether or not it is a valid PostcodeHuisnummer
      */
-    private function validPostcodeHuisnummer(): bool
+    protected function validPostcodeHuisnummer(): bool
     {
         $match = preg_match(
             '^[1-9]\d{3}([A-Z]{2}(\d+(\S+)?)?)?$',

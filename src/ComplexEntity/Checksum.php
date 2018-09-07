@@ -18,20 +18,20 @@ use DCAT_AP_DONL\DCATValidationResult;
 class Checksum extends DCATComplexEntity {
 
     /** @var string[] */
-    private static $PROPERTIES = [
+    protected static $PROPERTIES = [
         'hash', 'algorithm'
     ];
 
     /** @var string[] */
-    private static $REQUIRED_PROPERTIES = [
+    protected static $REQUIRED_PROPERTIES = [
         'hash', 'algorithm'
     ];
 
     /** @var DCATProperty */
-    private $hash;
+    protected $hash;
 
     /** @var DCATProperty */
-    private $algorithm;
+    protected $algorithm;
 
     /**
      * Checksum constructor.

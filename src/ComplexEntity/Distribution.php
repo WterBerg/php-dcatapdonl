@@ -23,7 +23,7 @@ use DCAT_AP_DONL\DCATException;
 class Distribution extends DCATComplexEntity implements Serializable {
 
     /** @var string[] */
-    private static $PROPERTIES = [
+    protected static $PROPERTIES = [
         'accessURL', 'license', 'title', 'description', 'language',
         'metadataLanguage', 'format', 'rights', 'status', 'releaseDate',
         'modificationDate', 'byteSize', 'downloadURL', 'mediaType',
@@ -31,61 +31,61 @@ class Distribution extends DCATComplexEntity implements Serializable {
     ];
 
     /** @var string[] */
-    private static $REQUIRED_PROPERTIES = [
+    protected static $REQUIRED_PROPERTIES = [
         'accessURL', 'license', 'title', 'description', 'language', 'format',
         'metadataLanguage'
     ];
 
     /** @var DCATURI */
-    private $accessURL;
+    protected $accessURL;
 
     /** @var DCATControlledVocabularyEntry */
-    private $license;
+    protected $license;
 
     /** @var DCATProperty */
-    private $title;
+    protected $title;
 
     /** @var DCATProperty */
-    private $description;
+    protected $description;
 
     /** @var DCATControlledVocabularyEntry[] */
-    private $language;
+    protected $language;
 
     /** @var DCATControlledVocabularyEntry */
-    private $metadataLanguage;
+    protected $metadataLanguage;
 
     /** @var DCATControlledVocabularyEntry */
-    private $format;
+    protected $format;
 
     /** @var DCATProperty */
-    private $rights;
+    protected $rights;
 
     /** @var DCATControlledVocabularyEntry */
-    private $status;
+    protected $status;
 
     /** @var DCATDateTime */
-    private $releaseDate;
+    protected $releaseDate;
 
     /** @var DCATDateTime */
-    private $modificationDate;
+    protected $modificationDate;
 
     /** @var DCATNumber */
-    private $byteSize;
+    protected $byteSize;
 
     /** @var DCATURI[] */
-    private $downloadURL;
+    protected $downloadURL;
 
     /** @var DCATControlledVocabularyEntry */
-    private $mediaType;
+    protected $mediaType;
 
     /** @var DCATURI[] */
-    private $linkedSchema;
+    protected $linkedSchema;
 
     /** @var Checksum */
-    private $checksum;
+    protected $checksum;
 
     /** @var DCATURI[] */
-    private $documentation;
+    protected $documentation;
 
     /**
      * @inheritdoc
