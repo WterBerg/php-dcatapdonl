@@ -13,9 +13,9 @@ use DCAT_AP_DONL\DCATException;
 /**
  * Class Spatial
  *
- * Represents the complex entity Spatial. It consists of two properties:
- * 'scheme' and 'value'. Both are required. Furthermore the value of 'value' is
- * validated against the scheme provided in the 'scheme' property.
+ * Represents the complex entity Spatial. It consists of two properties: 'scheme' and 'value'. Both
+ * are required. Furthermore the value of 'value' is validated against the scheme provided in the
+ * 'scheme' property.
  *
  * @package DCAT_AP_DONL\ComplexEntities
  */
@@ -73,16 +73,14 @@ class Spatial extends DCATComplexEntity {
      *
      * A Spatial is considered valid when:
      * - All the properties in `Spatial::$REQUIRED_PROPERTIES` are not null
-     * - All the present DCATEntities contained within Spatial pass their
-     * individual validation
-     * - The `$this->value` property validates against the schema provided in
-     * the `$this->scheme` property
+     * - All the present DCATEntities contained within Spatial pass their individual validation
+     * - The `$this->value` property validates against the schema provided in the `$this->scheme`
+     * property
      *
      * @see Spatial::$REQUIRED_PROPERTIES
      * @see Spatial::valueMatchesScheme()
      * @return DCATValidationResult The validation result of this Spatial
-     * @throws DCATException Thrown when there was a problem with retrieving the
-     * scheme
+     * @throws DCATException Thrown when there was a problem with retrieving thescheme
      */
     public function validate(): DCATValidationResult
     {
@@ -92,10 +90,7 @@ class Spatial extends DCATComplexEntity {
             if ($this->$property == null) {
                 if (in_array($property, self::$REQUIRED_PROPERTIES)) {
                     $result->addMessage(
-                        sprintf(
-                            '%s: %s is missing',
-                            $this->getName(), $property
-                        )
+                        sprintf('%s: %s is missing', $this->getName(), $property)
                     );
                 }
                 continue;
@@ -116,9 +111,7 @@ class Spatial extends DCATComplexEntity {
         }
 
         try {
-            $vocabulary = DCATControlledVocabulary::getVocabulary(
-                'Overheid:SpatialScheme'
-            );
+            $vocabulary = DCATControlledVocabulary::getVocabulary('Overheid:SpatialScheme');
             if (!$vocabulary->containsEntry($this->scheme->getData())) {
                 $result->addMessage(
                     sprintf(
@@ -130,8 +123,8 @@ class Spatial extends DCATComplexEntity {
         } catch (DCATException $e) {
             $result->addMessage(
                 sprintf(
-                    '%s: could not validate scheme, a problem occurred 
-                    while retrieving the controlled vocabulary',
+                    '%s: could not validate scheme, a problem occurred while retrieving the 
+                    controlled vocabulary',
                     $this->getName()
                 )
             );
@@ -141,9 +134,7 @@ class Spatial extends DCATComplexEntity {
             $result->addMessage(
                 sprintf(
                     '%s: value %s fails to validate against scheme %s',
-                    $this->getName(),
-                    $this->value->getData(),
-                    $this->scheme->getData()
+                    $this->getName(), $this->value->getData(), $this->scheme->getData()
                 )
             );
         }
@@ -152,15 +143,13 @@ class Spatial extends DCATComplexEntity {
     }
 
     /**
-     * Validates the `$this->value` against the scheme defined in
-     * `$this->scheme`.
+     * Validates the `$this->value` against the scheme defined in `$this->scheme`.
      *
      * @see DCATValuelist::hasEntry()
      * @see Spatial::validEPSG28992()
      * @see Spatial::validPostcodeHuisnummer()
      * @return bool Whether or not the value validates against the scheme
-     * @throws DCATException Thrown when the scheme references a vocabulary
-     * which does not exist
+     * @throws DCATException Thrown when the scheme references a vocabulary which does not exist
      */
     protected function valueMatchesScheme(): bool
     {
@@ -198,26 +187,19 @@ class Spatial extends DCATComplexEntity {
      */
     protected function validEPSG28992(): bool
     {
-        $match = preg_match(
-            '^\d{6}(\.\d{3})? \d{6}(\.\d{3})?$',
-            $this->value->getData()
-        );
+        $match = preg_match('^\d{6}(\.\d{3})? \d{6}(\.\d{3})?$', $this->value->getData());
 
         return  $match == 1;
     }
 
     /**
-     * Determines if the value matches the rules for the PostcodeHuisnummer
-     * scheme.
+     * Determines if the value matches the rules for the PostcodeHuisnummer scheme.
      *
      * @return bool Whether or not it is a valid PostcodeHuisnummer
      */
     protected function validPostcodeHuisnummer(): bool
     {
-        $match = preg_match(
-            '^[1-9]\d{3}([A-Z]{2}(\d+(\S+)?)?)?$',
-            $this->value->getData()
-        );
+        $match = preg_match('^[1-9]\d{3}([A-Z]{2}(\d+(\S+)?)?)?$', $this->value->getData());
 
         return $match == 1;
     }

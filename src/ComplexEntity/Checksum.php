@@ -10,8 +10,8 @@ use DCAT_AP_DONL\DCATValidationResult;
 /**
  * Class Checksum
  *
- * Represents the complex entity `Checksum`. It consists of two properties:
- * 'hash' and 'algorithm'. Both of which are required.
+ * Represents the complex entity Checksum. It consists of two properties: 'hash' and 'algorithm'.
+ * Both of which are required.
  *
  * @package DCAT_AP_DONL\ComplexEntities
  */
@@ -37,11 +37,9 @@ class Checksum extends DCATComplexEntity {
      * Checksum constructor.
      *
      * @param DCATProperty|null $hash The actual hash of the Checksum
-     * @param DCATProperty|null $algorithm The algorithm used to determine the
-     * hash
+     * @param DCATProperty|null $algorithm The algorithm used to determine the hash
      */
-    public function __construct(DCATProperty $hash = null,
-                                DCATProperty $algorithm = null)
+    public function __construct(DCATProperty $hash = null, DCATProperty $algorithm = null)
     {
         parent::__construct('Checksum');
 
@@ -70,8 +68,7 @@ class Checksum extends DCATComplexEntity {
      *
      * A Checksum is considered valid when:
      * - All the properties in `Checksum::$REQUIRED_PROPERTIES` are not null
-     * - All the present DCATEntities contained within Checksum pass their
-     * individual validation
+     * - All the present DCATEntities contained within Checksum pass their individual validation
      *
      * @see Checksum::$REQUIRED_PROPERTIES
      * @see DCATProperty::validate()
@@ -85,10 +82,10 @@ class Checksum extends DCATComplexEntity {
             if ($this->$property == null) {
                 if (in_array($property, self::$REQUIRED_PROPERTIES)) {
                     $result->addMessage(
-                        sprintf('%s: %s is required',
-                            $this->getName(), $property)
+                        sprintf('%s: %s is required', $this->getName(), $property)
                     );
                 }
+
                 continue;
             }
 
@@ -101,9 +98,7 @@ class Checksum extends DCATComplexEntity {
                 /* @var DCATValidationResult $validation */
 
                 foreach ($validation->getMessages() as $message) {
-                    $result->addMessage(
-                        sprintf('%s: %s', $this->getName(), $message)
-                    );
+                    $result->addMessage(sprintf('%s: %s', $this->getName(), $message));
                 }
             }
         }

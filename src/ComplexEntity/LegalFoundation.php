@@ -11,8 +11,8 @@ use DCAT_AP_DONL\DCATValidationResult;
 /**
  * Class LegalFoundation
  *
- * Represents the complex entity LegalFoundation. It consists of three
- * properties: 'reference', 'uri' and 'label'. All of which are required.
+ * Represents the complex entity LegalFoundation. It consists of three properties: 'reference',
+ * 'uri' and 'label'. All of which are required.
  *
  * @package DCAT_AP_DONL\ComplexEntities
  */
@@ -44,8 +44,7 @@ class LegalFoundation extends DCATComplexEntity {
      * @param DCATURI|null $uri
      * @param DCATProperty|null $label
      */
-    public function __construct(DCATProperty $reference = null,
-                                DCATURI $uri = null,
+    public function __construct(DCATProperty $reference = null, DCATURI $uri = null,
                                 DCATProperty $label = null)
     {
         parent::__construct('LegalFoundation');
@@ -75,10 +74,9 @@ class LegalFoundation extends DCATComplexEntity {
      * Determines and returns whether or not the LegalFoundation is valid.
      *
      * A LegalFoundation is considered valid when:
-     * - All the properties in `LegalFoundation::$REQUIRED_PROPERTIES` are not
-     * null
-     * - All the present DCATEntities contained within LegalFoundation pass
-     * their individual validation
+     * - All the properties in `LegalFoundation::$REQUIRED_PROPERTIES` are not null
+     * - All the present DCATEntities contained within LegalFoundation pass their individual
+     * validation
      *
      * @see LegalFoundation::$REQUIRED_PROPERTIES
      * @return DCATValidationResult The validation result of the LegalFoundation
@@ -91,9 +89,7 @@ class LegalFoundation extends DCATComplexEntity {
             if ($this->$property == null) {
                 if (in_array($property, self::$REQUIRED_PROPERTIES)) {
                     $result->addMessage(
-                        sprintf(
-                            '%s: %s is missing',
-                            $this->getName(), $property)
+                        sprintf('%s: %s is missing', $this->getName(), $property)
                     );
                 }
                 continue;

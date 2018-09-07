@@ -11,9 +11,9 @@ use DCAT_AP_DONL\DCATValidationResult;
 /**
  * Class ContactPoint
  *
- * Represents the complex entity ContactPoint. It consists of six properties:
- * 'fullName', 'address', 'title', 'email', 'webpage' and 'phone'. The property
- * 'fullName' is required as is one of ['email', 'webpage' or 'phone'].
+ * Represents the complex entity ContactPoint. It consists of six properties: 'fullName', 'address',
+ * 'title', 'email', 'webpage' and 'phone'. The property 'fullName' is required as is one of
+ * [ email, webpage or phone ].
  *
  * @package DCAT_AP_DONL\ComplexEntities
  */
@@ -57,12 +57,9 @@ class ContactPoint extends DCATComplexEntity {
      * @param DCATURI|null $webpage
      * @param DCATProperty|null $phone
      */
-    public function __construct(DCATProperty $name = null,
-                                DCATProperty $address = null,
-                                DCATProperty $title = null,
-                                DCATProperty $email = null,
-                                DCATURI $webpage = null,
-                                DCATProperty $phone = null)
+    public function __construct(DCATProperty $name = null, DCATProperty $address = null,
+                                DCATProperty $title = null, DCATProperty $email = null,
+                                DCATURI $webpage = null, DCATProperty $phone = null)
     {
         parent::__construct('ContactPoint');
 
@@ -95,10 +92,9 @@ class ContactPoint extends DCATComplexEntity {
      *
      * A ContactPoint is considered valid when:
      * - All the properties in `ContactPoint::$REQUIRED_PROPERTIES` are not null
-     * - At least one of the following properties is present and valid: `
-     * $this->email`, `$this->webpage`, `$this->phone`
-     * - All the present DCATEntities contained within ContactPoint pass their
-     * individual validation
+     * - At least one of the following properties is present and valid: `$this->email`,
+     * `$this->webpage`, `$this->phone`
+     * - All the present DCATEntities contained within ContactPoint pass their individual validation
      *
      * @see ContactPoint::$REQUIRED_PROPERTIES
      * @return DCATValidationResult The validation result of this ContactPoint

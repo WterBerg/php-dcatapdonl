@@ -23,8 +23,7 @@ class DCATControlledVocabularyEntry extends DCATProperty {
      * @param string $controlled_vocabulary The name of the controlled
      * vocabulary to validate against
      */
-    public function __construct(string $name, string $value,
-                                string $controlled_vocabulary)
+    public function __construct(string $name, string $value, string $controlled_vocabulary)
     {
         parent::__construct($name, $value);
         $this->controlled_vocabulary = $controlled_vocabulary;
@@ -36,29 +35,24 @@ class DCATControlledVocabularyEntry extends DCATProperty {
      *
      * A DCATControlledVocabularyEntry is considered valid when:
      * - it passes the validation as defined in `DCATProperty::validate()`
-     * - its value property is contained within the controlled vocabulary of the
-     * given controlled vocabulary
+     * - its value property is contained within the controlled vocabulary of the given controlled
+     * vocabulary
      *
      * @see DCATProperty::validate()
-     * @return DCATValidationResult The validation result of this DCAT
-     * controlled vocabulary entry
-     * @throws DCATException Thrown when trying to validate this entry against a
-     * controlled vocabulary which does not exist
+     * @return DCATValidationResult The validation result of this DCAT controlled vocabulary entry
+     * @throws DCATException Thrown when trying to validate this entry against a controlled
+     * vocabulary which does not exist
      */
     public function validate(): DCATValidationResult
     {
         $result = parent::validate();
-        $vocabulary = DCATControlledVocabulary::getVocabulary(
-            $this->controlled_vocabulary
-        );
+        $vocabulary = DCATControlledVocabulary::getVocabulary($this->controlled_vocabulary);
 
         if (!$vocabulary->containsEntry($this->value)) {
             $result->addMessage(
                 sprintf(
                     '%s: value %s is not part of vocabulary %s',
-                    $this->getName(),
-                    $this->getData(),
-                    $this->getControlledVocabulary()
+                    $this->getName(), $this->getData(), $this->getControlledVocabulary()
                 )
             );
         }
@@ -67,8 +61,7 @@ class DCATControlledVocabularyEntry extends DCATProperty {
     }
 
     /**
-     * Returns the controlled vocabulary which this
-     * DCATControlledVocabularyEntry validates against.
+     * Returns the controlled vocabulary which this DCATControlledVocabularyEntry validates against.
      *
      * @return string The name of the controlled vocabulary
      */

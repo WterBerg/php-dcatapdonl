@@ -11,8 +11,8 @@ use DCAT_AP_DONL\DCATValidationResult;
 /**
  * Class Temporal
  *
- * Represents the complex entity Temporal. It consists of three properties:
- * 'start', 'end' and 'label'. At least one of these three must be provided.
+ * Represents the complex entity Temporal. It consists of three properties: 'start', 'end' and
+ * 'label'. At least one of these three must be provided.
  *
  * @package DCAT_AP_DONL\ComplexEntities
  */
@@ -43,8 +43,7 @@ class Temporal extends DCATComplexEntity {
      * @param DCATDateTime|null $end
      * @param DCATProperty|null $label
      */
-    public function __construct(DCATDateTime $start = null,
-                                DCATDateTime $end = null,
+    public function __construct(DCATDateTime $start = null, DCATDateTime $end = null,
                                 DCATProperty $label = null)
     {
         parent::__construct('Temporal');
@@ -75,10 +74,8 @@ class Temporal extends DCATComplexEntity {
      *
      * A Temporal is considered valid when:
      * - All the properties in `Temporal::$REQUIRED_PROPERTIES` are not null
-     * - All the present DCATEntities contained within Temporal pass their
-     * individual validation
-     * - The value of `$this->start` is smaller than `$this->end`, assuming both
-     * are present
+     * - All the present DCATEntities contained within Temporal pass their individual validation
+     * - The value of `$this->start` is smaller than `$this->end`, assuming both are present
      *
      * @see Temporal::$REQUIRED_PROPERTIES
      * @return DCATValidationResult The validation result of this Temporal
@@ -89,10 +86,7 @@ class Temporal extends DCATComplexEntity {
 
         if ($this->start == null && $this->end == null && $this->label == null) {
             $result->addMessage(
-                sprintf(
-                    '%s: at least one property must be provided',
-                    $this->getName()
-                )
+                sprintf('%s: at least one property must be provided', $this->getName())
             );
         }
 
@@ -100,9 +94,7 @@ class Temporal extends DCATComplexEntity {
             if ($this->$property == null) {
                 if (in_array($property, self::$REQUIRED_PROPERTIES)) {
                     $result->addMessage(
-                        sprintf(
-                            '%s: %s is missing',
-                            $this->getName(), $property)
+                        sprintf('%s: %s is missing', $this->getName(), $property)
                     );
                 }
                 continue;
@@ -133,9 +125,7 @@ class Temporal extends DCATComplexEntity {
             $result->addMessage(
                 sprintf(
                     '%s: start must be smalled than end; got %s and %s',
-                    $this->getName(),
-                    $this->start->getData(),
-                    $this->end->getData())
+                    $this->getName(), $this->start->getData(), $this->end->getData())
             );
         }
 

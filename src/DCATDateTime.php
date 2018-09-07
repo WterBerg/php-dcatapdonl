@@ -22,20 +22,18 @@ class DCATDateTime extends DCATProperty {
      *
      * @param string $name The name of this DCAT datetime
      * @param string $value The value of this DCAT datetime
-     * @param string $format The format of this DCAT datetime, defaults to
-     * 'Y-m-d\tH:i:s'
+     * @param string $format The format of this DCAT datetime, defaults to 'Y-m-d\tH:i:s'
      */
-    public function __construct(string $name, string $value,
-                                string $format = 'Y-m-d\TH:i:s')
+    public function __construct(string $name, string $value, string $format = 'Y-m-d\TH:i:s')
     {
         parent::__construct($name, $value);
         $this->format = $format;
     }
 
     /**
-     * Determines and returns whether or not the `DCATDateTime` is valid.
+     * Determines and returns whether or not the DCATDateTime is valid.
      *
-     * A `DCATDateTime` is considered valid when:
+     * A DCATDateTime is considered valid when:
      * - it passes the validation as defined in `DCATProperty::validate()`
      * - its value property matches the datetime format given
      *
@@ -59,7 +57,7 @@ class DCATDateTime extends DCATProperty {
     }
 
     /**
-     * Retrieves the format of the `DCATDateTime`.
+     * Retrieves the format of the DCATDateTime.
      *
      * @return string The format this DCAT datetime
      */
@@ -69,8 +67,7 @@ class DCATDateTime extends DCATProperty {
     }
 
     /**
-     * Checks if the `$this->value` property follows the format as defined by
-     * `$this->format`.
+     * Checks if the `$this->value` property follows the format as defined by `$this->format`.
      *
      * @return bool Whether or not this value matches the given format
      */

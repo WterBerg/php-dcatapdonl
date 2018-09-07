@@ -6,8 +6,8 @@ namespace DCAT_AP_DONL;
 /**
  * Class DCATControlledVocabulary
  *
- * Allows for checking if a value is part of a certain controlled vocabulary as
- * defined by the DCAT-AP-DONL 1.1 metadata standard.
+ * Allows for checking if a value is part of a certain controlled vocabulary as defined by the
+ * DCAT-AP-DONL 1.1 metadata standard.
  *
  * @package DCAT_AP_DONL
  */
@@ -38,29 +38,27 @@ class DCATControlledVocabulary {
     protected static $LISTS = [];
 
     /**
-     * Retrieves the DCATControlledVocabulary that matches the given name. If it
-     * is the first time this vocabulary is requested the values will be loaded
-     * from its remote source.
+     * Retrieves the DCATControlledVocabulary that matches the given name. If it is the first time
+     * this vocabulary is requested the values will be loaded from its remote source.
+     *
+     * No attempt will be made to load custom controlled vocabularies added with
+     * `DCATControlledVocabulary::addCustomVocabulary()` as they have no source configured.
      *
      * @param string $name The name of the controlled vocabulary
-     * @return DCATControlledVocabulary The DCATControlledVocabulary
-     * representing the vocabulary with the given name
-     * @throws DCATException Thrown when either the requested vocabulary does
-     * not exist, or when the class was unable to load the values from its
-     * remote source
+     * @return DCATControlledVocabulary The DCATControlledVocabulary representing the vocabulary
+     * with the given name
+     * @throws DCATException Thrown when either the requested vocabulary does not exist, or when the
+     * class was unable to load the values from its remote source
      */
     public static function getVocabulary(string $name): DCATControlledVocabulary
     {
         if (!isset(self::$LISTS[$name])) {
             if (!isset(DCATControlledVocabulary::CONTROLLED_VOCABULARIES[$name])) {
-                throw new DCATException(
-                    sprintf('no vocabulary found with name %s', $name)
-                );
+                throw new DCATException(sprintf('no vocabulary found with name %s', $name));
             }
 
             $list = new DCATControlledVocabulary(
-                $name,
-                DCATControlledVocabulary::CONTROLLED_VOCABULARIES[$name]
+                $name, DCATControlledVocabulary::CONTROLLED_VOCABULARIES[$name]
             );
             $list->loadEntries();
             self::$LISTS[$name] = $list;
@@ -74,15 +72,13 @@ class DCATControlledVocabulary {
      *
      * @param string $name The name of the controlled vocabulary
      * @param array $entries The acceptable values for this vocabulary
-     * @throws DCATException Thrown when trying to define a vocabulary with a
-     * name that is already registered as a controlled vocabulary
+     * @throws DCATException Thrown when trying to define a vocabulary with a name that is already
+     * registered as a controlled vocabulary
      */
     public static function addCustomVocabulary(string $name, array $entries): void
     {
         if (isset(DCATControlledVocabulary::$LISTS[$name])) {
-            throw new DCATException(
-                'a vocabulary with the given name is already defined'
-            );
+            throw new DCATException('a vocabulary with the given name is already defined');
         }
 
         $customVocabulary = new DCATControlledVocabulary($name);
@@ -104,8 +100,7 @@ class DCATControlledVocabulary {
      * DCATControlledVocabulary constructor.
      *
      * @param string $name The name of this controlled vocabulary
-     * @param null|string $source The online source of this controlled
-     * vocabulary
+     * @param null|string $source The online source of this controlled vocabulary
      */
     protected function __construct(string $name, string $source = null)
     {
@@ -116,8 +111,8 @@ class DCATControlledVocabulary {
     /**
      * Loads the entries from the online resource defined in `$this->source`.
      *
-     * @throws DCATException If, for any reason, the vocabulary was unable to
-     * load the entries from the remote source
+     * @throws DCATException If, for any reason, the vocabulary was unable to load the entries from
+     * the remote source
      */
     protected function loadEntries(): void
     {
@@ -133,9 +128,7 @@ class DCATControlledVocabulary {
         if ($requestCode < 200 && $requestCode >= 300) {
             curl_close($curl);
             throw new DCATException(
-                sprintf(
-                    'unable to retrieve contents from source %s',
-                    $this->getSource()
+                sprintf('unable to retrieve contents from source %s', $this->getSource()
                 )
             );
         }
@@ -174,8 +167,8 @@ class DCATControlledVocabulary {
     }
 
     /**
-     * Returns the source of this DCAT controlled vocabulary. May be null if
-     * this is a custom vocabulary.
+     * Returns the source of this DCAT controlled vocabulary. May be null if this is a custom
+     * vocabulary.
      *
      * @return string The source of this controlled vocabulary
      */
@@ -185,8 +178,7 @@ class DCATControlledVocabulary {
     }
 
     /**
-     * Checks if this DCAT vocabulary contains the given value. This is a
-     * case-sensitive search.
+     * Checks if this DCAT vocabulary contains the given value. This is a case-sensitive search.
      *
      * @param string $entry The entry to check
      * @return bool Whether the vocabulary contains the entry

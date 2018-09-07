@@ -28,10 +28,7 @@ class DCATNumber extends DCATProperty {
 
         if ((int)$this->value <= 0) {
             $result->addMessage(
-                sprintf(
-                    '%s: value must be a positive integer',
-                    $this->getName()
-                )
+                sprintf('%s: value must be a positive integer', $this->getName())
             );
         }
 

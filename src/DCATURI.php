@@ -17,8 +17,7 @@ class DCATURI extends DCATProperty {
      *
      * A DCATURI is considered valid when:
      * - it passes the validation as defined in `DCATProperty::validate()`
-     * - its value looks and smells like an URL, the URL does not need to be
-     * reachable
+     * - its value looks and smells like an URL, the URL does not need to be reachable
      *
      * @see DCATProperty::validate()
      * @return DCATValidationResult The validation result of this DCAT URI
@@ -29,10 +28,7 @@ class DCATURI extends DCATProperty {
 
         if (!$this->isURI($this->value)) {
             $result->addMessage(
-                sprintf(
-                    '%s: value %s is not a valid URI',
-                    $this->getName(), $this->value
-                )
+                sprintf('%s: value %s is not a valid URI', $this->getName(), $this->value)
             );
         }
 
@@ -40,7 +36,7 @@ class DCATURI extends DCATProperty {
     }
 
     /**
-     * Checks if the `$this->value` property matches the pattern of an URI.
+     * Checks if the given value matches the pattern of an URI.
      *
      * @param string $uri The potential URI to check
      * @return bool Whether or the not the given value looks like an URI

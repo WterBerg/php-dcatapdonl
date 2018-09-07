@@ -19,8 +19,7 @@ class DCATProperty extends DCATEntity {
      * DCATProperty constructor.
      *
      * @param string $name The name of this DCAT property
-     * @param null|string $value The value of this DCAT property, the value will
-     * be trimmed
+     * @param null|string $value The value of this DCAT property, the value will be trimmed
      */
     public function __construct(string $name, string $value = null)
     {
@@ -54,17 +53,13 @@ class DCATProperty extends DCATEntity {
         $result = new DCATValidationResult();
 
         if ($this->value === null) {
-            $result->addMessage(
-                sprintf('%s: value is missing', $this->getName())
-            );
+            $result->addMessage(sprintf('%s: value is missing', $this->getName()));
 
             return $result;
         }
 
         if (empty($this->value)) {
-            $result->addMessage(
-                sprintf('%s: value is empty', $this->getName())
-            );
+            $result->addMessage(sprintf('%s: value is empty', $this->getName()));
         }
 
         return $result;
