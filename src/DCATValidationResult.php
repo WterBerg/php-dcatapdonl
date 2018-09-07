@@ -28,9 +28,9 @@ class DCATValidationResult {
     }
 
     /**
-     * Returns whether or not the `DCATEntity` validated successfully.
+     * Returns whether or not the DCATEntity validated successfully.
      *
-     * @return bool Whether or not the validation was sucessfull
+     * @return bool Whether or not the validation was successful
      */
     public function validated()
     {
