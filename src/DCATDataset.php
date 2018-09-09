@@ -19,7 +19,8 @@ class DCATDataset extends DCATComplexEntity {
         'datasetStatus', 'landingPage', 'spatial', 'temporal', 'conformsTo',
         'alternativeIdentifier', 'relatedResource', 'source', 'hasVersion', 'isVersionOf',
         'releaseDate', 'version', 'versionNotes', 'legalFoundation', 'datePlanned', 'documentation',
-        'frequency', 'provenance', 'sample', 'sourceCatalog', 'distribution'
+        'frequency', 'provenance', 'sample', 'sourceCatalog', 'highValue', 'basisRegister',
+        'referentieData', 'distribution'
     ];
 
     /** @var string[] */
@@ -127,6 +128,15 @@ class DCATDataset extends DCATComplexEntity {
     /** @var DCATControlledVocabularyEntry */
     protected $sourceCatalog;
 
+    /** @var DCATBoolean */
+    protected $highValue;
+
+    /** @var DCATBoolean */
+    protected $basisRegister;
+
+    /** @var DCATBoolean */
+    protected $referentieData;
+
     /** @var DCATDistribution[] */
     protected $distribution;
 
@@ -148,7 +158,9 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @return DCATURI
+     * Getter for the identifier property, may return null.
+     *
+     * @return DCATURI|null The identifier property
      */
     public function getIdentifier(): ?DCATURI
     {
@@ -156,271 +168,369 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @return DCATProperty
+     * Getter for the title property, may return null.
+     *
+     * @return DCATProperty|null The title property
      */
-    public function getTitle(): ?DCATProperty
+    public function getTitle(): DCATProperty
     {
         return $this->title;
     }
 
     /**
-     * @return DCATProperty
+     * Getter for the description property, may return null.
+     *
+     * @return DCATProperty|null The description property
      */
-    public function getDescription(): ?DCATProperty
+    public function getDescription(): DCATProperty
     {
         return $this->description;
     }
 
     /**
-     * @return array
+     * Getter for the keyword property, may return an empty array.
+     *
+     * @return DCATProperty[] The keyword property
      */
-    public function getKeywords(): ?array
+    public function getKeyword(): array
     {
         return $this->keyword;
     }
 
     /**
-     * @return DCATControlledVocabularyEntry
+     * Getter for the license property, may return null.
+     *
+     * @return DCATControlledVocabularyEntry|null The license property
      */
-    public function getLicense(): ?DCATControlledVocabularyEntry
+    public function getLicense(): DCATControlledVocabularyEntry
     {
         return $this->license;
     }
 
     /**
-     * @return DCATControlledVocabularyEntry
+     * Getter for the metadataLanguage property, may return null.
+     *
+     * @return DCATControlledVocabularyEntry|null The metadataLanguage property
      */
-    public function getMetadataLanguage(): ?DCATControlledVocabularyEntry
+    public function getMetadataLanguage(): DCATControlledVocabularyEntry
     {
         return $this->metadataLanguage;
     }
 
     /**
-     * @return array
+     * Getter for the language property, may return an empty array.
+     *
+     * @return DCATControlledVocabularyEntry[] The language property
      */
-    public function getLanguages(): ?array
+    public function getLanguage(): array
     {
         return $this->language;
     }
 
     /**
-     * @return array
+     * Getter for the theme property, may return an empty array.
+     *
+     * @return DCATControlledVocabularyEntry[] The theme property
      */
-    public function getThemes(): ?array
+    public function getTheme(): array
     {
         return $this->theme;
     }
 
     /**
-     * @return DCATDateTime
+     * Getter for the modificationDate property, may return null.
+     *
+     * @return DCATDateTime|null The modificationDate property
      */
-    public function getModificationDate(): ?DCATDateTime
+    public function getModificationDate(): DCATDateTime
     {
         return $this->modificationDate;
     }
 
     /**
-     * @return DCATControlledVocabularyEntry
+     * Getter for the authority property, may return null.
+     *
+     * @return DCATControlledVocabularyEntry|null The authority property
      */
-    public function getAuthority(): ?DCATControlledVocabularyEntry
+    public function getAuthority(): DCATControlledVocabularyEntry
     {
         return $this->authority;
     }
 
     /**
-     * @return DCATControlledVocabularyEntry
+     * Getter for the publisher property, may return null.
+     *
+     * @return DCATControlledVocabularyEntry|null The publisher property
      */
-    public function getPublisher(): ?DCATControlledVocabularyEntry
+    public function getPublisher(): DCATControlledVocabularyEntry
     {
         return $this->publisher;
     }
 
     /**
-     * @return DCATContactPoint
+     * Getter for the contactPoint property, may return null.
+     *
+     * @return DCATContactPoint|null The contactPoint property
      */
-    public function getContactPoint(): ?DCATContactPoint
+    public function getContactPoint(): DCATContactPoint
     {
         return $this->contactPoint;
     }
 
     /**
-     * @return DCATControlledVocabularyEntry
+     * Getter for the accessRights property, may return null.
+     *
+     * @return DCATControlledVocabularyEntry|null The accessRights property
      */
-    public function getAccessRights(): ?DCATControlledVocabularyEntry
+    public function getAccessRights(): DCATControlledVocabularyEntry
     {
         return $this->accessRights;
     }
 
     /**
-     * @return DCATControlledVocabularyEntry
+     * Getter for the datasetStatus property, may return null.
+     *
+     * @return DCATControlledVocabularyEntry|null The datasetStatus property
      */
-    public function getDatasetStatus(): ?DCATControlledVocabularyEntry
+    public function getDatasetStatus(): DCATControlledVocabularyEntry
     {
         return $this->datasetStatus;
     }
 
     /**
-     * @return DCATURI
+     * Getter for the landingPage property, may return null.
+     *
+     * @return DCATURI|null The landingPage property
      */
-    public function getLandingPage(): ?DCATURI
+    public function getLandingPage(): DCATURI
     {
         return $this->landingPage;
     }
 
     /**
-     * @return array
+     * Getter for the spatial property, may return an empty array.
+     *
+     * @return DCATSpatial[] The spatial property
      */
-    public function getSpatials(): ?array
+    public function getSpatial(): array
     {
         return $this->spatial;
     }
 
     /**
-     * @return DCATTemporal
+     * Getter for the temporal property, may return null.
+     *
+     * @return DCATTemporal|null The temporal property
      */
-    public function getTemporal(): ?DCATTemporal
+    public function getTemporal(): DCATTemporal
     {
         return $this->temporal;
     }
 
     /**
-     * @return array
+     * Getter for the conformsTo property, may return an empty array.
+     *
+     * @return DCATURI[] The conformsTo property
      */
-    public function getConformsTos(): ?array
+    public function getConformsTo(): array
     {
         return $this->conformsTo;
     }
 
     /**
-     * @return array
+     * Getter for the alternativeIdentifier property, may return an empty array.
+     *
+     * @return DCATURI[] The alternativeIdentifier property
      */
-    public function getAlternativeIdentifiers(): ?array
+    public function getAlternativeIdentifier(): array
     {
         return $this->alternativeIdentifier;
     }
 
     /**
-     * @return array
+     * Getter for the relatedResource property, may return an empty array.
+     *
+     * @return DCATURI[] The relatedResource property
      */
-    public function getRelatedResources(): ?array
+    public function getRelatedResource(): array
     {
         return $this->relatedResource;
     }
 
     /**
-     * @return array
+     * Getter for the source property, may return an empty array.
+     *
+     * @return DCATURI[] The source property
      */
-    public function getSources(): ?array
+    public function getSource(): array
     {
         return $this->source;
     }
 
     /**
-     * @return array
+     * Getter for the hasVersion property, may return an empty array.
+     *
+     * @return DCATURI[] The hasVersion property
      */
-    public function getHasVersions(): ?array
+    public function getHasVersion(): array
     {
         return $this->hasVersion;
     }
 
     /**
-     * @return array
+     * Getter for the isVersionOf property, may return an empty array.
+     *
+     * @return DCATURI[] The isVersionOf property
      */
-    public function getIsVersionOfs(): ?array
+    public function getIsVersionOf(): array
     {
         return $this->isVersionOf;
     }
 
     /**
-     * @return DCATDateTime
+     * Getter for the releaseDate property, may return null.
+     *
+     * @return DCATDateTime|null The releaseDate property
      */
-    public function getReleaseDate(): ?DCATDateTime
+    public function getReleaseDate(): DCATDateTime
     {
         return $this->releaseDate;
     }
 
     /**
-     * @return DCATProperty
+     * Getter for the version property, may return null.
+     *
+     * @return DCATProperty|null The version property
      */
-    public function getVersion(): ?DCATProperty
+    public function getVersion(): DCATProperty
     {
         return $this->version;
     }
 
     /**
-     * @return array
+     * Getter for the versionNotes property, may return an empty array
+     *
+     * @return DCATProperty[] The versionNotes property
      */
-    public function getVersionNotes(): ?array
+    public function getVersionNotes(): array
     {
         return $this->versionNotes;
     }
 
     /**
-     * @return DCATLegalFoundation
+     * Getter for the legalFoundation property, may return null.
+     *
+     * @return DCATLegalFoundation|null The legalFoundation property
      */
-    public function getLegalFoundation(): ?DCATLegalFoundation
+    public function getLegalFoundation(): DCATLegalFoundation
     {
         return $this->legalFoundation;
     }
 
     /**
-     * @return DCATDateTime
+     * Getter for the datePlanned property, may return null.
+     *
+     * @return DCATDateTime|null The datePlanned property
      */
-    public function getDatePlanned(): ?DCATDateTime
+    public function getDatePlanned(): DCATDateTime
     {
         return $this->datePlanned;
     }
 
     /**
-     * @return array
+     * Getter for the documentation property, may return an empty array.
+     *
+     * @return DCATURI[] The documentation property
      */
-    public function getDocumentations(): ?array
+    public function getDocumentation(): array
     {
         return $this->documentation;
     }
 
     /**
-     * @return DCATControlledVocabularyEntry
+     * Getter for the frequency property, may return null.
+     *
+     * @return DCATControlledVocabularyEntry|null The frequency property
      */
-    public function getFrequency(): ?DCATControlledVocabularyEntry
+    public function getFrequency(): DCATControlledVocabularyEntry
     {
         return $this->frequency;
     }
 
     /**
-     * @return array
+     * Getter for the provenance property, may return an empty array.
+     *
+     * @return DCATURI[] The provenance property
      */
-    public function getProvenances(): ?array
+    public function getProvenance(): array
     {
         return $this->provenance;
     }
 
     /**
-     * @return array
+     * Getter for the sample property, may return an empty array.
+     *
+     * @return DCATURI[] The sample property
      */
-    public function getSamples(): ?array
+    public function getSample(): array
     {
         return $this->sample;
     }
 
     /**
-     * @return DCATControlledVocabularyEntry
+     * Getter for the sourceCatalog property, may return null.
+     *
+     * @return DCATControlledVocabularyEntry|null The sourceCatalog property
      */
-    public function getSourceCatalog(): ?DCATControlledVocabularyEntry
+    public function getSourceCatalog(): DCATControlledVocabularyEntry
     {
         return $this->sourceCatalog;
     }
 
     /**
-     * @return array
+     * Getter for the highValue property, may return null.
+     *
+     * @return DCATBoolean|null The highValue property
      */
-    public function getDistributions(): ?array
+    public function getHighValue(): DCATBoolean
+    {
+        return $this->highValue;
+    }
+
+    /**
+     * Getter for the basisRegister property, may return null.
+     *
+     * @return DCATBoolean|null The basisRegister property
+     */
+    public function getBasisRegister(): DCATBoolean
+    {
+        return $this->basisRegister;
+    }
+
+    /**
+     * Getter for the referentieData property, may return null.
+     *
+     * @return DCATBoolean|null The referentieData property
+     */
+    public function getReferentieData(): ?DCATBoolean
+    {
+        return $this->referentieData;
+    }
+
+    /**
+     * Getter for the distribution property, may return an empty array.
+     *
+     * @return DCATDistribution[] The distribution property
+     */
+    public function getDistributions(): array
     {
         return $this->distribution;
     }
 
     /**
-     * @param DCATURI $identifier
+     * Setter for the identifier property.
+     *
+     * @param DCATURI $identifier The value to set
      */
     public function setIdentifier(DCATURI $identifier): void
     {
@@ -428,7 +538,9 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATProperty $title
+     * Setter for the title property.
+     *
+     * @param DCATProperty $title The value to set
      */
     public function setTitle(DCATProperty $title): void
     {
@@ -436,7 +548,9 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATProperty $description
+     * Setter for the description property.
+     *
+     * @param DCATProperty $description The value to set
      */
     public function setDescription(DCATProperty $description): void
     {
@@ -444,7 +558,9 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATProperty $keyword
+     * Adds a value to the keyword property.
+     *
+     * @param DCATProperty $keyword The value to add
      */
     public function addKeyword(DCATProperty $keyword): void
     {
@@ -452,8 +568,11 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATControlledVocabularyEntry $license
-     * @throws DCATException
+     * Setter for the license property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * 'Overheid:License'.
+     *
+     * @param DCATControlledVocabularyEntry $license The value to set
+     * @throws DCATException Thrown when the vocabulary is not 'Overheid:License'
      */
     public function setLicense(DCATControlledVocabularyEntry $license): void
     {
@@ -465,8 +584,11 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATControlledVocabularyEntry $metadataLanguage
-     * @throws DCATException
+     * Setter for the metadataLanguage property. Expect a DCATControlledVocabularyEntry of
+     * vocabulary 'DONL:Language'.
+     *
+     * @param DCATControlledVocabularyEntry $metadataLanguage The value to set
+     * @throws DCATException Thrown when the vocabulary is not 'DONL:Language'
      */
     public function setMetadataLanguage(DCATControlledVocabularyEntry $metadataLanguage): void
     {
@@ -478,8 +600,11 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATControlledVocabularyEntry $language
-     * @throws DCATException
+     * Adds a value to the language property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * 'DONL:Language'.
+     *
+     * @param DCATControlledVocabularyEntry $language The value to add
+     * @throws DCATException Thrown when the vocabulary is not 'DONL:Language'
      */
     public function addLanguage(DCATControlledVocabularyEntry $language): void
     {
@@ -491,8 +616,11 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATControlledVocabularyEntry $theme
-     * @throws DCATException
+     * Adds a value to the theme property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * 'Overheid:Taxonomiebeleidsagenda'.
+     *
+     * @param DCATControlledVocabularyEntry $theme The value to add
+     * @throws DCATException Thrown when the vocabulary is not 'Overheid:Taxonomiebeleidsagenda'
      */
     public function addTheme(DCATControlledVocabularyEntry $theme): void
     {
@@ -504,7 +632,9 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATDateTime $modificationDate
+     * Setter for the modificationDate property.
+     *
+     * @param DCATDateTime $modificationDate The value to set
      */
     public function setModificationDate(DCATDateTime $modificationDate): void
     {
@@ -512,8 +642,11 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATControlledVocabularyEntry $authority
-     * @throws DCATException
+     * Setter for the authority property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * 'DONL:Organization'.
+     *
+     * @param DCATControlledVocabularyEntry $authority The value to set
+     * @throws DCATException Thrown when the vocabulary is not 'DONL:Organization'
      */
     public function setAuthority(DCATControlledVocabularyEntry $authority): void
     {
@@ -525,8 +658,11 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATControlledVocabularyEntry $publisher
-     * @throws DCATException
+     * Setter for the publisher property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * 'DONL:Organization'.
+     *
+     * @param DCATControlledVocabularyEntry $publisher The value to set
+     * @throws DCATException Thrown when the vocabulary is not 'DONL:Organization'
      */
     public function setPublisher(DCATControlledVocabularyEntry $publisher): void
     {
@@ -538,7 +674,9 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATContactPoint $contactPoint
+     * Setter for the contactPoint property.
+     *
+     * @param DCATContactPoint $contactPoint The value to set
      */
     public function setContactPoint(DCATContactPoint $contactPoint): void
     {
@@ -546,8 +684,11 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATControlledVocabularyEntry $accessRights
-     * @throws DCATException
+     * Setter for the accessRights property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * 'Overheid:Openbaarheidsniveau'.
+     *
+     * @param DCATControlledVocabularyEntry $accessRights The value to set
+     * @throws DCATException Thrown when the vocabulary is not 'Overheid:Openbaarheidsniveau'
      */
     public function setAccessRights(DCATControlledVocabularyEntry $accessRights): void
     {
@@ -559,8 +700,11 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATControlledVocabularyEntry $datasetStatus
-     * @throws DCATException
+     * Setter for the datasetStatus property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * 'Overheid:DatasetStatus'.
+     *
+     * @param DCATControlledVocabularyEntry $datasetStatus The value to set
+     * @throws DCATException Thrown when the vocabulary is not 'Overheid:DatasetStatus'
      */
     public function setDatasetStatus(DCATControlledVocabularyEntry $datasetStatus): void
     {
@@ -572,7 +716,9 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATURI $landingPage
+     * Setter for the landingPage property.
+     *
+     * @param DCATURI $landingPage The value to set
      */
     public function setLandingPage(DCATURI $landingPage): void
     {
@@ -580,7 +726,9 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATSpatial $spatial
+     * Adds a value to the spatial property.
+     *
+     * @param DCATSpatial $spatial The value to add
      */
     public function addSpatial(DCATSpatial $spatial): void
     {
@@ -588,7 +736,9 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATTemporal $temporal
+     * Setter for the temporal property.
+     *
+     * @param DCATTemporal $temporal The value to set
      */
     public function setTemporal(DCATTemporal $temporal): void
     {
@@ -596,55 +746,69 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATProperty $conformsTo
+     * Adds a value to the conformsTo property.
+     *
+     * @param DCATURI $conformsTo The value to add
      */
-    public function addConformsTo(DCATProperty $conformsTo): void
+    public function addConformsTo(DCATURI $conformsTo): void
     {
         $this->conformsTo[] = $conformsTo;
     }
 
     /**
-     * @param DCATProperty $alternativeIdentifier
+     * Adds a value to the alternativeIdentifier property.
+     *
+     * @param DCATURI $alternativeIdentifier The value to add
      */
-    public function addAlternativeIdentifier(DCATProperty $alternativeIdentifier): void
+    public function addAlternativeIdentifier(DCATURI $alternativeIdentifier): void
     {
         $this->alternativeIdentifier[] = $alternativeIdentifier;
     }
 
     /**
-     * @param DCATProperty $relatedResource
+     * Adds a value to the relatedResource property.
+     *
+     * @param DCATURI $relatedResource The value to add
      */
-    public function addRelatedResource(DCATProperty $relatedResource): void
+    public function addRelatedResource(DCATURI $relatedResource): void
     {
         $this->relatedResource[] = $relatedResource;
     }
 
     /**
-     * @param DCATProperty $source
+     * Adds a value to the source property.
+     *
+     * @param DCATURI $source The value to add
      */
-    public function addSource(DCATProperty $source): void
+    public function addSource(DCATURI $source): void
     {
         $this->source[] = $source;
     }
 
     /**
-     * @param DCATProperty $hasVersion
+     * Adds a value to the hasVersion property.
+     *
+     * @param DCATURI $hasVersion The value to add
      */
-    public function addHasVersion(DCATProperty $hasVersion): void
+    public function addHasVersion(DCATURI $hasVersion): void
     {
         $this->hasVersion[] = $hasVersion;
     }
 
     /**
-     * @param DCATProperty $isVersionOf
+     * Adds a value to the isVersionOf property.
+     *
+     * @param DCATURI $isVersionOf The value to add
      */
-    public function addIsVersionOf(DCATProperty $isVersionOf): void
+    public function addIsVersionOf(DCATURI $isVersionOf): void
     {
         $this->isVersionOf[] = $isVersionOf;
     }
 
     /**
-     * @param DCATDateTime $releaseDate
+     * Setter for the releaseDate property.
+     *
+     * @param DCATDateTime $releaseDate The value to set
      */
     public function setReleaseDate(DCATDateTime $releaseDate): void
     {
@@ -652,7 +816,9 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATProperty $version
+     * Setter for the version property.
+     *
+     * @param DCATProperty $version The value to set
      */
     public function setVersion(DCATProperty $version): void
     {
@@ -660,7 +826,9 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATProperty $versionNotes
+     * Adds a value to the versionNotes property.
+     *
+     * @param DCATProperty $versionNotes The value to add
      */
     public function addVersionNotes(DCATProperty $versionNotes): void
     {
@@ -668,7 +836,9 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATLegalFoundation $legalFoundation
+     * Setter for the legalFoundation property.
+     *
+     * @param DCATLegalFoundation $legalFoundation The value to set
      */
     public function setLegalFoundation(DCATLegalFoundation $legalFoundation): void
     {
@@ -676,7 +846,9 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATDateTime $datePlanned
+     * Setter for the datePlanned property.
+     *
+     * @param DCATDateTime $datePlanned The value to set
      */
     public function setDatePlanned(DCATDateTime $datePlanned): void
     {
@@ -684,7 +856,9 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATProperty $documentation
+     * Adds a value to the documentation property.
+     *
+     * @param DCATProperty $documentation The value to add
      */
     public function addDocumentation(DCATProperty $documentation): void
     {
@@ -692,8 +866,11 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATControlledVocabularyEntry $frequency
-     * @throws DCATException
+     * Setter for the frequency property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * 'Overheid:Frequency'.
+     *
+     * @param DCATControlledVocabularyEntry $frequency The value to set
+     * @throws DCATException Thrown when the vocabulary is not 'Overheid:Frequency'
      */
     public function setFrequency(DCATControlledVocabularyEntry $frequency): void
     {
@@ -705,48 +882,51 @@ class DCATDataset extends DCATComplexEntity {
     }
 
     /**
-     * @param DCATProperty $provenance
+     * Adds a value to the provenance property.
+     *
+     * @param DCATURI $provenance The value to add
      */
-    public function addProvenance(DCATProperty $provenance): void
+    public function addProvenance(DCATURI $provenance): void
     {
         $this->provenance[] = $provenance;
     }
 
     /**
-     * @param DCATProperty $sample
+     * Adds a value to the sample property.
+     *
+     * @param DCATURI $sample The value to add
      */
-    public function addSample(DCATProperty $sample): void
+    public function addSample(DCATURI $sample): void
     {
         $this->sample[] = $sample;
     }
 
     /**
-     * @param DCATControlledVocabularyEntry $sourceCatalog
-     * @throws DCATException
+     * Setter for the sourceCatalog property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * 'DONL:Catalogs'.
+     *
+     * @param DCATControlledVocabularyEntry $sourceCatalog The value to set
+     * @throws DCATException Thrown when the vocabulary is not 'DONL:Catalogs'
      */
     public function setSourceCatalog(DCATControlledVocabularyEntry $sourceCatalog): void
     {
         if ($sourceCatalog->getControlledVocabulary() !== 'DONL:Catalogs') {
-            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary DONL:Catalogs');
+            throw new DCATException(
+                'Expected a DCATControlledVocabularyEntry of vocabulary DONL:Catalogs'
+            );
         }
 
         $this->sourceCatalog = $sourceCatalog;
     }
 
     /**
-     * @param DCATDistribution $distribution
+     * Adds a value to the distribution property.
+     *
+     * @param DCATDistribution $distribution The value to add
      */
     public function addDistribution(DCATDistribution $distribution): void
     {
         $this->distribution[] = $distribution;
-    }
-
-    /**
-     * @param array $distributions
-     */
-    public function setDistributions(array $distributions): void
-    {
-        $this->distribution = $distributions;
     }
 
 }
