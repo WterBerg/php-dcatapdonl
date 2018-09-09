@@ -36,6 +36,16 @@ abstract class DCATEntity {
     }
 
     /**
+     * Setter for the name property.
+     *
+     * @param string $name The value to set
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
      * Returns the data of the DCATEntity.
      *
      * @return mixed The data of the DCATEntity

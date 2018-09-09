@@ -1,26 +1,18 @@
 <?php
 
-namespace DCAT_AP_DONL\ComplexEntities;
+namespace DCAT_AP_DONL;
 
 use Serializable;
-use DCAT_AP_DONL\DCATEntity;
-use DCAT_AP_DONL\DCATProperty;
-use DCAT_AP_DONL\DCATURI;
-use DCAT_AP_DONL\DCATDateTime;
-use DCAT_AP_DONL\DCATNumber;
-use DCAT_AP_DONL\DCATControlledVocabularyEntry;
-use DCAT_AP_DONL\DCATValidationResult;
-use DCAT_AP_DONL\DCATException;
 
 
 /**
- * Class Distribution
+ * Class DCATDistribution
  * 
- * Represents the complex entity Distribution.
+ * Represents the complex entity DCATDistribution.
  * 
- * @package DCAT_AP_DONL\ComplexEntities
+ * @package DCAT_AP_DONL
  */
-class Distribution extends DCATComplexEntity implements Serializable {
+class DCATDistribution extends DCATComplexEntity implements Serializable {
 
     /** @var string[] */
     protected static $PROPERTIES = [
@@ -79,7 +71,7 @@ class Distribution extends DCATComplexEntity implements Serializable {
     /** @var DCATURI[] */
     protected $linkedSchema;
 
-    /** @var Checksum */
+    /** @var DCATChecksum */
     protected $checksum;
 
     /** @var DCATURI[] */
@@ -90,11 +82,7 @@ class Distribution extends DCATComplexEntity implements Serializable {
      */
     public function __construct()
     {
-        parent::__construct('Distribution');
-
-        foreach (self::$PROPERTIES as $property) {
-            $this->$property = null;
-        }
+        parent::__construct('Distribution', self::$PROPERTIES, self::$REQUIRED_PROPERTIES);
 
         $multivalued = ['downloadURL', 'language', 'linkedSchema', 'documentation'];
 
@@ -104,102 +92,12 @@ class Distribution extends DCATComplexEntity implements Serializable {
     }
 
     /**
-     * @inheritdoc
-     */
-    public function getData(): array
-    {
-        $data = [];
-
-        foreach (self::$PROPERTIES as $property) {
-            $prop = $this->$property;
-
-            if ($prop == null) {
-                continue;
-            }
-
-            if (is_array($prop)) {
-                foreach ($prop as $value) {
-                    /** @var DCATEntity $value */
-                    $data[$property][] = $value->getData();
-                }
-
-                continue;
-            }
-
-            /** @var DCATEntity $prop */
-            $data[$prop->getName()] = $prop->getData();
-        }
-
-        return $data;
-    }
-
-    /**
-     * Determines and returns whether or not the Distribution is valid.
+     * Compares itself to another DCATDistribution object.
      *
-     * A Distribution is considered valid when:
-     * - All the properties in `Distribution::$REQUIRED_PROPERTIES` are not null
-     * - All the present DCATEntities contained within Distribution pass their individual validation
-     *
-     * @see Distribution::$REQUIRED_PROPERTIES
-     * @return DCATValidationResult The validation result of this Distribution
+     * @param DCATDistribution $target The DCATDistribution to compare against
+     * @return bool Whether or not this DCATDistribution is equal to the given DCATDistribution
      */
-    public function validate(): DCATValidationResult
-    {
-        $result = new DCATValidationResult();
-
-        foreach (self::$PROPERTIES as $property) {
-            $prop = $this->$property;
-
-            if ($prop == null) {
-                if (in_array($property, self::$REQUIRED_PROPERTIES)) {
-                    $result->addMessage(
-                        sprintf('%s: %s is missing', $this->getName(), $property)
-                    );
-                }
-
-                continue;
-            }
-
-            if (is_array($prop)) {
-                if (count($prop) == 0 && in_array($property, self::$REQUIRED_PROPERTIES)) {
-                    $result->addMessage(
-                        sprintf('%s: %s is missing', $this->getName(), $property)
-                    );
-
-                    continue;
-                }
-
-                foreach ($prop as $arrayElement) {
-                    /** @var DCATEntity $arrayElement */
-                    $messages = $arrayElement->validate()->getMessages();
-
-                    for ($i = 0; $i < count($messages); $i++) {
-                        $result->addMessage(
-                            sprintf('%s: %s', $this->getName(), $messages[$i])
-                        );
-                    }
-                }
-
-                continue;
-            }
-
-            /** @var DCATEntity $prop */
-            $messages = $prop->validate()->getMessages();
-            for ($i = 0; $i < count($messages); $i++) {
-                $result->addMessage(sprintf('%s: %s', $this->getName(), $messages[$i]));
-            }
-        }
-
-        return $result;
-    }
-
-    /**
-     * Compares itself to another Distribution object.
-     *
-     * @param Distribution $target The Distribution to compare against
-     * @return bool Whether or not this Distribution is equal to the given Distribution
-     */
-    public function equalTo(Distribution $target): bool
+    public function equalTo(DCATDistribution $target): bool
     {
         return $this->serialize() == $target->serialize();
     }
@@ -226,7 +124,9 @@ class Distribution extends DCATComplexEntity implements Serializable {
      */
     public function unserialize($serialized): void
     {
-        throw new DCATException('Distribution::unserialize(string) is not implemented');
+        throw new DCATException(
+            'DCATDistribution::unserialize(string) is not implemented'
+        );
     }
 
     /**
@@ -382,9 +282,9 @@ class Distribution extends DCATComplexEntity implements Serializable {
     /**
      * Getter for the checksum property, may return null.
      *
-     * @return Checksum|null The checksum property
+     * @return DCATChecksum|null The checksum property
      */
-    public function getChecksum(): ?Checksum
+    public function getChecksum(): ?DCATChecksum
     {
         return $this->checksum;
     }
@@ -600,9 +500,9 @@ class Distribution extends DCATComplexEntity implements Serializable {
     /**
      * Setter for the checksum property.
      *
-     * @param Checksum $checksum The value to set
+     * @param DCATChecksum $checksum The value to set
      */
-    public function setChecksum(Checksum $checksum): void
+    public function setChecksum(DCATChecksum $checksum): void
     {
         $this->checksum = $checksum;
     }

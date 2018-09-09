@@ -25,8 +25,14 @@ class DCATURITest extends TestCase {
         $uri = new DCATURI('Uri', 'www.somesite.com');
         $anotherUri = new DCATURI('Uri', 'somesite.com');
 
-        $this->assertEquals(['Uri: value www.somesite.com is not a valid URI'], $uri->validate()->getMessages());
-        $this->assertEquals(['Uri: value somesite.com is not a valid URI'], $anotherUri->validate()->getMessages());
+        $this->assertEquals(
+            ['Uri: value www.somesite.com is not a valid URI'],
+            $uri->validate()->getMessages()
+        );
+        $this->assertEquals(
+            ['Uri: value somesite.com is not a valid URI'],
+            $anotherUri->validate()->getMessages()
+        );
     }
 
 }

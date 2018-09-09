@@ -1,26 +1,19 @@
 <?php
 
-namespace DCAT_AP_DONL\ComplexEntities;
-
-use DCAT_AP_DONL\DCATEntity;
-use DCAT_AP_DONL\DCATProperty;
-use DCAT_AP_DONL\DCATURI;
-use DCAT_AP_DONL\DCATDateTime;
-use DCAT_AP_DONL\DCATControlledVocabularyEntry;
-use DCAT_AP_DONL\DCATValidationResult;
-use DCAT_AP_DONL\DCATException;
+namespace DCAT_AP_DONL;
 
 
 /**
- * Class Dataset
+ * Class DCATDataset
  * 
- * Represents the complex entity Dataset.
+ * Represents the complex entity DCATDataset.
  * 
- * @package DCAT_AP_DONL\ComplexEntities
+ * @package DCAT_AP_DONL
  */
-class Dataset extends DCATComplexEntity {
+class DCATDataset extends DCATComplexEntity {
 
-    private static $PROPERTIES = [
+    /** @var string[] */
+    protected static $PROPERTIES = [
         'identifier', 'title', 'description', 'keyword', 'license', 'metadataLanguage', 'language',
         'theme', 'modificationDate', 'authority', 'publisher', 'contactPoint', 'accessRights',
         'datasetStatus', 'landingPage', 'spatial', 'temporal', 'conformsTo',
@@ -29,336 +22,128 @@ class Dataset extends DCATComplexEntity {
         'frequency', 'provenance', 'sample', 'sourceCatalog', 'distribution'
     ];
 
-    private static $REQUIRED_PROPERTIES = [
+    /** @var string[] */
+    protected static $REQUIRED_PROPERTIES = [
         'identifier', 'title', 'description', 'metadataLanguage', 'language', 'license',
         'modificationDate', 'distribution', 'authority', 'publisher', 'contactPoint', 'theme'
     ];
 
     /** @var DCATURI */
-    private $identifier;
+    protected $identifier;
 
     /** @var DCATProperty */
-    private $title;
+    protected $title;
 
     /** @var DCATProperty */
-    private $description;
+    protected $description;
 
     /** @var DCATProperty[] */
-    private $keyword;
+    protected $keyword;
 
     /** @var DCATControlledVocabularyEntry */
-    private $license;
+    protected $license;
 
     /** @var DCATControlledVocabularyEntry */
-    private $metadataLanguage;
+    protected $metadataLanguage;
 
     /** @var DCATControlledVocabularyEntry[] */
-    private $language;
+    protected $language;
 
     /** @var DCATControlledVocabularyEntry[] */
-    private $theme;
+    protected $theme;
 
     /** @var DCATDateTime */
-    private $modificationDate;
+    protected $modificationDate;
 
     /** @var DCATControlledVocabularyEntry */
-    private $authority;
+    protected $authority;
 
     /** @var DCATControlledVocabularyEntry */
-    private $publisher;
+    protected $publisher;
 
-    /** @var ContactPoint */
-    private $contactPoint;
-
-    /** @var DCATControlledVocabularyEntry */
-    private $accessRights;
+    /** @var DCATContactPoint */
+    protected $contactPoint;
 
     /** @var DCATControlledVocabularyEntry */
-    private $datasetStatus;
+    protected $accessRights;
+
+    /** @var DCATControlledVocabularyEntry */
+    protected $datasetStatus;
 
     /** @var DCATURI */
-    private $landingPage;
+    protected $landingPage;
 
-    /** @var Spatial[] */
-    private $spatial;
+    /** @var DCATSpatial[] */
+    protected $spatial;
 
-    /** @var Temporal */
-    private $temporal;
-
-    /** @var DCATURI[] */
-    private $conformsTo;
+    /** @var DCATTemporal */
+    protected $temporal;
 
     /** @var DCATURI[] */
-    private $alternativeIdentifier;
+    protected $conformsTo;
 
     /** @var DCATURI[] */
-    private $relatedResource;
+    protected $alternativeIdentifier;
 
     /** @var DCATURI[] */
-    private $source;
+    protected $relatedResource;
 
     /** @var DCATURI[] */
-    private $hasVersion;
+    protected $source;
 
     /** @var DCATURI[] */
-    private $isVersionOf;
+    protected $hasVersion;
+
+    /** @var DCATURI[] */
+    protected $isVersionOf;
 
     /** @var DCATDateTime */
-    private $releaseDate;
+    protected $releaseDate;
 
     /** @var DCATProperty */
-    private $version;
+    protected $version;
 
     /** @var DCATProperty[] */
-    private $versionNotes;
+    protected $versionNotes;
 
-    /** @var LegalFoundation */
-    private $legalFoundation;
+    /** @var DCATLegalFoundation */
+    protected $legalFoundation;
 
     /** @var DCATDateTime */
-    private $datePlanned;
+    protected $datePlanned;
 
     /** @var DCATURI[] */
-    private $documentation;
+    protected $documentation;
 
     /** @var DCATControlledVocabularyEntry */
-    private $frequency;
+    protected $frequency;
 
     /** @var DCATURI[] */
-    private $provenance;
+    protected $provenance;
 
     /** @var DCATURI[] */
-    private $sample;
+    protected $sample;
 
     /** @var DCATControlledVocabularyEntry */
-    private $sourceCatalog;
+    protected $sourceCatalog;
 
-    /** @var Distribution[] */
-    private $distribution;
+    /** @var DCATDistribution[] */
+    protected $distribution;
 
     /**
-     * @inheritdoc
+     * DCATDataset constructor.
      */
     public function __construct()
     {
-        parent::__construct('Dataset');
-
-        foreach (self::$PROPERTIES as $property) {
-            $this->$property = null;
-        }
+        parent::__construct('Dataset', self::$PROPERTIES, self::$REQUIRED_PROPERTIES);
 
         $multivalued = [
-            'conformsTo' => 'conforms_to',
-            'alternativeIdentifier' => 'alternate_identifier',
-            'source' => 'source',
-            'hasVersion' => 'has_version',
-            'isVersionOf' => 'is_version_of',
-            'versionNotes' => 'version_notes',
-            'documentation' => 'documentation',
-            'provenance' => 'provenance',
-            'sample' => 'sample',
-            'language' => 'language',
-            'theme' => 'theme'
+            'conformsTo', 'alternativeIdentifier', 'source', 'hasVersion', 'isVersionOf',
+            'versionNotes', 'documentation', 'provenance', 'sample', 'language', 'theme'
         ];
 
         foreach ($multivalued as $property) {
             $this->$property = [];
-        }
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getData(): array
-    {
-        $data = [];
-        $simple = [
-            'identifier' => 'identifier',
-            'title' => 'title',
-            'metadataLanguage' => 'metadata_language',
-            'modificationDate' => 'modified',
-            'authority' => 'authority',
-            'publisher' => 'publisher',
-            'accessRights' => 'access_rights',
-            'datasetStatus' => 'dataset_status',
-            'landingPage' => 'url',
-            'releaseDate' => 'release_date',
-            'version' => 'version',
-            'datePlanned' => 'date_planned',
-            'sourceCatalog' => 'source_catalog',
-            'frequency' => 'frequency',
-            'description' => 'notes'
-        ];
-        $array = [
-            'conformsTo' => 'conforms_to',
-            'alternativeIdentifier' => 'alternate_identifier',
-            'source' => 'source',
-            'hasVersion' => 'has_version',
-            'isVersionOf' => 'is_version_of',
-            'versionNotes' => 'version_notes',
-            'documentation' => 'documentation',
-            'provenance' => 'provenance',
-            'sample' => 'sample',
-            'language' => 'language',
-            'theme' => 'theme'
-        ];
-
-        foreach ($simple as $propertyKey => $propertyValue) {
-            if (isset($this->$propertyKey)) {
-                $data[$propertyValue] = $this->$propertyKey->getData();
-            }
-        }
-
-        foreach ($array as $propertyKey => $propertyValue) {
-            if (isset($this->$propertyKey)) {
-                foreach ($this->$propertyKey as $element) {
-                    /** @var DCATProperty $element */
-                    $data[$propertyValue][] = $element->getData();
-                }
-
-                if (isset($data[$propertyValue])) {
-                    $data[$propertyValue] = array_values(array_unique($data[$propertyValue]));
-                }
-            }
-        }
-
-        if (isset($this->keyword)) {
-            foreach ($this->keyword as $keyword) {
-                /** @var DCATProperty $keyword */
-                $data['tags'][] = ['name' => $keyword->getData()];
-            }
-        }
-
-        if (isset($this->license)) {
-            $data['license'] = ['id' => $this->license->getData()];
-        }
-
-        $complex = ['contactPoint', 'legalFoundation', 'temporal'];
-        foreach ($complex as $property) {
-            if (isset($this->$property)) {
-                $data = array_merge($data, $this->$property->getData());
-            }
-        }
-
-        if (isset($this->spatial)) {
-            $data['spatial_scheme'] = [];
-            $data['spatial_value'] = [];
-
-            foreach ($this->spatial as $spatial) {
-                /** @var Spatial $spatial */
-                $spatialData = $spatial->getData();
-
-                if (isset($spatialData['spatial_scheme'])) {
-                    $data['spatial_scheme'][] = $spatialData['spatial_scheme'];
-                }
-
-                if (isset($spatialData['spatial_value'])) {
-                    $data['spatial_value'][] = $spatialData['spatial_value'];
-                }
-            }
-
-            $data['spatial_value'] = array_unique($data['spatial_value']);
-        }
-
-        if (isset($this->distribution) && count($this->distribution) > 0) {
-            foreach ($this->distribution as $distribution) {
-                /** @var Distribution $distribution */
-                $data['resources'][] = $distribution->getData();
-            }
-        }
-
-        return $data;
-    }
-
-    /**
-     * Determines and returns whether or not the Dataset is valid.
-     *
-     * A Dataset is considered valid when:
-     * - All the properties in `Dataset::$REQUIRED_PROPERTIES` are not null
-     * - All the present DCATEntities contained within Dataset pass their individual validation
-     *
-     * @see Dataset::$REQUIRED_PROPERTIES
-     * @return DCATValidationResult
-     */
-    public function validate(): DCATValidationResult
-    {
-        $result = new DCATValidationResult();
-
-        foreach (self::$PROPERTIES as $property) {
-            if ($this->$property == null) {
-                if (in_array($property, self::$REQUIRED_PROPERTIES)) {
-                    $result->addMessage($this->getName() . ': ' . $property . ' is required');
-                }
-                continue;
-            }
-
-            if (is_array($this->$property)) {
-                if (count($this->$property) == 0 && in_array($property, self::$REQUIRED_PROPERTIES)) {
-                    $result->addMessage($this->getName() . ': ' . $property . ' is required');
-                    continue;
-                }
-
-                if ($property === 'distribution') {
-                    continue;
-                }
-
-                foreach ($this->$property as $arrayElement) {
-                    /** @var DCATEntity $arrayElement */
-                    $messages = $arrayElement->validate()->getMessages();
-
-                    for ($i = 0; $i < count($messages); $i++) {
-                        $result->addMessage($this->getName() . ': ' . $messages[$i]);
-                    }
-                }
-                continue;
-            }
-
-            $messages = $this->$property->validate()->getMessages();
-            for ($i = 0; $i < count($messages); $i++) {
-                $result->addMessage($this->getName() . ': ' . $messages[$i]);
-            }
-        }
-
-        return $result;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function stripInvalidOptionalProperties(): void
-    {
-        foreach (self::$PROPERTIES as $property) {
-            if (!isset($this->$property)) {
-                continue;
-            }
-
-            if (in_array($property, self::$REQUIRED_PROPERTIES)) {
-                continue;
-            }
-
-            if (is_array($this->$property)) {
-                for ($i = 0; $i < count($this->$property); $i++) {
-                    if ($this->$property[$i] instanceof DCATComplexEntity) {
-                        $this->$property[$i]->stripInvalidOptionalProperties();
-                    }
-
-                    if (!$this->$property[$i]->validate()->validated()) {
-                        unset($this->$property[$i]);
-                    }
-
-                    $this->$property = array_values($this->$property);
-                }
-
-                continue;
-            }
-
-            if ($this->$property instanceof DCATComplexEntity) {
-                $this->$property->stripInvalidOptionalProperties();
-            }
-
-            if (!$this->$property->validate()->validated()) {
-                $this->$property = null;
-            }
         }
     }
 
@@ -451,9 +236,9 @@ class Dataset extends DCATComplexEntity {
     }
 
     /**
-     * @return ContactPoint
+     * @return DCATContactPoint
      */
-    public function getContactPoint(): ?ContactPoint
+    public function getContactPoint(): ?DCATContactPoint
     {
         return $this->contactPoint;
     }
@@ -491,9 +276,9 @@ class Dataset extends DCATComplexEntity {
     }
 
     /**
-     * @return Temporal
+     * @return DCATTemporal
      */
-    public function getTemporal(): ?Temporal
+    public function getTemporal(): ?DCATTemporal
     {
         return $this->temporal;
     }
@@ -571,9 +356,9 @@ class Dataset extends DCATComplexEntity {
     }
 
     /**
-     * @return LegalFoundation
+     * @return DCATLegalFoundation
      */
-    public function getLegalFoundation(): ?LegalFoundation
+    public function getLegalFoundation(): ?DCATLegalFoundation
     {
         return $this->legalFoundation;
     }
@@ -753,9 +538,9 @@ class Dataset extends DCATComplexEntity {
     }
 
     /**
-     * @param ContactPoint $contactPoint
+     * @param DCATContactPoint $contactPoint
      */
-    public function setContactPoint(ContactPoint $contactPoint): void
+    public function setContactPoint(DCATContactPoint $contactPoint): void
     {
         $this->contactPoint = $contactPoint;
     }
@@ -795,17 +580,17 @@ class Dataset extends DCATComplexEntity {
     }
 
     /**
-     * @param Spatial $spatial
+     * @param DCATSpatial $spatial
      */
-    public function addSpatial(Spatial $spatial): void
+    public function addSpatial(DCATSpatial $spatial): void
     {
         $this->spatial[] = $spatial;
     }
 
     /**
-     * @param Temporal $temporal
+     * @param DCATTemporal $temporal
      */
-    public function setTemporal(Temporal $temporal): void
+    public function setTemporal(DCATTemporal $temporal): void
     {
         $this->temporal = $temporal;
     }
@@ -883,9 +668,9 @@ class Dataset extends DCATComplexEntity {
     }
 
     /**
-     * @param LegalFoundation $legalFoundation
+     * @param DCATLegalFoundation $legalFoundation
      */
-    public function setLegalFoundation(LegalFoundation $legalFoundation): void
+    public function setLegalFoundation(DCATLegalFoundation $legalFoundation): void
     {
         $this->legalFoundation = $legalFoundation;
     }
@@ -949,9 +734,9 @@ class Dataset extends DCATComplexEntity {
     }
 
     /**
-     * @param Distribution $distribution
+     * @param DCATDistribution $distribution
      */
-    public function addDistribution(Distribution $distribution): void
+    public function addDistribution(DCATDistribution $distribution): void
     {
         $this->distribution[] = $distribution;
     }

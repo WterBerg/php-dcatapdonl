@@ -23,7 +23,6 @@
     },
     "autoload": {
         "psr-4": {
-            "DCAT_AP_DONL\\ComplexEntity\\": "src/ComplexEntity",
             "DCAT_AP_DONL\\": "src/",
             "": "src/"
         },
