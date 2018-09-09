@@ -1,6 +1,6 @@
 {
     "name": "wterberg/dcat-ap-donl",
-    "description": "Allows for creation and validation of datasets conforming to the DCAT-AP-DONL 1.1 metadatastandard",
+    "description": "Allows for creation and validation of datasets conforming to the DCAT-AP-DONL 1.1 metadata standard",
     "version": "1.0.0-dev",
     "type": "library",
     "keywords": ["DCAT", "DCAT-AP-DONL", "DONL", "Dataset", "KOOP", "Metadata", "Standard", "NL", "Nederland"],
