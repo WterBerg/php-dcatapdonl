@@ -55,6 +55,10 @@ class DCATSpatial extends DCATComplexEntity {
     {
         $result = parent::validate();
 
+        if ($this->scheme == null || $this->value == null) {
+            return $result;
+        }
+
         try {
             $vocabulary = DCATControlledVocabulary::getVocabulary('Overheid:SpatialScheme');
             if (!$vocabulary->containsEntry($this->scheme->getData())) {
