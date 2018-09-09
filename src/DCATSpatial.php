@@ -59,26 +59,6 @@ class DCATSpatial extends DCATComplexEntity {
             return $result;
         }
 
-        try {
-            $vocabulary = DCATControlledVocabulary::getVocabulary('Overheid:SpatialScheme');
-            if (!$vocabulary->containsEntry($this->scheme->getData())) {
-                $result->addMessage(
-                    sprintf(
-                        '%s: scheme %s is not a valid scheme',
-                        $this->getName(), $this->scheme->getData()
-                    )
-                );
-            }
-        } catch (DCATException $e) {
-            $result->addMessage(
-                sprintf(
-                    '%s: could not validate scheme, a problem occurred while retrieving the 
-                    controlled vocabulary',
-                    $this->getName()
-                )
-            );
-        }
-
         if (!$this->valueMatchesScheme()) {
             $result->addMessage(
                 sprintf(
