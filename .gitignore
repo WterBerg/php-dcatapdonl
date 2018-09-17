@@ -1,5 +1,4 @@
 composer.phar
 /vendor/
-/docs/tests/*
-!docs/tests/.gitkeep
+/codeCoverage/*
 /.idea/*

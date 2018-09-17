@@ -1,9 +1,9 @@
 <phpunit
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/7.3/phpunit.xsd"
-        backupGlobals="true"
-        cacheTokens="false"
-        verbose="true">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/7.3/phpunit.xsd"
+    backupGlobals="true"
+    cacheTokens="false"
+    verbose="true">
 
     <filter>
 
@@ -13,13 +13,13 @@
                 <directory>/docs</directory>
                 <directory>/test</directory>
                 <directory>/vendor</directory>
-                <file>/composer.json</file>
-                <file>/composer.lock</file>
-                <file>/README.md</file>
                 <file>/.editorconfig</file>
                 <file>/.gitignore</file>
                 <file>/.travis.yml</file>
+                <file>/README.md</file>
                 <file>/LICENSE</file>
+                <file>/composer.json</file>
+                <file>/composer.lock</file>
                 <file>/phpunit.xml</file>
             </exclude>
         </whitelist>
@@ -28,8 +28,7 @@
 
     <logging>
 
-        <log type="coverage-html" target="./docs/tests/codeCoverage" lowUpperBound="50" highLowerBound="80"/>
-        <log type="testdox-html" target="./docs/tests/testdox.html" />
+        <log type="coverage-html" target="codeCoverage" lowUpperBound="50" highLowerBound="80"/>
 
     </logging>
 
