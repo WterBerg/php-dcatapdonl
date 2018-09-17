@@ -8,7 +8,7 @@ before_script:
 - travis_retry composer install --no-interaction --prefer-source --dev
 
 script:
-- vendor/bin/phpunit --coverage-clover=coverage.xml
+- composer run-script test
 
 after_success:
 - bash <(curl -s https://codegov.io/bash)

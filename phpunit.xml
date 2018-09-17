@@ -35,6 +35,7 @@
                 <file>/README.md</file>
                 <file>/.editorconfig</file>
                 <file>/.gitignore</file>
+                <file>/.travis.yml</file>
                 <file>/LICENSE</file>
                 <file>/phpunit.xml</file>
             </exclude>
