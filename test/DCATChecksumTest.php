@@ -42,4 +42,14 @@ class DCATChecksumTest extends TestCase {
         $this->assertTrue($checksum->validate()->validated());
     }
 
+    public function testSettersAndGettersWork(): void
+    {
+        $checksum = new DCATChecksum();
+        $checksum->setHash(new DCATProperty('hash', 'hashValue'));
+        $checksum->setAlgorithm(new DCATProperty('algorithm', 'algorithmValue'));
+
+        $this->assertEquals('hashValue', $checksum->getHash()->getData());
+        $this->assertEquals('algorithmValue', $checksum->getAlgorithm()->getData());
+    }
+
 }

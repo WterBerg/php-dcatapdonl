@@ -83,6 +83,27 @@ class DCATControlledVocabulary {
 
         $customVocabulary = new DCATControlledVocabulary($name);
         $customVocabulary->setEntries($entries);
+        $customVocabulary->setSource('custom');
+
+        DCATControlledVocabulary::$LISTS[$name] = $customVocabulary;
+    }
+
+    /**
+     * Adds a custom external vocabulary to the DCAT model.
+     *
+     * @param string $name The name of the controlled vocabulary
+     * @param string $source The external source for this vocabulary
+     * @throws DCATException Thrown when trying to define a vocabulary with a name that is already
+     * registered as a controlled vocabulary
+     */
+    public static function addCustomExternalVocabulary(string $name, string $source): void
+    {
+        if (isset(DCATControlledVocabulary::$LISTS[$name])) {
+            throw new DCATException('a vocabulary with the given name is already defined');
+        }
+
+        $customVocabulary = new DCATControlledVocabulary($name, $source);
+        $customVocabulary->loadEntries();
 
         DCATControlledVocabulary::$LISTS[$name] = $customVocabulary;
     }
@@ -125,7 +146,7 @@ class DCATControlledVocabulary {
         $remoteContents = curl_exec($curl);
         $requestCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
-        if ($requestCode < 200 && $requestCode >= 300) {
+        if ($requestCode < 200 || $requestCode >= 300) {
             curl_close($curl);
             throw new DCATException(
                 sprintf('unable to retrieve contents from source %s', $this->getSource()
@@ -167,12 +188,11 @@ class DCATControlledVocabulary {
     }
 
     /**
-     * Returns the source of this DCAT controlled vocabulary. May be null if this is a custom
-     * vocabulary.
+     * Returns the source of this DCAT controlled vocabulary.
      *
      * @return string The source of this controlled vocabulary
      */
-    public function getSource(): string
+    public function getSource(): ?string
     {
         return $this->source;
     }
@@ -186,6 +206,16 @@ class DCATControlledVocabulary {
     public function containsEntry(string $entry): bool
     {
         return array_search($entry, $this->entries, false) !== false;
+    }
+
+    /**
+     * Setter for the source property.
+     *
+     * @param string $source The value to set
+     */
+    protected function setSource(string $source): void
+    {
+        $this->source = $source;
     }
 
 }

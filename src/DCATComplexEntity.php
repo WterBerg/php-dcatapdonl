@@ -92,11 +92,11 @@ abstract class DCATComplexEntity extends DCATEntity {
         foreach ($this->properties as $property) {
             $prop = $this->$property;
 
-            if ($prop !== null) {
+            if ($prop !== null || (is_array($this->$property) && count($this->$property) > 0)) {
                 $propertiesPresent = true;
             }
 
-            if ($prop == null) {
+            if ($prop === null) {
                 if (in_array($property, $this->requiredProperties)) {
                     $result->addMessage(
                         sprintf('%s: %s is missing', $this->getName(), $property)
@@ -109,7 +109,7 @@ abstract class DCATComplexEntity extends DCATEntity {
             if (is_array($prop)) {
                 if (count($prop) == 0 && in_array($property, $this->requiredProperties)) {
                     $result->addMessage(
-                        sprintf('%s: %s is missing', $this->getName(), $property)
+                        sprintf('%s: %s is empty', $this->getName(), $property)
                     );
 
                     continue;
@@ -160,7 +160,7 @@ abstract class DCATComplexEntity extends DCATEntity {
                 continue;
             }
 
-            if (!$this->$property instanceof DCATEntity) {
+            if (!$this->$property instanceof DCATEntity && !is_array($this->$property)) {
                 continue;
             }
 
@@ -168,7 +168,20 @@ abstract class DCATComplexEntity extends DCATEntity {
                 continue;
             }
 
-            if ($this->$property->validate->validated()) {
+            if (is_array($this->$property)) {
+                for ($i = 0; $i <= count($this->$property); $i++) {
+                    if ($this->$property[$i]->validate()->validated()) {
+                        continue;
+                    }
+
+                    $stripped[] = $this->$property[$i]->getName();
+                    unset($this->$property[$i]);
+                }
+
+                return $stripped;
+            }
+
+            if ($this->$property->validate()->validated()) {
                 continue;
             }
 

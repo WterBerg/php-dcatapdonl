@@ -46,4 +46,16 @@ class DCATTemporalTest extends TestCase {
         $this->assertFalse($temporal->validate()->validated());
     }
 
+    public function testGettersArePresentAndFunctional(): void
+    {
+        $temporal = new DCATTemporal();
+        $temporal->setStart(new DCATDateTime('start', '2000-01-01T00:00:00'));
+        $temporal->setEnd(new DCATDateTime('end', '2001-01-01T00:00:00'));
+        $temporal->setLabel(new DCATProperty('label', 'MyLabel'));
+
+        $this->assertEquals('2000-01-01T00:00:00', $temporal->getStart()->getData());
+        $this->assertEquals('2001-01-01T00:00:00', $temporal->getEnd()->getData());
+        $this->assertEquals('MyLabel', $temporal->getLabel()->getData());
+    }
+
 }

@@ -2,22 +2,317 @@
 
 use PHPUnit\Framework\TestCase;
 use DCAT_AP_DONL\DCATSpatial;
+use DCAT_AP_DONL\DCATProperty;
+use DCAT_AP_DONL\DCATControlledVocabularyEntry;
+USE DCAT_AP_DONL\DCATException;
 
 
 class DCATSpatialTest extends TestCase {
 
     public function testBothSchemeAndValueAreRequired(): void
     {
-        $spatial = new DCATSpatial();
+        try {
+            $spatial = new DCATSpatial();
 
-        $this->assertEquals(
-            [
-                'Spatial: scheme is missing',
-                'Spatial: value is missing',
-                'Spatial: at least one property must be provided'
-            ],
-            $spatial->validate()->getMessages()
-        );
+            $this->assertEquals(
+                [
+                    'Spatial: scheme is missing',
+                    'Spatial: value is missing',
+                    'Spatial: at least one property must be provided'
+                ],
+                $spatial->validate()->getMessages()
+            );
+        } catch (DCATException $e) {
+            $this->fail($e->getMessage());
+        }
+    }
+
+    public function testGettersArePresentAndFunctional(): void
+    {
+        $spatial = new DCATSpatial();
+        $spatial->setScheme(new DCATControlledVocabularyEntry('scheme', 'myScheme', 'Overheid:SpatialScheme'));
+        $spatial->setValue(new DCATProperty('value', 'myValue'));
+
+        $this->assertEquals('myScheme', $spatial->getScheme()->getData());
+        $this->assertEquals('myValue', $spatial->getValue()->getData());
+    }
+
+    public function testValidPostcodeHuisnummersValidate(): void
+    {
+        try {
+            $spatial = new DCATSpatial();
+            $spatial->setScheme(
+                new DCATControlledVocabularyEntry(
+                    'scheme',
+                    'http://standaarden.overheid.nl/owms/4.0/doc/syntax-codeerschemas/overheid.postcodehuisnummer',
+                    'Overheid:SpatialScheme'
+                )
+            );
+            $spatial->setValue(new DCATProperty('value', '1234AB'));
+
+            $this->assertTrue($spatial->validate()->validated());
+        } catch (DCATException $e) {
+            $this->fail($e->getMessage());
+        }
+    }
+
+    public function testInvalidPostcodeHuisnummersFailValidation(): void
+    {
+        try {
+            $spatial = new DCATSpatial();
+            $spatial->setScheme(
+                new DCATControlledVocabularyEntry(
+                    'scheme',
+                    'http://standaarden.overheid.nl/owms/4.0/doc/syntax-codeerschemas/overheid.postcodehuisnummer',
+                    'Overheid:SpatialScheme'
+                )
+            );
+            $spatial->setValue(new DCATProperty('value', 'AB'));
+
+            $this->assertEquals(
+                [
+                    'Spatial: value AB fails to validate against scheme http://standaarden.overheid.nl/owms/4.0/doc/syntax-codeerschemas/overheid.postcodehuisnummer'
+                ],
+                $spatial->validate()->getMessages()
+            );
+        } catch (DCATException $e) {
+            $this->fail($e->getMessage());
+        }
+    }
+
+    public function testValidEPSG28992Validates(): void
+    {
+        try {
+            $spatial = new DCATSpatial();
+            $spatial->setScheme(
+                new DCATControlledVocabularyEntry(
+                    'scheme',
+                    'http://standaarden.overheid.nl/owms/4.0/doc/syntax-codeerschemas/overheid.epsg28992',
+                    'Overheid:SpatialScheme'
+                )
+            );
+            $spatial->setValue(new DCATProperty('value', '111111 123456.098'));
+
+            $this->assertTrue($spatial->validate()->validated());
+        } catch (DCATException $e) {
+            $this->fail($e->getMessage());
+        }
+    }
+
+    public function testInvalidEPGS28992DoesNotValidate(): void
+    {
+        try {
+            $spatial = new DCATSpatial();
+            $spatial->setScheme(
+                new DCATControlledVocabularyEntry(
+                    'scheme',
+                    'http://standaarden.overheid.nl/owms/4.0/doc/syntax-codeerschemas/overheid.epsg28992',
+                    'Overheid:SpatialScheme'
+                )
+            );
+            $spatial->setValue(new DCATProperty('value', '1111 0987'));
+
+            $this->assertEquals(
+                [
+                    'Spatial: value 1111 0987 fails to validate against scheme http://standaarden.overheid.nl/owms/4.0/doc/syntax-codeerschemas/overheid.epsg28992'
+                ],
+                $spatial->validate()->getMessages()
+            );
+        } catch (DCATException $e) {
+            $this->fail($e->getMessage());
+        }
+    }
+
+    public function testValidGemeentenValidate(): void
+    {
+        try {
+            $spatial = new DCATSpatial();
+            $spatial->setScheme(
+                new DCATControlledVocabularyEntry(
+                    'scheme',
+                    'http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.gemeente',
+                    'Overheid:SpatialScheme'
+                )
+            );
+            $spatial->setValue(new DCATProperty('value', 'http://standaarden.overheid.nl/owms/terms/Ubbergen_(gemeente)'));
+
+            $this->assertTrue($spatial->validate()->validated());
+        } catch (DCATException $e) {
+            $this->fail($e->getMessage());
+        }
+    }
+
+    public function testInvalidGemeentenDoNotValidate(): void
+    {
+        try {
+            $spatial = new DCATSpatial();
+            $spatial->setScheme(
+                new DCATControlledVocabularyEntry(
+                    'scheme',
+                    'http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.gemeente',
+                    'Overheid:SpatialScheme'
+                )
+            );
+            $spatial->setValue(new DCATProperty('value', 'Ubbergen'));
+
+            $this->assertEquals(
+                [
+                    'Spatial: value Ubbergen fails to validate against scheme http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.gemeente'
+                ],
+                $spatial->validate()->getMessages()
+            );
+        } catch (DCATException $e) {
+            $this->fail($e->getMessage());
+        }
+    }
+
+    public function testValidProvinciesValidate(): void
+    {
+        try {
+            $spatial = new DCATSpatial();
+            $spatial->setScheme(
+                new DCATControlledVocabularyEntry(
+                    'scheme',
+                    'http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.provincie',
+                    'Overheid:SpatialScheme'
+                )
+            );
+            $spatial->setValue(new DCATProperty('value', 'http://standaarden.overheid.nl/owms/terms/Gelderland'));
+
+            $this->assertTrue($spatial->validate()->validated());
+        } catch (DCATException $e) {
+            $this->fail($e->getMessage());
+        }
+    }
+
+    public function testInvalidProvinciesDoNotValidate(): void
+    {
+        try {
+            $spatial = new DCATSpatial();
+            $spatial->setScheme(
+                new DCATControlledVocabularyEntry(
+                    'scheme',
+                    'http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.provincie',
+                    'Overheid:SpatialScheme'
+                )
+            );
+            $spatial->setValue(new DCATProperty('value', 'I_do_not_exist'));
+
+            $this->assertEquals(
+                [
+                    'Spatial: value I_do_not_exist fails to validate against scheme http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.provincie'
+                ],
+                $spatial->validate()->getMessages()
+            );
+        } catch (DCATException $e) {
+            $this->fail($e->getMessage());
+        }
+    }
+
+    public function testValidWaterschappenValidate(): void
+    {
+        try {
+            $spatial = new DCATSpatial();
+            $spatial->setScheme(
+                new DCATControlledVocabularyEntry(
+                    'scheme',
+                    'http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.waterschap',
+                    'Overheid:SpatialScheme'
+                )
+            );
+            $spatial->setValue(new DCATProperty('value', 'http://standaarden.overheid.nl/owms/terms/Hoogheemraadschap_van_Rijnland'));
+
+            $this->assertTrue($spatial->validate()->validated());
+        } catch (DCATException $e) {
+            $this->fail($e->getMessage());
+        }
+    }
+
+    public function testInvalidWaterschappenDoNotValidate(): void
+    {
+        try {
+            $spatial = new DCATSpatial();
+            $spatial->setScheme(
+                new DCATControlledVocabularyEntry(
+                    'scheme',
+                    'http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.waterschap',
+                    'Overheid:SpatialScheme'
+                )
+            );
+            $spatial->setValue(new DCATProperty('value', 'testValue'));
+
+            $this->assertEquals(
+                [
+                    'Spatial: value testValue fails to validate against scheme http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.waterschap'
+                ],
+                $spatial->validate()->getMessages()
+            );
+        } catch (DCATException $e) {
+            $this->fail($e->getMessage());
+        }
+    }
+
+    public function testValidKoninkrijksdeelValidate(): void
+    {
+        try {
+            $spatial = new DCATSpatial();
+            $spatial->setScheme(
+                new DCATControlledVocabularyEntry(
+                    'scheme',
+                    'http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.koninkrijksdeel',
+                    'Overheid:SpatialScheme'
+                )
+            );
+            $spatial->setValue(new DCATProperty('value', 'http://standaarden.overheid.nl/owms/terms/Nederland'));
+
+            $this->assertTrue($spatial->validate()->validated());
+        } catch (DCATException $e) {
+            $this->fail($e->getMessage());
+        }
+    }
+
+    public function testInvalidKoninkrijksdeelDoNotValidate(): void
+    {
+        try {
+            $spatial = new DCATSpatial();
+            $spatial->setScheme(
+                new DCATControlledVocabularyEntry(
+                    'scheme',
+                    'http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.koninkrijksdeel',
+                    'Overheid:SpatialScheme'
+                )
+            );
+            $spatial->setValue(new DCATProperty('value', 'Duitsland'));
+
+            $this->assertEquals(
+                [
+                    'Spatial: value Duitsland fails to validate against scheme http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.koninkrijksdeel'
+                ],
+                $spatial->validate()->getMessages()
+            );
+        } catch (DCATException $e) {
+            $this->fail($e->getMessage());
+        }
+    }
+
+    public function testThrowsExceptionOnIllegalScheme(): void
+    {
+        try {
+            $spatial = new DCATSpatial();
+            $spatial->setScheme(
+                new DCATControlledVocabularyEntry(
+                    'scheme',
+                    'random value',
+                    'Overheid:SpatialScheme'
+                )
+            );
+            $spatial->setValue(new DCATProperty('value', 'Duitsland'));
+            $spatial->validate();
+
+            $this->fail();
+        } catch (DCATException $e) {
+            $this->assertEquals('invalid scheme specified for Spatial', $e->getMessage());
+        }
     }
 
 }

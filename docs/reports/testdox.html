@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Test Documentation</title>
+        <style>
+            body {
+                text-rendering: optimizeLegibility;
+                font-variant-ligatures: common-ligatures;
+                font-kerning: normal;
+                margin-left: 2em;
+            }
+
+            body > ul > li {
+                font-family: Source Serif Pro, PT Sans, Trebuchet MS, Helvetica, Arial;
+                font-size: 2em;
+            }
+
+            h2 {
+                font-family: Tahoma, Helvetica, Arial;
+                font-size: 3em;
+            }
+
+            ul {
+                list-style: none;
+                margin-bottom: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <h2 id="DCATBooleanTest">DCATBoolean</h2>
+        <ul>
+            <li style="color: #555753;">✓ Only accepts true or false values</li>
+        </ul>
+        <h2 id="DCATChecksumTest">DCATChecksum</h2>
+        <ul>
+            <li style="color: #555753;">✓ Data retrieval returns a key value array</li>
+            <li style="color: #555753;">✓ Only returns set properties</li>
+            <li style="color: #555753;">✓ Fails validation if one property is invalid</li>
+            <li style="color: #555753;">✓ Validates when all properties are present and valid</li>
+            <li style="color: #555753;">✓ Setters and getters work</li>
+        </ul>
+        <h2 id="DCATComplexEntityTest">DCATComplexEntity</h2>
+        <ul>
+            <li style="color: #555753;">✓ Complex entities are still entities</li>
+            <li style="color: #555753;">✓ Does not strip invalid required properties</li>
+            <li style="color: #555753;">✓ Ignored unset optional properties</li>
+            <li style="color: #555753;">✓ Strip optional properties ignores non d c a t entities</li>
+            <li style="color: #555753;">✓ Strip optional properties ignores valid properties</li>
+            <li style="color: #555753;">✓ Invalid optional properties are removed</li>
+            <li style="color: #555753;">✓ Removes invalid multivalued properties</li>
+            <li style="color: #555753;">✓ Multi valued required property is invalid when empty</li>
+            <li style="color: #555753;">✓ Multi valued required properties have individual validation</li>
+        </ul>
+        <h2 id="DCATContactPointTest">DCATContactPoint</h2>
+        <ul>
+            <li style="color: #555753;">✓ Name property is required</li>
+            <li style="color: #555753;">✓ Email webpage or phone is required</li>
+            <li style="color: #555753;">✓ Validates when fullname and email are present</li>
+            <li style="color: #555753;">✓ Validates when fullname and phone are present</li>
+            <li style="color: #555753;">✓ Validates when fullname and webpage are present</li>
+            <li style="color: #555753;">✓ Getter methods are present and functional</li>
+        </ul>
+        <h2 id="DCATControlledVocabularyEntryTest">DCATControlledVocabularyEntry</h2>
+        <ul>
+            <li style="color: #555753;">✓ Vocabulary is defined in entry</li>
+            <li style="color: #555753;">✓ Entry validates when part of the vocabulary</li>
+            <li style="color: #555753;">✓ Entry fails validation when part of the vocabulary</li>
+        </ul>
+        <h2 id="DCATControlledVocabularyTest">DCATControlledVocabulary</h2>
+        <ul>
+            <li style="color: #555753;">✓ Exception thrown when requesting non existent vocabulary</li>
+            <li style="color: #555753;">✓ Allows retrieval of existing vocabularies</li>
+            <li style="color: #555753;">✓ Name and source are retrievable</li>
+            <li style="color: #555753;">✓ False on non existent entry search</li>
+            <li style="color: #555753;">✓ True on existing entry search</li>
+            <li style="color: #555753;">✓ Custom vocabularies can be added</li>
+            <li style="color: #555753;">✓ Custom vocabularies function as normal vocabularies</li>
+            <li style="color: #555753;">✓ Cant add existing vocabulary</li>
+            <li style="color: #555753;">✓ Custom name is accepted</li>
+            <li style="color: #555753;">✓ Custom external vocabularies can be added</li>
+            <li style="color: #555753;">✓ Custom external vocabularies fail when they cannot be loaded</li>
+            <li style="color: #555753;">✓ Custom external vocabularies cannot be added with a used name</li>
+        </ul>
+        <h2 id="DCATDatasetTest">DCATDataset</h2>
+        <ul>
+            <li style="color: #555753;">✓ Empty datasets do not validate</li>
+        </ul>
+        <h2 id="DCATDateTimeTest">DCATDateTime</h2>
+        <ul>
+            <li style="color: #555753;">✓ Format is retrievable</li>
+            <li style="color: #555753;">✓ Format falls back to default</li>
+            <li style="color: #555753;">✓ Value is valid according to given format</li>
+            <li style="color: #555753;">✓ Value fails validation when it does not match the format</li>
+        </ul>
+        <h2 id="DCATDistributionTest">DCATDistribution</h2>
+        <ul>
+            <li style="color: #555753;">✓ Empty distributions do not validate</li>
+        </ul>
+        <h2 id="DCATEntityTest">DCATEntity</h2>
+        <ul>
+            <li style="color: #555753;">✓ The entity has a name</li>
+        </ul>
+        <h2 id="DCATExceptionTest">DCATException</h2>
+        <ul>
+            <li style="color: #555753;">✓ Is derived of exception class</li>
+        </ul>
+        <h2 id="DCATLegalFoundationTest">DCATLegalFoundation</h2>
+        <ul>
+            <li style="color: #555753;">✓ Data retrieval returns a key value array</li>
+            <li style="color: #555753;">✓ Only returns set properties</li>
+            <li style="color: #555753;">✓ Fails validation if one property is invalid</li>
+            <li style="color: #555753;">✓ Validates when all properties are present and valid</li>
+            <li style="color: #555753;">✓ Getters are present and functional</li>
+        </ul>
+        <h2 id="DCATNumberTest">DCATNumber</h2>
+        <ul>
+            <li style="color: #555753;">✓ Non numbers fail validation</li>
+            <li style="color: #555753;">✓ Negative numbers are not allowed</li>
+            <li style="color: #555753;">✓ Zero is not allowed</li>
+            <li style="color: #555753;">✓ Positive numbers are valid</li>
+        </ul>
+        <h2 id="DCATPropertyTest">DCATProperty</h2>
+        <ul>
+            <li style="color: #555753;">✓ The value can be set</li>
+            <li style="color: #555753;">✓ The value cannot be null</li>
+            <li style="color: #555753;">✓ The value cannot be empty</li>
+            <li style="color: #555753;">✓ The value cannot contain only spaces</li>
+            <li style="color: #555753;">✓ The value gets stripped of leading and ending spaces</li>
+        </ul>
+        <h2 id="DCATSpatialTest">DCATSpatial</h2>
+        <ul>
+            <li style="color: #555753;">✓ Both scheme and value are required</li>
+            <li style="color: #555753;">✓ Getters are present and functional</li>
+            <li style="color: #555753;">✓ Valid postcode huisnummers validate</li>
+            <li style="color: #555753;">✓ Invalid postcode huisnummers fail validation</li>
+            <li style="color: #555753;">✓ Valid e p s g 28992 validates</li>
+            <li style="color: #555753;">✓ Invalid e p g s 28992 does not validate</li>
+            <li style="color: #555753;">✓ Valid gemeenten validate</li>
+            <li style="color: #555753;">✓ Invalid gemeenten do not validate</li>
+            <li style="color: #555753;">✓ Valid provincies validate</li>
+            <li style="color: #555753;">✓ Invalid provincies do not validate</li>
+            <li style="color: #555753;">✓ Valid waterschappen validate</li>
+            <li style="color: #555753;">✓ Invalid waterschappen do not validate</li>
+            <li style="color: #555753;">✓ Valid koninkrijksdeel validate</li>
+            <li style="color: #555753;">✓ Invalid koninkrijksdeel do not validate</li>
+            <li style="color: #555753;">✓ Throws exception on illegal scheme</li>
+        </ul>
+        <h2 id="DCATTemporalTest">DCATTemporal</h2>
+        <ul>
+            <li style="color: #555753;">✓ Fails when all properties are null</li>
+            <li style="color: #555753;">✓ Is valid with only one property</li>
+            <li style="color: #555753;">✓ Start must be smaller than end</li>
+            <li style="color: #555753;">✓ Getters are present and functional</li>
+        </ul>
+        <h2 id="DCATURITest">DCATURI</h2>
+        <ul>
+            <li style="color: #555753;">✓ Http links are allowed</li>
+            <li style="color: #555753;">✓ Https links are allowed</li>
+            <li style="color: #555753;">✓ Protocol is required</li>
+        </ul>
+        <h2 id="DCATValidationResultTest">DCATValidationResult</h2>
+        <ul>
+            <li style="color: #555753;">✓ Validates when there are no error messages</li>
+            <li style="color: #555753;">✓ Messages invalidates the validation</li>
+            <li style="color: #555753;">✓ Allows adding multiple messages</li>
+            <li style="color: #555753;">✓ Messages are retrievable</li>
+            <li style="color: #555753;">✓ Notices do not invalidate the result</li>
+            <li style="color: #555753;">✓ Notices are retrievable</li>
+            <li style="color: #555753;">✓ Allows adding multiple notices</li>
+        </ul>
+    </body>
+</html>

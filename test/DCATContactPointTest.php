@@ -60,4 +60,22 @@ class DCATContactPointTest extends TestCase {
         $this->assertTrue($cp->validate()->validated());
     }
 
+    public function testGetterMethodsArePresentAndFunctional(): void
+    {
+        $cp = new DCATContactPoint();
+        $cp->setFullName(new DCATProperty('name', 'Willem ter Berg'));
+        $cp->setTitle(new DCATProperty('title', 'Ing.'));
+        $cp->setAddress(new DCATProperty('address', 'Nijmegen, The Netherlands'));
+        $cp->setEmail(new DCATProperty('email', 'wrpterberg@gmail.com'));
+        $cp->setWebpage(new DCATURI('website', 'https://github.com/WterBerg'));
+        $cp->setPhone(new DCATProperty('phone', '012-3456789'));
+
+        $this->assertEquals('Willem ter Berg', $cp->getFullName()->getData());
+        $this->assertEquals('Ing.', $cp->getTitle()->getData());
+        $this->assertEquals('Nijmegen, The Netherlands', $cp->getAddress()->getData());
+        $this->assertEquals('wrpterberg@gmail.com', $cp->getEmail()->getData());
+        $this->assertEquals('https://github.com/WterBerg', $cp->getWebpage()->getData());
+        $this->assertEquals('012-3456789', $cp->getPhone()->getData());
+    }
+
 }

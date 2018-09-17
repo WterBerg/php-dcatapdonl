@@ -125,10 +125,10 @@ class DCATSpatial extends DCATComplexEntity {
     protected function valueMatchesScheme(): bool
     {
         $listValidators = [
-            'https://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.gemeente'        => 'Overheid:SpatialGemeente',
-            'https://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.koninkrijksdeel' => 'Overheid:SpatialKoninkrijksdeel',
-            'https://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.provincie'       => 'Overheid:SpatialProvincie',
-            'https://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.waterschap'      => 'Overheid:SpatialWaterschap'
+            'http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.gemeente'        => 'Overheid:SpatialGemeente',
+            'http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.koninkrijksdeel' => 'Overheid:SpatialKoninkrijksdeel',
+            'http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.provincie'       => 'Overheid:SpatialProvincie',
+            'http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.waterschap'      => 'Overheid:SpatialWaterschap'
         ];
 
         if (isset($listValidators[$this->scheme->getData()])) {
@@ -138,17 +138,17 @@ class DCATSpatial extends DCATComplexEntity {
             return $vocabulary->containsEntry($this->value->getData());
         }
 
-        $epsg28992 = 'https://standaarden.overheid.nl/owms/4.0/doc/syntax-codeerschemas/overheid.epsg28992';
+        $epsg28992 = 'http://standaarden.overheid.nl/owms/4.0/doc/syntax-codeerschemas/overheid.epsg28992';
         if ($this->scheme->getData() === $epsg28992) {
             return $this->validEPSG28992();
         }
 
-        $postcodehuisnummer = 'https://standaarden.overheid.nl/owms/4.0/doc/syntax-codeerschemas/overheid.postcodehuisnummer';
+        $postcodehuisnummer = 'http://standaarden.overheid.nl/owms/4.0/doc/syntax-codeerschemas/overheid.postcodehuisnummer';
         if ($this->scheme->getData() === $postcodehuisnummer) {
             return $this->validPostcodeHuisnummer();
         }
 
-        return true;
+        throw new DCATException('invalid scheme specified for Spatial');
     }
 
     /**
@@ -158,7 +158,7 @@ class DCATSpatial extends DCATComplexEntity {
      */
     protected function validEPSG28992(): bool
     {
-        $match = preg_match('^\d{6}(\.\d{3})? \d{6}(\.\d{3})?$', $this->value->getData());
+        $match = preg_match('/^\d{6}(\.\d{3})? \d{6}(\.\d{3})?$/', $this->value->getData());
 
         return  $match == 1;
     }
@@ -170,7 +170,7 @@ class DCATSpatial extends DCATComplexEntity {
      */
     protected function validPostcodeHuisnummer(): bool
     {
-        $match = preg_match('^[1-9]\d{3}([A-Z]{2}(\d+(\S+)?)?)?$', $this->value->getData());
+        $match = preg_match('/^[1-9]\d{3}([A-Z]{2}(\d+(\S+)?)?)?$/', $this->value->getData());
 
         return $match == 1;
     }

@@ -82,9 +82,10 @@ class DCATControlledVocabularyTest extends TestCase {
     {
         try {
             DCATControlledVocabulary::addCustomVocabulary('TestVocabulary', ['a', 'b']);
-            DCATControlledVocabulary::getVocabulary('TestVocabulary');
+            $vocabulary = DCATControlledVocabulary::getVocabulary('TestVocabulary');
 
-            $this->assertTrue(true);
+            $this->assertEquals('TestVocabulary', $vocabulary->getName());
+            $this->assertEquals('custom', $vocabulary->getSource());
         } catch (DCATException $e) {
             $this->fail();
         }
@@ -97,6 +98,7 @@ class DCATControlledVocabularyTest extends TestCase {
             $vocabulary = DCATControlledVocabulary::getVocabulary('TestVocabulary2');
 
             $this->assertTrue($vocabulary->containsEntry('a'));
+            $this->assertEquals('custom', $vocabulary->getSource());
         } catch (DCATException $e) {
             $this->fail();
         }
@@ -111,6 +113,64 @@ class DCATControlledVocabularyTest extends TestCase {
             $this->fail();
         } catch (DCATException $e) {
             $this->assertEquals('a vocabulary with the given name is already defined', $e->getMessage());
+        }
+    }
+
+    public function testCustomNameIsAccepted(): void
+    {
+        try {
+            DCATControlledVocabulary::addCustomVocabulary('TestVocabulary4', []);
+            $vocabulary = DCATControlledVocabulary::getVocabulary('TestVocabulary4');
+
+            $this->assertEquals('TestVocabulary4', $vocabulary->getName());
+        } catch (DCATException $e) {
+            $this->fail();
+        }
+    }
+
+    public function testCustomExternalVocabulariesCanBeAdded(): void
+    {
+        try {
+            DCATControlledVocabulary::addCustomExternalVocabulary(
+                'TestVocabulary5',
+                'https://waardelijsten.dcat-ap-donl.nl/adms_changetype.json'
+            );
+            $vocabulary = DCATControlledVocabulary::getVocabulary('TestVocabulary5');
+
+            $this->assertEquals('TestVocabulary5', $vocabulary->getName());
+        } catch (DCATException $e) {
+            $this->fail();
+        }
+    }
+
+    public function testCustomExternalVocabulariesFailWhenTheyCannotBeLoaded(): void
+    {
+        try {
+            DCATControlledVocabulary::addCustomExternalVocabulary(
+                'TestVocabulary6',
+                'https://waardelijsten.dcat-ap-donl.nl/does_not_exist.json'
+            );
+
+            $this->fail();
+        } catch (DCATException $e) {
+            $this->assertEquals(
+                'unable to retrieve contents from source https://waardelijsten.dcat-ap-donl.nl/does_not_exist.json',
+                $e->getMessage()
+            );
+        }
+    }
+
+    public function testCustomExternalVocabulariesCannotBeAddedWithAUsedName(): void
+    {
+        try {
+            DCATControlledVocabulary::addCustomExternalVocabulary('ADMS:Changetype', '');
+
+            $this->fail();
+        } catch (DCATException $e) {
+            $this->assertEquals(
+                'a vocabulary with the given name is already defined',
+                $e->getMessage()
+            );
         }
     }
 

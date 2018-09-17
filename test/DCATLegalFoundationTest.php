@@ -54,4 +54,16 @@ class DCATLegalFoundationTest extends TestCase {
         $this->assertTrue($lf->validate()->validated());
     }
 
+    public function testGettersArePresentAndFunctional(): void
+    {
+        $lf = new DCATLegalFoundation();
+        $lf->setReference(new DCATProperty('reference', 'referenceValue'));
+        $lf->setUri(new DCATURI('uri', 'ssh://google.nl'));
+        $lf->setLabel(new DCATProperty('label', 'labelValue'));
+
+        $this->assertEquals('referenceValue', $lf->getReference()->getData());
+        $this->assertEquals('ssh://google.nl', $lf->getUri()->getData());
+        $this->assertEquals('labelValue', $lf->getLabel()->getData());
+    }
+
 }
