@@ -7,12 +7,12 @@ metadata standard, which is documented on [dcat-ap-donl.readthedocs.io](https://
 Usage is a simple as:
 
 ```php
-use DCAT_AP_DONL;
+use DCAT_AP_DONL\DCATDataset;
 
-$dataset = new Dataset();
+$dataset = new DCATDataset();
 $validation = $dataset->validate();
 
-var_dump($validation);
+var_dump($validation->getMessages());
 ```
 
 ## dependencies
