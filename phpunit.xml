@@ -45,9 +45,9 @@
 
     <logging>
 
-        <log type="coverage-html" target="./docs/reports/codeCoverage" lowUpperBound="50" highLowerBound="80"/>
-        <log type="coverage-clover" target="clover.xml"/>
-        <log type="testdox-html" target="./docs/reports/testdox.html" />
+        <log type="coverage-html" target="./docs/tests/codeCoverage" lowUpperBound="50" highLowerBound="80"/>
+        <log type="coverage-clover" target="./clover.xml"/>
+        <log type="testdox-html" target="./docs/tests/testdox.html" />
 
     </logging>
 
