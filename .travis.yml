@@ -1,14 +1,5 @@
 language: php
+php: 7.2
 
-php:
-- 7.2
-
-before_script:
-- travis_retry composer self-update
-- travis_retry composer install --no-interaction --prefer-source --dev
-
-script:
-- composer run-script test
-
-after_success:
-- bash <(curl -s https://codegov.io/bash)
+install: composer install
+script: composer run-script test
