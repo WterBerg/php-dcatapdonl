@@ -2,24 +2,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/7.3/phpunit.xsd"
         backupGlobals="true"
-        backupStaticAttributes="false"
         cacheTokens="false"
-        colors="false"
-        convertErrorsToExceptions="true"
-        convertNoticesToExceptions="true"
-        convertWarningsToExceptions="true"
-        forceCoversAnnotation="false"
-        printerClass="PHPUnit\TextUI\ResultPrinter"
-        processIsolation="false"
-        stopOnError="false"
-        stopOnFailure="false"
-        stopOnIncomplete="false"
-        stopOnSkipped="false"
-        stopOnRisky="false"
-        testSuiteLoaderClass="PHPUnit\Runner\StandardTestSuiteLoader"
-        timeoutForSmallTests="1"
-        timeoutForMediumTests="10"
-        timeoutForLargeTests="60"
         verbose="true">
 
     <filter>
@@ -46,7 +29,6 @@
     <logging>
 
         <log type="coverage-html" target="./docs/tests/codeCoverage" lowUpperBound="50" highLowerBound="80"/>
-        <log type="coverage-clover" target="./clover.xml"/>
         <log type="testdox-html" target="./docs/tests/testdox.html" />
 
     </logging>
