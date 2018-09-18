@@ -80,7 +80,7 @@ class DCATSpatialTest extends TestCase {
         }
     }
 
-    public function testValidEPSG28992Validates(): void
+    public function testValidEpsg28992Validates(): void
     {
         try {
             $spatial = new DCATSpatial();
@@ -99,7 +99,7 @@ class DCATSpatialTest extends TestCase {
         }
     }
 
-    public function testInvalidEPGS28992DoesNotValidate(): void
+    public function testInvalidEpsg28992DoesNotValidate(): void
     {
         try {
             $spatial = new DCATSpatial();
