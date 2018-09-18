@@ -947,4 +947,34 @@ class DCATDataset extends DCATComplexEntity {
         $this->distribution[] = $distribution;
     }
 
+    /**
+     * Setter for the highValue property.
+     *
+     * @param DCATBoolean $highValue The value to set
+     */
+    public function setHighValue(DCATBoolean $highValue): void
+    {
+        $this->highValue = $highValue;
+    }
+
+    /**
+     * Setter for the referentieData property.
+     *
+     * @param DCATBoolean $referentieData The value to set
+     */
+    public function setReferentieData(DCATBoolean $referentieData): void
+    {
+        $this->referentieData = $referentieData;
+    }
+
+    /**
+     * Setter for the basisRegister property.
+     *
+     * @param DCATBoolean $basisRegister The value to set
+     */
+    public function setBasisRegister(DCATBoolean $basisRegister): void
+    {
+        $this->basisRegister = $basisRegister;
+    }
+
 }
