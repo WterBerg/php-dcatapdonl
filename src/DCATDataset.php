@@ -162,30 +162,6 @@ class DCATDataset extends DCATComplexEntity {
      *
      * A DCATDataset is considered valid when:
      * - It passes the validation as defined in `DCATComplexEntity::validate()`
-     * - No conflicting rights statements have been provided, as outlined below
-     *
-     * The following combinations of values are considered illegal.
-     *
-     * **licentieonbekend**
-     * - license:       `http://standaarden.overheid.nl/owms/terms/licentieonbekend`
-     * - datasetStatus: `http://data.overheid.nl/status/beschikbaar`
-     * - accessRights:  `http://publications.europa.eu/resource/authority/access-right/PUBLIC`
-     *
-     * **geslotenlicentie**:
-     * - license:       `http://standaarden.overheid.nl/owms/terms/geslotenlicentie`
-     * - datasetStatus: `http://data.overheid.nl/status/beschikbaar`
-     * - accessRights   `http://publications.europa.eu/resource/authority/access-right/PUBLIC`
-     *
-     * Plainly, the an open license must be provided when datasetStatus is 'beschikbaar' and
-     * accessRights is set to 'PUBLIC'.
-     *
-     * **open license**:
-     * - license:       Anything but [`http://standaarden.overheid.nl/owms/terms/licentieonbekend`,
-     * `http://standaarden.overheid.nl/owms/terms/geslotenlicentie`]
-     * - datasetStatus: `http://data.overheid.nl/status/niet_beschikbaar`
-     *
-     * Plainly, when datasetStatus is set to 'niet_beschikbaar' an 'open' license cannot be
-     * provided.
      *
      * @see DCATComplexEntity::validate()
      * @return DCATValidationResult The validation result of this DCATDataset

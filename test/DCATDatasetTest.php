@@ -249,9 +249,4 @@ class DCATDatasetTest extends TestCase {
         }
     }
 
-    public function testDoesNotValidateWithConflictingRightsStatements(): void
-    {
-        $this->fail('test not implemented yet');
-    }
-
 }
