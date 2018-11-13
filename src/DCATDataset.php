@@ -188,7 +188,7 @@ class DCATDataset extends DCATComplexEntity {
      *
      * @return DCATProperty|null The title property
      */
-    public function getTitle(): DCATProperty
+    public function getTitle(): ?DCATProperty
     {
         return $this->title;
     }
@@ -198,7 +198,7 @@ class DCATDataset extends DCATComplexEntity {
      *
      * @return DCATProperty|null The description property
      */
-    public function getDescription(): DCATProperty
+    public function getDescription(): ?DCATProperty
     {
         return $this->description;
     }
@@ -218,7 +218,7 @@ class DCATDataset extends DCATComplexEntity {
      *
      * @return DCATControlledVocabularyEntry|null The license property
      */
-    public function getLicense(): DCATControlledVocabularyEntry
+    public function getLicense(): ?DCATControlledVocabularyEntry
     {
         return $this->license;
     }
@@ -228,7 +228,7 @@ class DCATDataset extends DCATComplexEntity {
      *
      * @return DCATControlledVocabularyEntry|null The metadataLanguage property
      */
-    public function getMetadataLanguage(): DCATControlledVocabularyEntry
+    public function getMetadataLanguage(): ?DCATControlledVocabularyEntry
     {
         return $this->metadataLanguage;
     }
@@ -258,7 +258,7 @@ class DCATDataset extends DCATComplexEntity {
      *
      * @return DCATDateTime|null The modificationDate property
      */
-    public function getModificationDate(): DCATDateTime
+    public function getModificationDate(): ?DCATDateTime
     {
         return $this->modificationDate;
     }
@@ -268,7 +268,7 @@ class DCATDataset extends DCATComplexEntity {
      *
      * @return DCATControlledVocabularyEntry|null The authority property
      */
-    public function getAuthority(): DCATControlledVocabularyEntry
+    public function getAuthority(): ?DCATControlledVocabularyEntry
     {
         return $this->authority;
     }
@@ -278,7 +278,7 @@ class DCATDataset extends DCATComplexEntity {
      *
      * @return DCATControlledVocabularyEntry|null The publisher property
      */
-    public function getPublisher(): DCATControlledVocabularyEntry
+    public function getPublisher(): ?DCATControlledVocabularyEntry
     {
         return $this->publisher;
     }
@@ -288,7 +288,7 @@ class DCATDataset extends DCATComplexEntity {
      *
      * @return DCATContactPoint|null The contactPoint property
      */
-    public function getContactPoint(): DCATContactPoint
+    public function getContactPoint(): ?DCATContactPoint
     {
         return $this->contactPoint;
     }
@@ -298,7 +298,7 @@ class DCATDataset extends DCATComplexEntity {
      *
      * @return DCATControlledVocabularyEntry|null The accessRights property
      */
-    public function getAccessRights(): DCATControlledVocabularyEntry
+    public function getAccessRights(): ?DCATControlledVocabularyEntry
     {
         return $this->accessRights;
     }
@@ -308,7 +308,7 @@ class DCATDataset extends DCATComplexEntity {
      *
      * @return DCATControlledVocabularyEntry|null The datasetStatus property
      */
-    public function getDatasetStatus(): DCATControlledVocabularyEntry
+    public function getDatasetStatus(): ?DCATControlledVocabularyEntry
     {
         return $this->datasetStatus;
     }
@@ -318,7 +318,7 @@ class DCATDataset extends DCATComplexEntity {
      *
      * @return DCATURI|null The landingPage property
      */
-    public function getLandingPage(): DCATURI
+    public function getLandingPage(): ?DCATURI
     {
         return $this->landingPage;
     }
@@ -338,7 +338,7 @@ class DCATDataset extends DCATComplexEntity {
      *
      * @return DCATTemporal|null The temporal property
      */
-    public function getTemporal(): DCATTemporal
+    public function getTemporal(): ?DCATTemporal
     {
         return $this->temporal;
     }
@@ -408,7 +408,7 @@ class DCATDataset extends DCATComplexEntity {
      *
      * @return DCATDateTime|null The releaseDate property
      */
-    public function getReleaseDate(): DCATDateTime
+    public function getReleaseDate(): ?DCATDateTime
     {
         return $this->releaseDate;
     }
@@ -418,7 +418,7 @@ class DCATDataset extends DCATComplexEntity {
      *
      * @return DCATProperty|null The version property
      */
-    public function getVersion(): DCATProperty
+    public function getVersion(): ?DCATProperty
     {
         return $this->version;
     }
@@ -438,7 +438,7 @@ class DCATDataset extends DCATComplexEntity {
      *
      * @return DCATLegalFoundation|null The legalFoundation property
      */
-    public function getLegalFoundation(): DCATLegalFoundation
+    public function getLegalFoundation(): ?DCATLegalFoundation
     {
         return $this->legalFoundation;
     }
@@ -448,7 +448,7 @@ class DCATDataset extends DCATComplexEntity {
      *
      * @return DCATDateTime|null The datePlanned property
      */
-    public function getDatePlanned(): DCATDateTime
+    public function getDatePlanned(): ?DCATDateTime
     {
         return $this->datePlanned;
     }
@@ -468,7 +468,7 @@ class DCATDataset extends DCATComplexEntity {
      *
      * @return DCATControlledVocabularyEntry|null The frequency property
      */
-    public function getFrequency(): DCATControlledVocabularyEntry
+    public function getFrequency(): ?DCATControlledVocabularyEntry
     {
         return $this->frequency;
     }
@@ -498,7 +498,7 @@ class DCATDataset extends DCATComplexEntity {
      *
      * @return DCATControlledVocabularyEntry|null The sourceCatalog property
      */
-    public function getSourceCatalog(): DCATControlledVocabularyEntry
+    public function getSourceCatalog(): ?DCATControlledVocabularyEntry
     {
         return $this->sourceCatalog;
     }
@@ -508,7 +508,7 @@ class DCATDataset extends DCATComplexEntity {
      *
      * @return DCATBoolean|null The highValue property
      */
-    public function getHighValue(): DCATBoolean
+    public function getHighValue(): ?DCATBoolean
     {
         return $this->highValue;
     }
@@ -518,7 +518,7 @@ class DCATDataset extends DCATComplexEntity {
      *
      * @return DCATBoolean|null The basisRegister property
      */
-    public function getBasisRegister(): DCATBoolean
+    public function getBasisRegister(): ?DCATBoolean
     {
         return $this->basisRegister;
     }
