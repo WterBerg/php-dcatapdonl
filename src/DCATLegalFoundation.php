@@ -2,34 +2,31 @@
 
 namespace DCAT_AP_DONL;
 
-
 /**
- * Class DCATLegalFoundation
+ * Class DCATLegalFoundation.
  *
  * Represents the complex entity DCATLegalFoundation. It consists of three properties: 'reference',
  * 'uri' and 'label'. All of which are required.
- *
- * @package DCAT_AP_DONL
  */
-class DCATLegalFoundation extends DCATComplexEntity {
-
+class DCATLegalFoundation extends DCATComplexEntity
+{
     /** @var string[] */
     protected static $PROPERTIES = [
-        'reference', 'uri', 'label'
+        'reference', 'uri', 'label',
     ];
 
     /** @var string[] */
     protected static $REQUIRED_PROPERTIES = [
-        'reference', 'uri', 'label'
+        'reference', 'uri', 'label',
     ];
 
-    /** @var DCATProperty */
+    /** @var DCATLiteral */
     protected $reference;
 
     /** @var DCATURI */
     protected $uri;
 
-    /** @var DCATProperty */
+    /** @var DCATLiteral */
     protected $label;
 
     /**
@@ -37,15 +34,15 @@ class DCATLegalFoundation extends DCATComplexEntity {
      */
     public function __construct()
     {
-        parent::__construct('LegalFoundation', self::$PROPERTIES, self::$REQUIRED_PROPERTIES);
+        parent::__construct(self::$PROPERTIES, self::$REQUIRED_PROPERTIES);
     }
 
     /**
      * Getter for the reference property, may return null.
      *
-     * @return DCATProperty|null The reference property
+     * @return DCATLiteral|null The reference property
      */
-    public function getReference(): ?DCATProperty
+    public function getReference(): ?DCATLiteral
     {
         return $this->reference;
     }
@@ -63,9 +60,9 @@ class DCATLegalFoundation extends DCATComplexEntity {
     /**
      * Getter for the label property, may return null.
      *
-     * @return DCATProperty|null The label property
+     * @return DCATLiteral|null The label property
      */
-    public function getLabel(): ?DCATProperty
+    public function getLabel(): ?DCATLiteral
     {
         return $this->label;
     }
@@ -73,9 +70,9 @@ class DCATLegalFoundation extends DCATComplexEntity {
     /**
      * Setter for the reference property.
      *
-     * @param DCATProperty $reference The value to set
+     * @param DCATLiteral $reference The value to set
      */
-    public function setReference(DCATProperty $reference): void
+    public function setReference(DCATLiteral $reference): void
     {
         $this->reference = $reference;
     }
@@ -93,11 +90,10 @@ class DCATLegalFoundation extends DCATComplexEntity {
     /**
      * Setter for the label property.
      *
-     * @param DCATProperty $label The value to set
+     * @param DCATLiteral $label The value to set
      */
-    public function setLabel(DCATProperty $label): void
+    public function setLabel(DCATLiteral $label): void
     {
         $this->label = $label;
     }
-
 }

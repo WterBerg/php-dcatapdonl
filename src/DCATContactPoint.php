@@ -2,44 +2,41 @@
 
 namespace DCAT_AP_DONL;
 
-
 /**
- * Class DCATContactPoint
+ * Class DCATContactPoint.
  *
  * Represents the complex entity DCATContactPoint. It consists of six properties: 'fullName',
  * 'address', 'title', 'email', 'webpage' and 'phone'. The property 'fullName' is required as is one
  * of [ email, webpage or phone ].
- *
- * @package DCAT_AP_DONL
  */
-class DCATContactPoint extends DCATComplexEntity {
-
+class DCATContactPoint extends DCATComplexEntity
+{
     /** @var string[] */
     protected static $PROPERTIES = [
-        'fullName', 'address', 'title', 'email', 'webpage', 'phone'
+        'fullName', 'address', 'title', 'email', 'webpage', 'phone',
     ];
 
     /** @var string[] */
     protected static $REQUIRED_PROPERTIES = [
-        'fullName'
+        'fullName',
     ];
 
-    /** @var DCATProperty */
+    /** @var DCATLiteral */
     protected $fullName;
 
-    /** @var DCATProperty */
+    /** @var DCATLiteral */
     protected $address;
 
-    /** @var DCATProperty */
+    /** @var DCATLiteral */
     protected $title;
 
-    /** @var DCATProperty */
+    /** @var DCATLiteral */
     protected $email;
 
     /** @var DCATURI */
     protected $webpage;
 
-    /** @var DCATProperty */
+    /** @var DCATLiteral */
     protected $phone;
 
     /**
@@ -47,7 +44,7 @@ class DCATContactPoint extends DCATComplexEntity {
      */
     public function __construct()
     {
-        parent::__construct('ContactPoint', self::$PROPERTIES, self::$REQUIRED_PROPERTIES);
+        parent::__construct(self::$PROPERTIES, self::$REQUIRED_PROPERTIES);
     }
 
     /**
@@ -59,16 +56,15 @@ class DCATContactPoint extends DCATComplexEntity {
      * `$this->webpage` or `$this->phone`
      *
      * @see DCATComplexEntity::validate()
+     *
      * @return DCATValidationResult The validation result of this DCATContactPoint
      */
     public function validate(): DCATValidationResult
     {
         $result = parent::validate();
 
-        if ($this->email == null && $this->webpage == null && $this->phone == null) {
-            $result->addMessage(
-                sprintf('%s: email, webpage or phone is required', $this->getName())
-            );
+        if (null == $this->email && null == $this->webpage && null == $this->phone) {
+            $result->addMessage('email, webpage or phone is required');
         }
 
         return $result;
@@ -77,9 +73,9 @@ class DCATContactPoint extends DCATComplexEntity {
     /**
      * Getter for the fullName property, may return null.
      *
-     * @return DCATProperty|null The fullName property
+     * @return DCATLiteral|null The fullName property
      */
-    public function getFullName(): ?DCATProperty
+    public function getFullName(): ?DCATLiteral
     {
         return $this->fullName;
     }
@@ -87,9 +83,9 @@ class DCATContactPoint extends DCATComplexEntity {
     /**
      * Getter for the address property, may return null.
      *
-     * @return DCATProperty|null The address property
+     * @return DCATLiteral|null The address property
      */
-    public function getAddress(): ?DCATProperty
+    public function getAddress(): ?DCATLiteral
     {
         return $this->address;
     }
@@ -97,9 +93,9 @@ class DCATContactPoint extends DCATComplexEntity {
     /**
      * Getter for the title property, may return null.
      *
-     * @return DCATProperty|null The title property
+     * @return DCATLiteral|null The title property
      */
-    public function getTitle(): ?DCATProperty
+    public function getTitle(): ?DCATLiteral
     {
         return $this->title;
     }
@@ -107,9 +103,9 @@ class DCATContactPoint extends DCATComplexEntity {
     /**
      * Getter for the email property, may return null.
      *
-     * @return DCATProperty|null The email property
+     * @return DCATLiteral|null The email property
      */
-    public function getEmail(): ?DCATProperty
+    public function getEmail(): ?DCATLiteral
     {
         return $this->email;
     }
@@ -127,9 +123,9 @@ class DCATContactPoint extends DCATComplexEntity {
     /**
      * Getter for the phone property, may return null.
      *
-     * @return DCATProperty|null The phone property
+     * @return DCATLiteral|null The phone property
      */
-    public function getPhone(): ?DCATProperty
+    public function getPhone(): ?DCATLiteral
     {
         return $this->phone;
     }
@@ -137,9 +133,9 @@ class DCATContactPoint extends DCATComplexEntity {
     /**
      * Setter for the fullName property.
      *
-     * @param DCATProperty $fullName The value to set
+     * @param DCATLiteral $fullName The value to set
      */
-    public function setFullName(DCATProperty $fullName): void
+    public function setFullName(DCATLiteral $fullName): void
     {
         $this->fullName = $fullName;
     }
@@ -147,9 +143,9 @@ class DCATContactPoint extends DCATComplexEntity {
     /**
      * Setter for the address property.
      *
-     * @param DCATProperty $address The value to set
+     * @param DCATLiteral $address The value to set
      */
-    public function setAddress(DCATProperty $address): void
+    public function setAddress(DCATLiteral $address): void
     {
         $this->address = $address;
     }
@@ -157,9 +153,9 @@ class DCATContactPoint extends DCATComplexEntity {
     /**
      * Setter for the title property.
      *
-     * @param DCATProperty $title The value to set
+     * @param DCATLiteral $title The value to set
      */
-    public function setTitle(DCATProperty $title): void
+    public function setTitle(DCATLiteral $title): void
     {
         $this->title = $title;
     }
@@ -167,9 +163,9 @@ class DCATContactPoint extends DCATComplexEntity {
     /**
      * Setter for the email property.
      *
-     * @param DCATProperty $email The value to set
+     * @param DCATLiteral $email The value to set
      */
-    public function setEmail(DCATProperty $email): void
+    public function setEmail(DCATLiteral $email): void
     {
         $this->email = $email;
     }
@@ -187,11 +183,10 @@ class DCATContactPoint extends DCATComplexEntity {
     /**
      * Setter for the phone property.
      *
-     * @param DCATProperty $phone The value to set
+     * @param DCATLiteral $phone The value to set
      */
-    public function setPhone(DCATProperty $phone): void
+    public function setPhone(DCATLiteral $phone): void
     {
         $this->phone = $phone;
     }
-
 }

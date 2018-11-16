@@ -2,16 +2,13 @@
 
 namespace DCAT_AP_DONL;
 
-
 /**
- * Class DCATValidationResult
+ * Class DCATValidationResult.
  *
  * Represents the validation result of a DCATEntity.
- *
- * @package DCAT_AP_DONL
  */
-class DCATValidationResult {
-
+class DCATValidationResult
+{
     /** @var string[] */
     protected $messages;
 
@@ -24,7 +21,7 @@ class DCATValidationResult {
     public function __construct()
     {
         $this->messages = [];
-        $this->notices = [];
+        $this->notices  = [];
     }
 
     /**
@@ -34,7 +31,7 @@ class DCATValidationResult {
      */
     public function validated()
     {
-        return count($this->getMessages()) === 0;
+        return 0 === \count($this->getMessages());
     }
 
     /**
@@ -64,7 +61,7 @@ class DCATValidationResult {
      */
     public function addMessages(array $messages)
     {
-        $this->messages = array_merge($this->messages, $messages);
+        $this->messages = \array_merge($this->messages, $messages);
     }
 
     /**
@@ -94,7 +91,6 @@ class DCATValidationResult {
      */
     public function addNotices(array $notices): void
     {
-        $this->notices = array_merge($this->notices, $notices);
+        $this->notices = \array_merge($this->notices, $notices);
     }
-
 }

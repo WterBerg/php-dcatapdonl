@@ -2,31 +2,28 @@
 
 namespace DCAT_AP_DONL;
 
-
 /**
- * Class DCATChecksum
+ * Class DCATChecksum.
  *
  * Represents the complex entity DCATChecksum. It consists of two properties: 'hash' and
  * 'algorithm'. Both of which are required.
- *
- * @package DCAT_AP_DONL
  */
-class DCATChecksum extends DCATComplexEntity {
-
+class DCATChecksum extends DCATComplexEntity
+{
     /** @var string[] */
     protected static $PROPERTIES = [
-        'hash', 'algorithm'
+        'hash', 'algorithm',
     ];
 
     /** @var string[] */
     protected static $REQUIRED_PROPERTIES = [
-        'hash', 'algorithm'
+        'hash', 'algorithm',
     ];
 
-    /** @var DCATProperty */
+    /** @var DCATLiteral */
     protected $hash;
 
-    /** @var DCATProperty */
+    /** @var DCATLiteral */
     protected $algorithm;
 
     /**
@@ -34,15 +31,15 @@ class DCATChecksum extends DCATComplexEntity {
      */
     public function __construct()
     {
-        parent::__construct('Checksum', self::$PROPERTIES, self::$REQUIRED_PROPERTIES);
+        parent::__construct(self::$PROPERTIES, self::$REQUIRED_PROPERTIES);
     }
 
     /**
      * Getter for the hash property, may return null.
      *
-     * @return DCATProperty|null The hash property
+     * @return DCATLiteral|null The hash property
      */
-    public function getHash(): ?DCATProperty
+    public function getHash(): ?DCATLiteral
     {
         return $this->hash;
     }
@@ -50,9 +47,9 @@ class DCATChecksum extends DCATComplexEntity {
     /**
      * Getter for the algorithm property, may return null.
      *
-     * @return DCATProperty|null The algorithm property
+     * @return DCATLiteral|null The algorithm property
      */
-    public function getAlgorithm(): ?DCATProperty
+    public function getAlgorithm(): ?DCATLiteral
     {
         return $this->algorithm;
     }
@@ -60,9 +57,9 @@ class DCATChecksum extends DCATComplexEntity {
     /**
      * Setter for the hash property.
      *
-     * @param DCATProperty $hash The value to set
+     * @param DCATLiteral $hash The value to set
      */
-    public function setHash(DCATProperty $hash): void
+    public function setHash(DCATLiteral $hash): void
     {
         $this->hash = $hash;
     }
@@ -70,11 +67,10 @@ class DCATChecksum extends DCATComplexEntity {
     /**
      * Setter for the algorithm property.
      *
-     * @param DCATProperty $algorithm The value to set
+     * @param DCATLiteral $algorithm The value to set
      */
-    public function setAlgorithm(DCATProperty $algorithm): void
+    public function setAlgorithm(DCATLiteral $algorithm): void
     {
         $this->algorithm = $algorithm;
     }
-
 }

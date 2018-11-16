@@ -2,31 +2,25 @@
 
 namespace DCAT_AP_DONL;
 
-use DateTime;
-
-
 /**
- * Class DCATDateTime
+ * Class DCATDateTime.
  *
- * Represents a DCATProperty as a datetime value.
- *
- * @package DCAT_AP_DONL
+ * Represents a DCATLiteral as a datetime value.
  */
-class DCATDateTime extends DCATProperty {
-
+class DCATDateTime extends DCATLiteral
+{
     /** @var string */
     protected $format;
 
     /**
      * DCATDateTime constructor.
      *
-     * @param string $name The name of this DCAT datetime
-     * @param string $value The value of this DCAT datetime
+     * @param string $value  The value of this DCAT datetime
      * @param string $format The format of this DCAT datetime, defaults to 'Y-m-d\tH:i:s'
      */
-    public function __construct(string $name, string $value, string $format = 'Y-m-d\TH:i:s')
+    public function __construct(string $value, string $format = 'Y-m-d\TH:i:s')
     {
-        parent::__construct($name, $value);
+        parent::__construct($value);
         $this->format = $format;
     }
 
@@ -34,11 +28,12 @@ class DCATDateTime extends DCATProperty {
      * Determines and returns whether or not the DCATDateTime is valid.
      *
      * A DCATDateTime is considered valid when:
-     * - it passes the validation as defined in `DCATProperty::validate()`
+     * - it passes the validation as defined in `DCATLiteral::validate()`
      * - its value property matches the datetime format given
      *
-     * @see DCATProperty::validate()
-     * @return DCATValidationResult The validation result of this DCAT datetime
+     * @see DCATLiteral::validate()
+     *
+     * @return DCATValidationResult The validation result of this DCATDateTime
      */
     public function validate(): DCATValidationResult
     {
@@ -46,9 +41,9 @@ class DCATDateTime extends DCATProperty {
 
         if (!$this->isDateTime()) {
             $result->addMessage(
-                sprintf(
-                    '%s: value %s is not conform the given format %s',
-                    $this->getName(), $this->getData(), $this->getFormat()
+                \sprintf(
+                    'value %s is not conform the given format %s',
+                    $this->getData(), $this->getFormat()
                 )
             );
         }
@@ -73,7 +68,6 @@ class DCATDateTime extends DCATProperty {
      */
     protected function isDateTime(): bool
     {
-        return DateTime::createFromFormat($this->format, $this->value) != false;
+        return false != \DateTime::createFromFormat($this->format, $this->value);
     }
-
 }

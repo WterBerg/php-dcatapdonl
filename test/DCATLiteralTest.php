@@ -1,47 +1,45 @@
 <?php
 
+use DCAT_AP_DONL\DCATLiteral;
 use PHPUnit\Framework\TestCase;
-use DCAT_AP_DONL\DCATProperty;
 
-
-class DCATPropertyTest extends TestCase {
-
+class DCATLiteralTest extends TestCase
+{
     public function testTheValueCanBeSet(): void
     {
-        $property = new DCATProperty('TestProperty', 'TestValue');
+        $property = new DCATLiteral('TestValue');
 
         $this->assertEquals('TestValue', $property->getData());
     }
 
     public function testTheValueCannotBeNull(): void
     {
-        $property = new DCATProperty('TestProperty', null);
+        $property   = new DCATLiteral(null);
         $validation = $property->validate();
 
-        $this->assertEquals(['TestProperty: value is missing'], $validation->getMessages());
+        $this->assertEquals(['value is missing'], $validation->getMessages());
     }
 
     public function testTheValueCannotBeEmpty(): void
     {
-        $property = new DCATProperty('TestProperty', '');
+        $property   = new DCATLiteral('');
         $validation = $property->validate();
 
-        $this->assertEquals(['TestProperty: value is empty'], $validation->getMessages());
+        $this->assertEquals(['value is empty'], $validation->getMessages());
     }
 
     public function testTheValueCannotContainOnlySpaces(): void
     {
-        $property = new DCATProperty('TestProperty', '   ');
+        $property   = new DCATLiteral('   ');
         $validation = $property->validate();
 
-        $this->assertEquals(['TestProperty: value is empty'], $validation->getMessages());
+        $this->assertEquals(['value is empty'], $validation->getMessages());
     }
 
     public function testTheValueGetsStrippedOfLeadingAndEndingSpaces(): void
     {
-        $property = new DCATProperty('TestProperty', ' TestValue ');
+        $property = new DCATLiteral(' TestValue ');
 
         $this->assertEquals('TestValue', $property->getData());
     }
-
 }

@@ -1,11 +1,10 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
 use DCAT_AP_DONL\DCATValidationResult;
+use PHPUnit\Framework\TestCase;
 
-
-class DCATValidationResultTest extends TestCase {
-
+class DCATValidationResultTest extends TestCase
+{
     public function testValidatesWhenThereAreNoErrorMessages(): void
     {
         $validation = new DCATValidationResult();
@@ -60,5 +59,4 @@ class DCATValidationResultTest extends TestCase {
 
         $this->assertEquals(['New Notice', 'Another Notice'], $validation->getNotices());
     }
-
 }

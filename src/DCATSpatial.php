@@ -2,32 +2,29 @@
 
 namespace DCAT_AP_DONL;
 
-
 /**
- * Class DCATSpatial
+ * Class DCATSpatial.
  *
  * Represents the complex entity DCATSpatial. It consists of two properties: 'scheme' and 'value'.
  * Both are required. Furthermore the value of 'value' is validated against the scheme provided in
  * the 'scheme' property.
- *
- * @package DCAT_AP_DONL
  */
-class DCATSpatial extends DCATComplexEntity {
-
+class DCATSpatial extends DCATComplexEntity
+{
     /** @var string[] */
     protected static $PROPERTIES = [
-        'scheme', 'value'
+        'scheme', 'value',
     ];
 
     /** @var string[] */
     protected static $REQUIRED_PROPERTIES = [
-        'scheme', 'value'
+        'scheme', 'value',
     ];
 
     /** @var DCATControlledVocabularyEntry */
     protected $scheme;
 
-    /** @var DCATProperty */
+    /** @var DCATLiteral */
     protected $value;
 
     /**
@@ -35,7 +32,7 @@ class DCATSpatial extends DCATComplexEntity {
      */
     public function __construct()
     {
-        parent::__construct('Spatial', self::$PROPERTIES, self::$REQUIRED_PROPERTIES);
+        parent::__construct(self::$PROPERTIES, self::$REQUIRED_PROPERTIES);
     }
 
     /**
@@ -48,22 +45,24 @@ class DCATSpatial extends DCATComplexEntity {
      *
      * @see DCATComplexEntity::validate()
      * @see DCATSpatial::valueMatchesScheme()
-     * @return DCATValidationResult The validation result of this DCATSpatial
+     *
      * @throws DCATException Thrown when there was a problem with retrieving the scheme
+     *
+     * @return DCATValidationResult The validation result of this DCATSpatial
      */
     public function validate(): DCATValidationResult
     {
         $result = parent::validate();
 
-        if ($this->scheme == null || $this->value == null) {
+        if (null == $this->scheme || null == $this->value) {
             return $result;
         }
 
         if (!$this->valueMatchesScheme()) {
             $result->addMessage(
                 sprintf(
-                    '%s: value %s fails to validate against scheme %s',
-                    $this->getName(), $this->value->getData(), $this->scheme->getData()
+                    'value %s fails to validate against scheme %s',
+                    $this->value->getData(), $this->scheme->getData()
                 )
             );
         }
@@ -84,9 +83,9 @@ class DCATSpatial extends DCATComplexEntity {
     /**
      * Getter for the value property, may return null.
      *
-     * @return DCATProperty|null The value property
+     * @return DCATLiteral|null The value property
      */
-    public function getValue(): ?DCATProperty
+    public function getValue(): ?DCATLiteral
     {
         return $this->value;
     }
@@ -99,18 +98,16 @@ class DCATSpatial extends DCATComplexEntity {
     public function setScheme(DCATControlledVocabularyEntry $scheme): void
     {
         $this->scheme = $scheme;
-        $this->scheme->setName('Scheme');
     }
 
     /**
      * Setter for the value property.
      *
-     * @param DCATProperty $value The value to set
+     * @param DCATLiteral $value The value to set
      */
-    public function setValue(DCATProperty $value): void
+    public function setValue(DCATLiteral $value): void
     {
         $this->value = $value;
-        $this->value->setName('Value');
     }
 
     /**
@@ -119,8 +116,10 @@ class DCATSpatial extends DCATComplexEntity {
      * @see DCATValuelist::hasEntry()
      * @see DCATSpatial::validEPSG28992()
      * @see DCATSpatial::validPostcodeHuisnummer()
-     * @return bool Whether or not the value validates against the scheme
+     *
      * @throws DCATException Thrown when the scheme references a vocabulary which does not exist
+     *
+     * @return bool Whether or not the value validates against the scheme
      */
     protected function valueMatchesScheme(): bool
     {
@@ -128,13 +127,14 @@ class DCATSpatial extends DCATComplexEntity {
             'http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.gemeente'        => 'Overheid:SpatialGemeente',
             'http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.koninkrijksdeel' => 'Overheid:SpatialKoninkrijksdeel',
             'http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.provincie'       => 'Overheid:SpatialProvincie',
-            'http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.waterschap'      => 'Overheid:SpatialWaterschap'
+            'http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.waterschap'      => 'Overheid:SpatialWaterschap',
         ];
 
         if (isset($listValidators[$this->scheme->getData()])) {
             $vocabulary = DCATControlledVocabulary::getVocabulary(
                 $listValidators[$this->scheme->getData()]
             );
+
             return $vocabulary->containsEntry($this->value->getData());
         }
 
@@ -160,7 +160,7 @@ class DCATSpatial extends DCATComplexEntity {
     {
         $match = preg_match('/^\d{6}(\.\d{3})? \d{6}(\.\d{3})?$/', $this->value->getData());
 
-        return  $match == 1;
+        return  1 == $match;
     }
 
     /**
@@ -172,7 +172,6 @@ class DCATSpatial extends DCATComplexEntity {
     {
         $match = preg_match('/^[1-9]\d{3}([A-Z]{2}(\d+(\S+)?)?)?$/', $this->value->getData());
 
-        return $match == 1;
+        return 1 == $match;
     }
-
 }

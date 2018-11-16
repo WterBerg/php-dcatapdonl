@@ -2,34 +2,20 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/7.3/phpunit.xsd"
     backupGlobals="true"
-    cacheTokens="false"
-    verbose="true">
+    cacheTokens="false">
+
+    <testsuite name="default">
+
+        <directory>test</directory>
+
+    </testsuite>
 
     <filter>
 
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">src</directory>
-            <exclude>
-                <directory>/docs</directory>
-                <directory>/test</directory>
-                <directory>/vendor</directory>
-                <file>/.editorconfig</file>
-                <file>/.gitignore</file>
-                <file>/.travis.yml</file>
-                <file>/README.md</file>
-                <file>/LICENSE</file>
-                <file>/composer.json</file>
-                <file>/composer.lock</file>
-                <file>/phpunit.xml</file>
-            </exclude>
         </whitelist>
 
     </filter>
-
-    <logging>
-
-        <log type="coverage-html" target="codeCoverage" lowUpperBound="50" highLowerBound="80"/>
-
-    </logging>
 
 </phpunit>

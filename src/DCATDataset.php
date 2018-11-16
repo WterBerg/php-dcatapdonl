@@ -2,16 +2,13 @@
 
 namespace DCAT_AP_DONL;
 
-
 /**
- * Class DCATDataset
- * 
+ * Class DCATDataset.
+ *
  * Represents the complex entity DCATDataset.
- * 
- * @package DCAT_AP_DONL
  */
-class DCATDataset extends DCATComplexEntity {
-
+class DCATDataset extends DCATComplexEntity
+{
     /** @var string[] */
     protected static $PROPERTIES = [
         'identifier', 'title', 'description', 'keyword', 'license', 'metadataLanguage', 'language',
@@ -20,25 +17,25 @@ class DCATDataset extends DCATComplexEntity {
         'alternativeIdentifier', 'relatedResource', 'source', 'hasVersion', 'isVersionOf',
         'releaseDate', 'version', 'versionNotes', 'legalFoundation', 'datePlanned', 'documentation',
         'frequency', 'provenance', 'sample', 'sourceCatalog', 'highValue', 'basisRegister',
-        'referentieData', 'distribution'
+        'referentieData', 'distribution',
     ];
 
     /** @var string[] */
     protected static $REQUIRED_PROPERTIES = [
         'identifier', 'title', 'description', 'metadataLanguage', 'language', 'license',
-        'modificationDate', 'distribution', 'authority', 'publisher', 'contactPoint', 'theme'
+        'modificationDate', 'distribution', 'authority', 'publisher', 'contactPoint', 'theme',
     ];
 
     /** @var DCATURI */
     protected $identifier;
 
-    /** @var DCATProperty */
+    /** @var DCATLiteral */
     protected $title;
 
-    /** @var DCATProperty */
+    /** @var DCATLiteral */
     protected $description;
 
-    /** @var DCATProperty[] */
+    /** @var DCATLiteral[] */
     protected $keyword;
 
     /** @var DCATControlledVocabularyEntry */
@@ -101,10 +98,10 @@ class DCATDataset extends DCATComplexEntity {
     /** @var DCATDateTime */
     protected $releaseDate;
 
-    /** @var DCATProperty */
+    /** @var DCATLiteral */
     protected $version;
 
-    /** @var DCATProperty[] */
+    /** @var DCATLiteral[] */
     protected $versionNotes;
 
     /** @var DCATLegalFoundation */
@@ -145,11 +142,11 @@ class DCATDataset extends DCATComplexEntity {
      */
     public function __construct()
     {
-        parent::__construct('Dataset', self::$PROPERTIES, self::$REQUIRED_PROPERTIES);
+        parent::__construct(self::$PROPERTIES, self::$REQUIRED_PROPERTIES);
 
         $multivalued = [
             'conformsTo', 'alternativeIdentifier', 'source', 'hasVersion', 'isVersionOf',
-            'versionNotes', 'documentation', 'provenance', 'sample', 'language', 'theme'
+            'versionNotes', 'documentation', 'provenance', 'sample', 'language', 'theme',
         ];
 
         foreach ($multivalued as $property) {
@@ -164,6 +161,7 @@ class DCATDataset extends DCATComplexEntity {
      * - It passes the validation as defined in `DCATComplexEntity::validate()`
      *
      * @see DCATComplexEntity::validate()
+     *
      * @return DCATValidationResult The validation result of this DCATDataset
      */
     public function validate(): DCATValidationResult
@@ -186,9 +184,9 @@ class DCATDataset extends DCATComplexEntity {
     /**
      * Getter for the title property, may return null.
      *
-     * @return DCATProperty|null The title property
+     * @return DCATLiteral|null The title property
      */
-    public function getTitle(): ?DCATProperty
+    public function getTitle(): ?DCATLiteral
     {
         return $this->title;
     }
@@ -196,9 +194,9 @@ class DCATDataset extends DCATComplexEntity {
     /**
      * Getter for the description property, may return null.
      *
-     * @return DCATProperty|null The description property
+     * @return DCATLiteral|null The description property
      */
-    public function getDescription(): ?DCATProperty
+    public function getDescription(): ?DCATLiteral
     {
         return $this->description;
     }
@@ -206,7 +204,7 @@ class DCATDataset extends DCATComplexEntity {
     /**
      * Getter for the keyword property, may return an empty array.
      *
-     * @return DCATProperty[] The keyword property
+     * @return DCATLiteral[] The keyword property
      */
     public function getKeyword(): array
     {
@@ -416,17 +414,17 @@ class DCATDataset extends DCATComplexEntity {
     /**
      * Getter for the version property, may return null.
      *
-     * @return DCATProperty|null The version property
+     * @return DCATLiteral|null The version property
      */
-    public function getVersion(): ?DCATProperty
+    public function getVersion(): ?DCATLiteral
     {
         return $this->version;
     }
 
     /**
-     * Getter for the versionNotes property, may return an empty array
+     * Getter for the versionNotes property, may return an empty array.
      *
-     * @return DCATProperty[] The versionNotes property
+     * @return DCATLiteral[] The versionNotes property
      */
     public function getVersionNotes(): array
     {
@@ -556,9 +554,9 @@ class DCATDataset extends DCATComplexEntity {
     /**
      * Setter for the title property.
      *
-     * @param DCATProperty $title The value to set
+     * @param DCATLiteral $title The value to set
      */
-    public function setTitle(DCATProperty $title): void
+    public function setTitle(DCATLiteral $title): void
     {
         $this->title = $title;
     }
@@ -566,9 +564,9 @@ class DCATDataset extends DCATComplexEntity {
     /**
      * Setter for the description property.
      *
-     * @param DCATProperty $description The value to set
+     * @param DCATLiteral $description The value to set
      */
-    public function setDescription(DCATProperty $description): void
+    public function setDescription(DCATLiteral $description): void
     {
         $this->description = $description;
     }
@@ -576,9 +574,9 @@ class DCATDataset extends DCATComplexEntity {
     /**
      * Adds a value to the keyword property.
      *
-     * @param DCATProperty $keyword The value to add
+     * @param DCATLiteral $keyword The value to add
      */
-    public function addKeyword(DCATProperty $keyword): void
+    public function addKeyword(DCATLiteral $keyword): void
     {
         $this->keyword[] = $keyword;
     }
@@ -588,11 +586,12 @@ class DCATDataset extends DCATComplexEntity {
      * 'Overheid:License'.
      *
      * @param DCATControlledVocabularyEntry $license The value to set
+     *
      * @throws DCATException Thrown when the vocabulary is not 'Overheid:License'
      */
     public function setLicense(DCATControlledVocabularyEntry $license): void
     {
-        if ($license->getControlledVocabulary() !== 'Overheid:License') {
+        if ('Overheid:License' !== $license->getControlledVocabulary()) {
             throw new DCATException(
                 'Expected a DCATControlledVocabularyEntry of vocabulary Overheid:License'
             );
@@ -606,11 +605,12 @@ class DCATDataset extends DCATComplexEntity {
      * vocabulary 'DONL:Language'.
      *
      * @param DCATControlledVocabularyEntry $metadataLanguage The value to set
+     *
      * @throws DCATException Thrown when the vocabulary is not 'DONL:Language'
      */
     public function setMetadataLanguage(DCATControlledVocabularyEntry $metadataLanguage): void
     {
-        if ($metadataLanguage->getControlledVocabulary() !== 'DONL:Language') {
+        if ('DONL:Language' !== $metadataLanguage->getControlledVocabulary()) {
             throw new DCATException(
                 'Expected a DCATControlledVocabularyEntry of vocabulary DONL:Language'
             );
@@ -624,11 +624,12 @@ class DCATDataset extends DCATComplexEntity {
      * 'DONL:Language'.
      *
      * @param DCATControlledVocabularyEntry $language The value to add
+     *
      * @throws DCATException Thrown when the vocabulary is not 'DONL:Language'
      */
     public function addLanguage(DCATControlledVocabularyEntry $language): void
     {
-        if ($language->getControlledVocabulary() !== 'DONL:Language') {
+        if ('DONL:Language' !== $language->getControlledVocabulary()) {
             throw new DCATException(
                 'Expected a DCATControlledVocabularyEntry of vocabulary DONL:Language'
             );
@@ -642,11 +643,12 @@ class DCATDataset extends DCATComplexEntity {
      * 'Overheid:Taxonomiebeleidsagenda'.
      *
      * @param DCATControlledVocabularyEntry $theme The value to add
+     *
      * @throws DCATException Thrown when the vocabulary is not 'Overheid:Taxonomiebeleidsagenda'
      */
     public function addTheme(DCATControlledVocabularyEntry $theme): void
     {
-        if ($theme->getControlledVocabulary() !== 'Overheid:Taxonomiebeleidsagenda') {
+        if ('Overheid:Taxonomiebeleidsagenda' !== $theme->getControlledVocabulary()) {
             throw new DCATException(
                 'Expected a DCATControlledVocabularyEntry of vocabulary Overheid:Taxonomiebeleidsagenda'
             );
@@ -670,11 +672,12 @@ class DCATDataset extends DCATComplexEntity {
      * 'DONL:Organization'.
      *
      * @param DCATControlledVocabularyEntry $authority The value to set
+     *
      * @throws DCATException Thrown when the vocabulary is not 'DONL:Organization'
      */
     public function setAuthority(DCATControlledVocabularyEntry $authority): void
     {
-        if ($authority->getControlledVocabulary() !== 'DONL:Organization') {
+        if ('DONL:Organization' !== $authority->getControlledVocabulary()) {
             throw new DCATException(
                 'Expected a DCATControlledVocabularyEntry of vocabulary DONL:Organization'
             );
@@ -688,11 +691,12 @@ class DCATDataset extends DCATComplexEntity {
      * 'DONL:Organization'.
      *
      * @param DCATControlledVocabularyEntry $publisher The value to set
+     *
      * @throws DCATException Thrown when the vocabulary is not 'DONL:Organization'
      */
     public function setPublisher(DCATControlledVocabularyEntry $publisher): void
     {
-        if ($publisher->getControlledVocabulary() !== 'DONL:Organization') {
+        if ('DONL:Organization' !== $publisher->getControlledVocabulary()) {
             throw new DCATException(
                 'Expected a DCATControlledVocabularyEntry of vocabulary DONL:Organization'
             );
@@ -716,11 +720,12 @@ class DCATDataset extends DCATComplexEntity {
      * 'Overheid:Openbaarheidsniveau'.
      *
      * @param DCATControlledVocabularyEntry $accessRights The value to set
+     *
      * @throws DCATException Thrown when the vocabulary is not 'Overheid:Openbaarheidsniveau'
      */
     public function setAccessRights(DCATControlledVocabularyEntry $accessRights): void
     {
-        if ($accessRights->getControlledVocabulary() !== 'Overheid:Openbaarheidsniveau') {
+        if ('Overheid:Openbaarheidsniveau' !== $accessRights->getControlledVocabulary()) {
             throw new DCATException(
                 'Expected a DCATControlledVocabularyEntry of vocabulary Overheid:Openbaarheidsniveau'
             );
@@ -734,11 +739,12 @@ class DCATDataset extends DCATComplexEntity {
      * 'Overheid:DatasetStatus'.
      *
      * @param DCATControlledVocabularyEntry $datasetStatus The value to set
+     *
      * @throws DCATException Thrown when the vocabulary is not 'Overheid:DatasetStatus'
      */
     public function setDatasetStatus(DCATControlledVocabularyEntry $datasetStatus): void
     {
-        if ($datasetStatus->getControlledVocabulary() !== 'Overheid:DatasetStatus') {
+        if ('Overheid:DatasetStatus' !== $datasetStatus->getControlledVocabulary()) {
             throw new DCATException(
                 'Expected a DCATControlledVocabularyEntry of vocabulary Overheid:DatasetStatus'
             );
@@ -850,9 +856,9 @@ class DCATDataset extends DCATComplexEntity {
     /**
      * Setter for the version property.
      *
-     * @param DCATProperty $version The value to set
+     * @param DCATLiteral $version The value to set
      */
-    public function setVersion(DCATProperty $version): void
+    public function setVersion(DCATLiteral $version): void
     {
         $this->version = $version;
     }
@@ -860,9 +866,9 @@ class DCATDataset extends DCATComplexEntity {
     /**
      * Adds a value to the versionNotes property.
      *
-     * @param DCATProperty $versionNotes The value to add
+     * @param DCATLiteral $versionNotes The value to add
      */
-    public function addVersionNotes(DCATProperty $versionNotes): void
+    public function addVersionNotes(DCATLiteral $versionNotes): void
     {
         $this->versionNotes[] = $versionNotes;
     }
@@ -890,9 +896,9 @@ class DCATDataset extends DCATComplexEntity {
     /**
      * Adds a value to the documentation property.
      *
-     * @param DCATProperty $documentation The value to add
+     * @param DCATLiteral $documentation The value to add
      */
-    public function addDocumentation(DCATProperty $documentation): void
+    public function addDocumentation(DCATLiteral $documentation): void
     {
         $this->documentation[] = $documentation;
     }
@@ -902,11 +908,12 @@ class DCATDataset extends DCATComplexEntity {
      * 'Overheid:Frequency'.
      *
      * @param DCATControlledVocabularyEntry $frequency The value to set
+     *
      * @throws DCATException Thrown when the vocabulary is not 'Overheid:Frequency'
      */
     public function setFrequency(DCATControlledVocabularyEntry $frequency): void
     {
-        if ($frequency->getControlledVocabulary() !== 'Overheid:Frequency') {
+        if ('Overheid:Frequency' !== $frequency->getControlledVocabulary()) {
             throw new DCATException(
                 'Expected a DCATControlledVocabularyEntry of vocabulary Overheid:Frequency'
             );
@@ -940,11 +947,12 @@ class DCATDataset extends DCATComplexEntity {
      * 'DONL:Catalogs'.
      *
      * @param DCATControlledVocabularyEntry $sourceCatalog The value to set
+     *
      * @throws DCATException Thrown when the vocabulary is not 'DONL:Catalogs'
      */
     public function setSourceCatalog(DCATControlledVocabularyEntry $sourceCatalog): void
     {
-        if ($sourceCatalog->getControlledVocabulary() !== 'DONL:Catalogs') {
+        if ('DONL:Catalogs' !== $sourceCatalog->getControlledVocabulary()) {
             throw new DCATException(
                 'Expected a DCATControlledVocabularyEntry of vocabulary DONL:Catalogs'
             );
@@ -992,5 +1000,4 @@ class DCATDataset extends DCATComplexEntity {
     {
         $this->basisRegister = $basisRegister;
     }
-
 }

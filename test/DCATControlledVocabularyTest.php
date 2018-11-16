@@ -1,12 +1,11 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
 use DCAT_AP_DONL\DCATControlledVocabulary;
 use DCAT_AP_DONL\DCATException;
+use PHPUnit\Framework\TestCase;
 
-
-class DCATControlledVocabularyTest extends TestCase {
-
+class DCATControlledVocabularyTest extends TestCase
+{
     public function testExceptionThrownWhenRequestingNonExistentVocabulary(): void
     {
         try {
@@ -173,5 +172,4 @@ class DCATControlledVocabularyTest extends TestCase {
             );
         }
     }
-
 }

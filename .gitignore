@@ -1,4 +1,5 @@
-composer.phar
+/.idea/
 /vendor/
-/codeCoverage/*
-/.idea/*
+
+composer.lock
+composer.phar

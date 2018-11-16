@@ -4,9 +4,8 @@ namespace DCAT_AP_DONL;
 
 use DateTime;
 
-
 /**
- * Class DCATTemporal
+ * Class DCATTemporal.
  *
  * Represents the complex entity DCATTemporal. It consists of three properties: 'start', 'end' and
  * 'label'. At least one of these three must be provided.
@@ -15,14 +14,12 @@ use DateTime;
  * represents a period in time from the given start date until the given end date. When only start
  * is provided, it presents a single point in time. When only end is provided it represents a period
  * of time ending at the given end date.
- *
- * @package DCAT_AP_DONL
  */
-class DCATTemporal extends DCATComplexEntity {
-
+class DCATTemporal extends DCATComplexEntity
+{
     /** @var string[] */
     protected static $PROPERTIES = [
-        'start', 'end', 'label'
+        'start', 'end', 'label',
     ];
 
     /** @var string[] */
@@ -35,7 +32,7 @@ class DCATTemporal extends DCATComplexEntity {
     /** @var DCATDateTime */
     protected $end;
 
-    /** @var DCATProperty */
+    /** @var DCATLiteral */
     protected $label;
 
     /**
@@ -43,7 +40,7 @@ class DCATTemporal extends DCATComplexEntity {
      */
     public function __construct()
     {
-        parent::__construct('Temporal', self::$PROPERTIES, self::$REQUIRED_PROPERTIES);
+        parent::__construct(self::$PROPERTIES, self::$REQUIRED_PROPERTIES);
     }
 
     /**
@@ -54,24 +51,25 @@ class DCATTemporal extends DCATComplexEntity {
      * - The value of `$this->start` is smaller than `$this->end`, assuming both are present
      *
      * @see DCATComplexEntity::validate()
+     *
      * @return DCATValidationResult The validation result of this DCATTemporal
      */
     public function validate(): DCATValidationResult
     {
         $result = parent::validate();
 
-        if ($this->start == null || $this->end == null) {
+        if (null == $this->start || null == $this->end) {
             return $result;
         }
 
         $start = new DateTime($this->start->getData());
-        $end = new DateTime($this->end->getData());
+        $end   = new DateTime($this->end->getData());
 
         if ($start >= $end) {
             $result->addMessage(
                 sprintf(
-                    '%s: start must be smalled than end; got %s and %s',
-                    $this->getName(), $this->start->getData(), $this->end->getData())
+                    'start must be smalled than end; got %s and %s',
+                    $this->start->getData(), $this->end->getData())
             );
         }
 
@@ -101,9 +99,9 @@ class DCATTemporal extends DCATComplexEntity {
     /**
      * Getter for the label property, may return null.
      *
-     * @return DCATProperty|null The label property
+     * @return DCATLiteral|null The label property
      */
-    public function getLabel(): ?DCATProperty
+    public function getLabel(): ?DCATLiteral
     {
         return $this->label;
     }
@@ -116,7 +114,6 @@ class DCATTemporal extends DCATComplexEntity {
     public function setStart(DCATDateTime $start): void
     {
         $this->start = $start;
-        $this->start->setName('Start');
     }
 
     /**
@@ -127,18 +124,15 @@ class DCATTemporal extends DCATComplexEntity {
     public function setEnd(DCATDateTime $end): void
     {
         $this->end = $end;
-        $this->end->setName('End');
     }
 
     /**
      * Setter for the label property.
      *
-     * @param DCATProperty $label The value to set
+     * @param DCATLiteral $label The value to set
      */
-    public function setLabel(DCATProperty $label): void
+    public function setLabel(DCATLiteral $label): void
     {
         $this->label = $label;
-        $this->label->setName('Label');
     }
-
 }

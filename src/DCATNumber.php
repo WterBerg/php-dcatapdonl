@@ -2,37 +2,32 @@
 
 namespace DCAT_AP_DONL;
 
-
 /**
- * Class DCATNumber
+ * Class DCATNumber.
  *
- * Represents a DCATProperty as a number.
- *
- * @package DCAT_AP_DONL
+ * Represents a DCATLiteral as a number.
  */
-class DCATNumber extends DCATProperty {
-
+class DCATNumber extends DCATLiteral
+{
     /**
      * Determines and returns whether or not the DCATNumber is valid.
      *
      * A DCATNumber is considered valid when:
-     * - it passes the validation as defined in `DCATProperty::validate()`
+     * - it passes the validation as defined in `DCATLiteral::validate()`
      * - its value property, cast as an int, is greater than 0
      *
-     * @see DCATProperty::validate()
+     * @see DCATLiteral::validate()
+     *
      * @return DCATValidationResult The validation result of this DCAT number
      */
     public function validate(): DCATValidationResult
     {
         $result = parent::validate();
 
-        if ((int)$this->value <= 0) {
-            $result->addMessage(
-                sprintf('%s: value must be a positive integer', $this->getName())
-            );
+        if ((int) $this->value <= 0) {
+            $result->addMessage('value must be a positive integer');
         }
 
         return $result;
     }
-
 }

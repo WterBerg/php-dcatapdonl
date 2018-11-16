@@ -1,22 +1,21 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
-use DCAT_AP_DONL\DCATProperty;
-use DCAT_AP_DONL\DCATURI;
 use DCAT_AP_DONL\DCATContactPoint;
+use DCAT_AP_DONL\DCATLiteral;
+use DCAT_AP_DONL\DCATURI;
+use PHPUnit\Framework\TestCase;
 
-
-class DCATContactPointTest extends TestCase {
-
+class DCATContactPointTest extends TestCase
+{
     public function testNamePropertyIsRequired(): void
     {
         $cp = new DCATContactPoint();
 
         $this->assertEquals(
             [
-                'ContactPoint: fullName is missing',
-                'ContactPoint: at least one property must be provided',
-                'ContactPoint: email, webpage or phone is required'
+                'fullName is missing',
+                'at least one property must be provided',
+                'email, webpage or phone is required',
             ],
             $cp->validate()->getMessages()
         );
@@ -25,10 +24,10 @@ class DCATContactPointTest extends TestCase {
     public function testEmailWebpageOrPhoneIsRequired(): void
     {
         $cp = new DCATContactPoint();
-        $cp->setFullName(new DCATProperty('fullName', 'Test'));
+        $cp->setFullName(new DCATLiteral('Test'));
 
         $this->assertEquals(
-            ['ContactPoint: email, webpage or phone is required'],
+            ['email, webpage or phone is required'],
             $cp->validate()->getMessages()
         );
     }
@@ -36,8 +35,8 @@ class DCATContactPointTest extends TestCase {
     public function testValidatesWhenFullnameAndEmailArePresent(): void
     {
         $cp = new DCATContactPoint();
-        $cp->setFullName(new DCATProperty('fullName', 'Test'));
-        $cp->setEmail(new DCATProperty('email', 'myemail@domain.com'));
+        $cp->setFullName(new DCATLiteral('Test'));
+        $cp->setEmail(new DCATLiteral('myemail@domain.com'));
 
         $this->assertTrue($cp->validate()->validated());
     }
@@ -45,8 +44,8 @@ class DCATContactPointTest extends TestCase {
     public function testValidatesWhenFullnameAndPhoneArePresent(): void
     {
         $cp = new DCATContactPoint();
-        $cp->setFullName(new DCATProperty('fullName', 'Test'));
-        $cp->setPhone(new DCATProperty('phone', '012-3456789'));
+        $cp->setFullName(new DCATLiteral('Test'));
+        $cp->setPhone(new DCATLiteral('012-3456789'));
 
         $this->assertTrue($cp->validate()->validated());
     }
@@ -54,8 +53,8 @@ class DCATContactPointTest extends TestCase {
     public function testValidatesWhenFullnameAndWebpageArePresent(): void
     {
         $cp = new DCATContactPoint();
-        $cp->setFullName(new DCATProperty('fullName', 'Test'));
-        $cp->setWebpage(new DCATURI('webpage', 'https://example.com'));
+        $cp->setFullName(new DCATLiteral('Test'));
+        $cp->setWebpage(new DCATURI('https://example.com'));
 
         $this->assertTrue($cp->validate()->validated());
     }
@@ -63,12 +62,12 @@ class DCATContactPointTest extends TestCase {
     public function testGetterMethodsArePresentAndFunctional(): void
     {
         $cp = new DCATContactPoint();
-        $cp->setFullName(new DCATProperty('name', 'Willem ter Berg'));
-        $cp->setTitle(new DCATProperty('title', 'Ing.'));
-        $cp->setAddress(new DCATProperty('address', 'Nijmegen, The Netherlands'));
-        $cp->setEmail(new DCATProperty('email', 'wrpterberg@gmail.com'));
-        $cp->setWebpage(new DCATURI('website', 'https://github.com/WterBerg'));
-        $cp->setPhone(new DCATProperty('phone', '012-3456789'));
+        $cp->setFullName(new DCATLiteral('Willem ter Berg'));
+        $cp->setTitle(new DCATLiteral('Ing.'));
+        $cp->setAddress(new DCATLiteral('Nijmegen, The Netherlands'));
+        $cp->setEmail(new DCATLiteral('wrpterberg@gmail.com'));
+        $cp->setWebpage(new DCATURI('https://github.com/WterBerg'));
+        $cp->setPhone(new DCATLiteral('012-3456789'));
 
         $this->assertEquals('Willem ter Berg', $cp->getFullName()->getData());
         $this->assertEquals('Ing.', $cp->getTitle()->getData());
@@ -77,5 +76,4 @@ class DCATContactPointTest extends TestCase {
         $this->assertEquals('https://github.com/WterBerg', $cp->getWebpage()->getData());
         $this->assertEquals('012-3456789', $cp->getPhone()->getData());
     }
-
 }

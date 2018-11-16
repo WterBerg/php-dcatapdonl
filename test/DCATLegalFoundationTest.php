@@ -1,25 +1,24 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
-use DCAT_AP_DONL\DCATProperty;
-use DCAT_AP_DONL\DCATURI;
 use DCAT_AP_DONL\DCATLegalFoundation;
+use DCAT_AP_DONL\DCATLiteral;
+use DCAT_AP_DONL\DCATURI;
+use PHPUnit\Framework\TestCase;
 
-
-class DCATLegalFoundationTest extends TestCase {
-
+class DCATLegalFoundationTest extends TestCase
+{
     public function testDataRetrievalReturnsAKeyValueArray(): void
     {
         $lf = new DCATLegalFoundation();
-        $lf->setReference(new DCATProperty('reference', 'referenceValue'));
-        $lf->setUri(new DCATURI('uri', 'ssh://google.nl'));
-        $lf->setLabel(new DCATProperty('label', 'labelValue'));
+        $lf->setReference(new DCATLiteral('referenceValue'));
+        $lf->setUri(new DCATURI('ssh://google.nl'));
+        $lf->setLabel(new DCATLiteral('labelValue'));
 
         $this->assertEquals(
             [
                 'reference' => 'referenceValue',
-                'uri' => 'ssh://google.nl',
-                'label' => 'labelValue'
+                'uri'       => 'ssh://google.nl',
+                'label'     => 'labelValue',
             ],
             $lf->getData()
         );
@@ -28,8 +27,8 @@ class DCATLegalFoundationTest extends TestCase {
     public function testOnlyReturnsSetProperties(): void
     {
         $lf = new DCATLegalFoundation();
-        $lf->setUri(new DCATURI('uri', 'ftp://google.nl'));
-        $lf->setLabel(new DCATProperty('label', 'labelValue'));
+        $lf->setUri(new DCATURI('ftp://google.nl'));
+        $lf->setLabel(new DCATLiteral('labelValue'));
 
         $this->assertEquals(['uri' => 'ftp://google.nl', 'label' => 'labelValue'], $lf->getData());
     }
@@ -37,9 +36,9 @@ class DCATLegalFoundationTest extends TestCase {
     public function testFailsValidationIfOnePropertyIsInvalid(): void
     {
         $lf = new DCATLegalFoundation();
-        $lf->setReference(new DCATProperty('reference', ''));
-        $lf->setUri(new DCATURI('uri', 'ssh://google.nl'));
-        $lf->setLabel(new DCATProperty('label', 'labelValue'));
+        $lf->setReference(new DCATLiteral(''));
+        $lf->setUri(new DCATURI('ssh://google.nl'));
+        $lf->setLabel(new DCATLiteral('labelValue'));
 
         $this->assertFalse($lf->validate()->validated());
     }
@@ -47,9 +46,9 @@ class DCATLegalFoundationTest extends TestCase {
     public function testValidatesWhenAllPropertiesArePresentAndValid(): void
     {
         $lf = new DCATLegalFoundation();
-        $lf->setReference(new DCATProperty('reference', 'referenceValue'));
-        $lf->setUri(new DCATURI('uri', 'ssh://google.nl'));
-        $lf->setLabel(new DCATProperty('label', 'labelValue'));
+        $lf->setReference(new DCATLiteral('referenceValue'));
+        $lf->setUri(new DCATURI('ssh://google.nl'));
+        $lf->setLabel(new DCATLiteral('labelValue'));
 
         $this->assertTrue($lf->validate()->validated());
     }
@@ -57,13 +56,12 @@ class DCATLegalFoundationTest extends TestCase {
     public function testGettersArePresentAndFunctional(): void
     {
         $lf = new DCATLegalFoundation();
-        $lf->setReference(new DCATProperty('reference', 'referenceValue'));
-        $lf->setUri(new DCATURI('uri', 'ssh://google.nl'));
-        $lf->setLabel(new DCATProperty('label', 'labelValue'));
+        $lf->setReference(new DCATLiteral('referenceValue'));
+        $lf->setUri(new DCATURI('ssh://google.nl'));
+        $lf->setLabel(new DCATLiteral('labelValue'));
 
         $this->assertEquals('referenceValue', $lf->getReference()->getData());
         $this->assertEquals('ssh://google.nl', $lf->getUri()->getData());
         $this->assertEquals('labelValue', $lf->getLabel()->getData());
     }
-
 }

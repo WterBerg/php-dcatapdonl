@@ -2,24 +2,22 @@
 
 namespace DCAT_AP_DONL;
 
-
 /**
- * Class DCATURI
+ * Class DCATURI.
  *
- * Represents a DCATProperty as an URI.
- *
- * @package DCAT_AP_DONL
+ * Represents a DCATLiteral as an URI.
  */
-class DCATURI extends DCATProperty {
-
+class DCATURI extends DCATLiteral
+{
     /**
      * Determines and returns whether or not the DCATURI is valid.
      *
      * A DCATURI is considered valid when:
-     * - it passes the validation as defined in `DCATProperty::validate()`
+     * - it passes the validation as defined in `DCATLiteral::validate()`
      * - its value looks and smells like an URL, the URL does not need to be reachable
      *
-     * @see DCATProperty::validate()
+     * @see DCATLiteral::validate()
+     *
      * @return DCATValidationResult The validation result of this DCAT URI
      */
     public function validate(): DCATValidationResult
@@ -28,7 +26,7 @@ class DCATURI extends DCATProperty {
 
         if (!$this->isURI($this->value)) {
             $result->addMessage(
-                sprintf('%s: value %s is not a valid URI', $this->getName(), $this->value)
+                sprintf('value %s is not a valid URI', $this->value)
             );
         }
 
@@ -39,11 +37,11 @@ class DCATURI extends DCATProperty {
      * Checks if the given value matches the pattern of an URI.
      *
      * @param string $uri The potential URI to check
+     *
      * @return bool Whether or the not the given value looks like an URI
      */
     protected function isURI(string $uri): bool
     {
-        return filter_var($uri, FILTER_VALIDATE_URL) !== false;
+        return false !== filter_var($uri, FILTER_VALIDATE_URL);
     }
-
 }

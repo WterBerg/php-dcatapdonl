@@ -1,27 +1,34 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
 use DCAT_AP_DONL\DCATBoolean;
+use PHPUnit\Framework\TestCase;
 
-
-class DCATBooleanTest extends TestCase {
-
-    public function testOnlyAcceptsTrueOrFalseValues(): void
+class DCATBooleanTest extends TestCase
+{
+    public function testAcceptsTrueValues(): void
     {
-        $bool = new DCATBoolean('test', DCATBoolean::TRUE);
+        $const_bool = new DCATBoolean(DCATBoolean::TRUE);
+        $str_bool   = new DCATBoolean('True');
 
-        $this->assertTrue($bool->validate()->validated());
-
-        $bool = new DCATBoolean('test', DCATBoolean::FALSE);
-
-        $this->assertTrue($bool->validate()->validated());
-
-        $bool = new DCATBoolean('test', 'string');
-
-        $this->assertEquals(
-            ['test: value is not one of [ True, False ]'],
-            $bool->validate()->getMessages()
-        );
+        $this->assertTrue($const_bool->validate()->validated());
+        $this->assertTrue($str_bool->validate()->validated());
     }
 
+    public function testAcceptsFalseValues(): void
+    {
+        $const_bool = new DCATBoolean(DCATBoolean::FALSE);
+        $str_bool   = new DCATBoolean('False');
+
+        $this->assertTrue($const_bool->validate()->validated());
+        $this->assertTrue($str_bool->validate()->validated());
+    }
+
+    public function testDeclinesNonBooleanValues(): void
+    {
+        $false_bool = new DCATBoolean('false');
+        $true_bool  = new DCATBoolean('true');
+
+        $this->assertFalse($false_bool->validate()->validated());
+        $this->assertFalse($true_bool->validate()->validated());
+    }
 }

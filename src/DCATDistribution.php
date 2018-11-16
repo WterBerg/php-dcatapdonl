@@ -4,26 +4,23 @@ namespace DCAT_AP_DONL;
 
 use Serializable;
 
-
 /**
- * Class DCATDistribution
- * 
+ * Class DCATDistribution.
+ *
  * Represents the complex entity DCATDistribution.
- * 
- * @package DCAT_AP_DONL
  */
-class DCATDistribution extends DCATComplexEntity implements Serializable {
-
+class DCATDistribution extends DCATComplexEntity implements Serializable
+{
     /** @var string[] */
     protected static $PROPERTIES = [
         'accessURL', 'license', 'title', 'description', 'language', 'metadataLanguage', 'format',
         'rights', 'status', 'releaseDate', 'modificationDate', 'byteSize', 'downloadURL',
-        'mediaType', 'linkedSchema', 'checksum', 'documentation'
+        'mediaType', 'linkedSchema', 'checksum', 'documentation',
     ];
 
     /** @var string[] */
     protected static $REQUIRED_PROPERTIES = [
-        'accessURL', 'license', 'title', 'description', 'language', 'format', 'metadataLanguage'
+        'accessURL', 'license', 'title', 'description', 'language', 'format', 'metadataLanguage',
     ];
 
     /** @var DCATURI */
@@ -32,10 +29,10 @@ class DCATDistribution extends DCATComplexEntity implements Serializable {
     /** @var DCATControlledVocabularyEntry */
     protected $license;
 
-    /** @var DCATProperty */
+    /** @var DCATLiteral */
     protected $title;
 
-    /** @var DCATProperty */
+    /** @var DCATLiteral */
     protected $description;
 
     /** @var DCATControlledVocabularyEntry[] */
@@ -47,7 +44,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable {
     /** @var DCATControlledVocabularyEntry */
     protected $format;
 
-    /** @var DCATProperty */
+    /** @var DCATLiteral */
     protected $rights;
 
     /** @var DCATControlledVocabularyEntry */
@@ -78,11 +75,11 @@ class DCATDistribution extends DCATComplexEntity implements Serializable {
     protected $documentation;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function __construct()
     {
-        parent::__construct('Distribution', self::$PROPERTIES, self::$REQUIRED_PROPERTIES);
+        parent::__construct(self::$PROPERTIES, self::$REQUIRED_PROPERTIES);
 
         $multivalued = ['downloadURL', 'language', 'linkedSchema', 'documentation'];
 
@@ -95,6 +92,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable {
      * Compares itself to another DCATDistribution object.
      *
      * @param DCATDistribution $target The DCATDistribution to compare against
+     *
      * @return bool Whether or not this DCATDistribution is equal to the given DCATDistribution
      */
     public function equalTo(DCATDistribution $target): bool
@@ -103,7 +101,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable {
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function serialize(): string
     {
@@ -120,6 +118,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable {
      * This method is **NOT** implemented.
      *
      * @param string $serialized Ignored
+     *
      * @throws DCATException Always thrown
      */
     public function unserialize($serialized): void
@@ -152,9 +151,9 @@ class DCATDistribution extends DCATComplexEntity implements Serializable {
     /**
      * Getter for the title property, may return null.
      *
-     * @return DCATProperty|null The title property
+     * @return DCATLiteral|null The title property
      */
-    public function getTitle(): ?DCATProperty
+    public function getTitle(): ?DCATLiteral
     {
         return $this->title;
     }
@@ -162,9 +161,9 @@ class DCATDistribution extends DCATComplexEntity implements Serializable {
     /**
      * Getter for the description property, may return null.
      *
-     * @return DCATProperty|null The description property
+     * @return DCATLiteral|null The description property
      */
-    public function getDescription(): ?DCATProperty
+    public function getDescription(): ?DCATLiteral
     {
         return $this->description;
     }
@@ -202,9 +201,9 @@ class DCATDistribution extends DCATComplexEntity implements Serializable {
     /**
      * Getter for the rights property, may return null.
      *
-     * @return DCATProperty|null The rights property
+     * @return DCATLiteral|null The rights property
      */
-    public function getRights(): ?DCATProperty
+    public function getRights(): ?DCATLiteral
     {
         return $this->rights;
     }
@@ -314,11 +313,12 @@ class DCATDistribution extends DCATComplexEntity implements Serializable {
      * 'Overheid:License'.
      *
      * @param DCATControlledVocabularyEntry $license The value to set
+     *
      * @throws DCATException Thrown when the vocabulary is not 'Overheid:License'
      */
     public function setLicense(DCATControlledVocabularyEntry $license): void
     {
-        if ($license->getControlledVocabulary() !== 'Overheid:License') {
+        if ('Overheid:License' !== $license->getControlledVocabulary()) {
             throw new DCATException(
                 'Expected a DCATControlledVocabularyEntry of vocabulary Overheid:License'
             );
@@ -330,9 +330,9 @@ class DCATDistribution extends DCATComplexEntity implements Serializable {
     /**
      * Setter for the title property.
      *
-     * @param DCATProperty $title The value to set
+     * @param DCATLiteral $title The value to set
      */
-    public function setTitle(DCATProperty $title): void
+    public function setTitle(DCATLiteral $title): void
     {
         $this->title = $title;
     }
@@ -340,9 +340,9 @@ class DCATDistribution extends DCATComplexEntity implements Serializable {
     /**
      * Setter for the description property.
      *
-     * @param DCATProperty $description The value to set
+     * @param DCATLiteral $description The value to set
      */
-    public function setDescription(DCATProperty $description): void
+    public function setDescription(DCATLiteral $description): void
     {
         $this->description = $description;
     }
@@ -352,11 +352,12 @@ class DCATDistribution extends DCATComplexEntity implements Serializable {
      * 'DONL:Language'.
      *
      * @param DCATControlledVocabularyEntry $language The value to add
+     *
      * @throws DCATException Thrown when the vocabulary is not 'DONL:Language'
      */
     public function addLanguage(DCATControlledVocabularyEntry $language): void
     {
-        if ($language->getControlledVocabulary() !== 'DONL:Language') {
+        if ('DONL:Language' !== $language->getControlledVocabulary()) {
             throw new DCATException(
                 'Expected a DCATControlledVocabularyEntry of vocabulary DONL:Language'
             );
@@ -370,11 +371,12 @@ class DCATDistribution extends DCATComplexEntity implements Serializable {
      * vocabulary 'DONL:Language'.
      *
      * @param DCATControlledVocabularyEntry $metadataLanguage The value to set
+     *
      * @throws DCATException Thrown when the vocabulary is not 'DONL:Language'
      */
     public function setMetadataLanguage(DCATControlledVocabularyEntry $metadataLanguage): void
     {
-        if ($metadataLanguage->getControlledVocabulary() !== 'DONL:Language') {
+        if ('DONL:Language' !== $metadataLanguage->getControlledVocabulary()) {
             throw new DCATException(
                 'Expected a DCATControlledVocabularyEntry of vocabulary DONL:Language'
             );
@@ -388,11 +390,12 @@ class DCATDistribution extends DCATComplexEntity implements Serializable {
      * 'MDR:FiletypeNAL'.
      *
      * @param DCATControlledVocabularyEntry $format The value to set
+     *
      * @throws DCATException Thrown when the vocabulary is not 'MDR:FiletypeNAL'
      */
     public function setFormat(DCATControlledVocabularyEntry $format): void
     {
-        if ($format->getControlledVocabulary() !== 'MDR:FiletypeNAL') {
+        if ('MDR:FiletypeNAL' !== $format->getControlledVocabulary()) {
             throw new DCATException(
                 'Expected a DCATControlledVocabularyEntry of vocabulary MDR:FiletypeNAL'
             );
@@ -404,9 +407,9 @@ class DCATDistribution extends DCATComplexEntity implements Serializable {
     /**
      * Setter for the rights property.
      *
-     * @param DCATProperty $rights The value to set
+     * @param DCATLiteral $rights The value to set
      */
-    public function setRights(DCATProperty $rights): void
+    public function setRights(DCATLiteral $rights): void
     {
         $this->rights = $rights;
     }
@@ -416,11 +419,12 @@ class DCATDistribution extends DCATComplexEntity implements Serializable {
      * 'ADMS:Distributiestatus'.
      *
      * @param DCATControlledVocabularyEntry $status The value to set
+     *
      * @throws DCATException Thrown when the vocabulary is not 'ADMS:Distributiestatus'
      */
     public function setStatus(DCATControlledVocabularyEntry $status): void
     {
-        if ($status->getControlledVocabulary() !== 'ADMS:Distributiestatus') {
+        if ('ADMS:Distributiestatus' !== $status->getControlledVocabulary()) {
             throw new DCATException(
                 'Expected a DCATControlledVocabularyEntry of vocabulary ADMS:Distributiestatus'
             );
@@ -474,11 +478,12 @@ class DCATDistribution extends DCATComplexEntity implements Serializable {
      * 'IANA:Mediatypes'.
      *
      * @param DCATControlledVocabularyEntry $mediaType The value to set
+     *
      * @throws DCATException Thrown when the vocabulary is not 'IANA:Mediatypes'
      */
     public function setMediaType(DCATControlledVocabularyEntry $mediaType): void
     {
-        if ($mediaType->getControlledVocabulary() !== 'IANA:Mediatypes') {
+        if ('IANA:Mediatypes' !== $mediaType->getControlledVocabulary()) {
             throw new DCATException(
                 'Expected a DCATControlledVocabularyEntry of vocabulary IANA:Mediatypes'
             );
@@ -516,5 +521,4 @@ class DCATDistribution extends DCATComplexEntity implements Serializable {
     {
         $this->documentation[] = $documentation;
     }
-
 }
