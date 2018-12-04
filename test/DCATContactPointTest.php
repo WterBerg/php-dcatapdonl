@@ -13,7 +13,7 @@ class DCATContactPointTest extends TestCase
 
         $this->assertEquals(
             [
-                'fullName is missing',
+                'fullName: value is missing',
                 'at least one property must be provided',
                 'email, webpage or phone is required',
             ],
