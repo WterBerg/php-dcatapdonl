@@ -107,7 +107,7 @@ abstract class DCATComplexEntity implements DCATEntity
 
                     for ($i = 0; $i < \count($messages); ++$i) {
                         $result->addMessage(
-                            \sprintf('%s', $messages[$i])
+                            \sprintf('%s: %s', $property, $messages[$i])
                         );
                     }
                 }
@@ -118,7 +118,9 @@ abstract class DCATComplexEntity implements DCATEntity
             /** @var DCATEntity $prop */
             $messages = $prop->validate()->getMessages();
             for ($i = 0; $i < \count($messages); ++$i) {
-                $result->addMessage($messages[$i]);
+                $result->addMessage(
+                    \sprintf('%s: %s', $property, $messages[$i])
+                );
             }
         }
 
