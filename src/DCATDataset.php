@@ -147,7 +147,7 @@ class DCATDataset extends DCATComplexEntity
         $multivalued = [
             'conformsTo', 'alternativeIdentifier', 'source', 'hasVersion', 'isVersionOf',
             'versionNotes', 'documentation', 'provenance', 'sample', 'language', 'theme',
-            'keyword', 
+            'keyword',
         ];
 
         foreach ($multivalued as $property) {
