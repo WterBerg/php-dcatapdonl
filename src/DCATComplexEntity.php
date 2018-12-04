@@ -88,7 +88,7 @@ abstract class DCATComplexEntity implements DCATEntity
 
             if (null === $prop) {
                 if (\in_array($property, $this->requiredProperties)) {
-                    $result->addMessage(\sprintf('%s is missing', $property));
+                    $result->addMessage(\sprintf('%s: value is missing', $property));
                 }
 
                 continue;
@@ -96,7 +96,7 @@ abstract class DCATComplexEntity implements DCATEntity
 
             if (\is_array($prop)) {
                 if (0 == \count($prop) && \in_array($property, $this->requiredProperties)) {
-                    $result->addMessage(\sprintf('%s is empty', $property));
+                    $result->addMessage(\sprintf('%s: value is empty', $property));
 
                     continue;
                 }

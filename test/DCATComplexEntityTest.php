@@ -24,7 +24,7 @@ class DCATComplexEntityTest extends TestCase
         };
 
         $this->assertEquals(
-            ['myProperty is empty'],
+            ['myProperty: value is empty'],
             $entity->validate()->getMessages()
         );
     }
@@ -49,7 +49,7 @@ class DCATComplexEntityTest extends TestCase
         $entity->addMyProperty(new DCATLiteral(''));
 
         $this->assertEquals(
-            ['value is empty'],
+            ['myProperty: value is empty'],
             $entity->validate()->getMessages()
         );
     }

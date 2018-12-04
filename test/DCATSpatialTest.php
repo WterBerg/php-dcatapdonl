@@ -15,8 +15,8 @@ class DCATSpatialTest extends TestCase
 
             $this->assertEquals(
                 [
-                    'scheme is missing',
-                    'value is missing',
+                    'scheme: value is missing',
+                    'value: value is missing',
                     'at least one property must be provided',
                 ],
                 $spatial->validate()->getMessages()
