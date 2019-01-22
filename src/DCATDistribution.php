@@ -131,7 +131,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     /**
      * Getter for the accessURL property, may return null.
      *
-     * @return DCATURI|null The accessURL property
+     * @return null|DCATURI The accessURL property
      */
     public function getAccessURL(): ?DCATURI
     {
@@ -141,7 +141,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     /**
      * Getter for the license property, may return null.
      *
-     * @return DCATControlledVocabularyEntry|null The license property
+     * @return null|DCATControlledVocabularyEntry The license property
      */
     public function getLicense(): ?DCATControlledVocabularyEntry
     {
@@ -151,7 +151,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     /**
      * Getter for the title property, may return null.
      *
-     * @return DCATLiteral|null The title property
+     * @return null|DCATLiteral The title property
      */
     public function getTitle(): ?DCATLiteral
     {
@@ -161,7 +161,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     /**
      * Getter for the description property, may return null.
      *
-     * @return DCATLiteral|null The description property
+     * @return null|DCATLiteral The description property
      */
     public function getDescription(): ?DCATLiteral
     {
@@ -181,7 +181,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     /**
      * Getter for the metadataLanguage property, may return null.
      *
-     * @return DCATControlledVocabularyEntry|null The metadataLanguage property
+     * @return null|DCATControlledVocabularyEntry The metadataLanguage property
      */
     public function getMetadataLanguage(): ?DCATControlledVocabularyEntry
     {
@@ -191,7 +191,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     /**
      * Getter for the format property, may return null.
      *
-     * @return DCATControlledVocabularyEntry|null The format property
+     * @return null|DCATControlledVocabularyEntry The format property
      */
     public function getFormat(): ?DCATControlledVocabularyEntry
     {
@@ -201,7 +201,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     /**
      * Getter for the rights property, may return null.
      *
-     * @return DCATLiteral|null The rights property
+     * @return null|DCATLiteral The rights property
      */
     public function getRights(): ?DCATLiteral
     {
@@ -211,7 +211,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     /**
      * Getter for the status property, may return null.
      *
-     * @return DCATControlledVocabularyEntry|null The status property
+     * @return null|DCATControlledVocabularyEntry The status property
      */
     public function getStatus(): ?DCATControlledVocabularyEntry
     {
@@ -221,7 +221,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     /**
      * Getter for the releaseDate property, may return null.
      *
-     * @return DCATDateTime|null The releaseDate property
+     * @return null|DCATDateTime The releaseDate property
      */
     public function getReleaseDate(): ?DCATDateTime
     {
@@ -231,7 +231,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     /**
      * Getter for the modificationDate property, may return null.
      *
-     * @return DCATDateTime|null The modificationDate property
+     * @return null|DCATDateTime The modificationDate property
      */
     public function getModificationDate(): ?DCATDateTime
     {
@@ -241,7 +241,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     /**
      * Getter for the byteSize property, may return null.
      *
-     * @return DCATNumber|null The byteSize property
+     * @return null|DCATNumber The byteSize property
      */
     public function getByteSize(): ?DCATNumber
     {
@@ -261,7 +261,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     /**
      * Getter for the mediaType property, may return null.
      *
-     * @return DCATControlledVocabularyEntry|null The mediaType property
+     * @return null|DCATControlledVocabularyEntry The mediaType property
      */
     public function getMediaType(): ?DCATControlledVocabularyEntry
     {
@@ -281,7 +281,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     /**
      * Getter for the checksum property, may return null.
      *
-     * @return DCATChecksum|null The checksum property
+     * @return null|DCATChecksum The checksum property
      */
     public function getChecksum(): ?DCATChecksum
     {

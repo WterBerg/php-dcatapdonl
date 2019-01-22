@@ -175,7 +175,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Getter for the identifier property, may return null.
      *
-     * @return DCATURI|null The identifier property
+     * @return null|DCATURI The identifier property
      */
     public function getIdentifier(): ?DCATURI
     {
@@ -185,7 +185,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Getter for the title property, may return null.
      *
-     * @return DCATLiteral|null The title property
+     * @return null|DCATLiteral The title property
      */
     public function getTitle(): ?DCATLiteral
     {
@@ -195,7 +195,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Getter for the description property, may return null.
      *
-     * @return DCATLiteral|null The description property
+     * @return null|DCATLiteral The description property
      */
     public function getDescription(): ?DCATLiteral
     {
@@ -215,7 +215,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Getter for the license property, may return null.
      *
-     * @return DCATControlledVocabularyEntry|null The license property
+     * @return null|DCATControlledVocabularyEntry The license property
      */
     public function getLicense(): ?DCATControlledVocabularyEntry
     {
@@ -225,7 +225,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Getter for the metadataLanguage property, may return null.
      *
-     * @return DCATControlledVocabularyEntry|null The metadataLanguage property
+     * @return null|DCATControlledVocabularyEntry The metadataLanguage property
      */
     public function getMetadataLanguage(): ?DCATControlledVocabularyEntry
     {
@@ -255,7 +255,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Getter for the modificationDate property, may return null.
      *
-     * @return DCATDateTime|null The modificationDate property
+     * @return null|DCATDateTime The modificationDate property
      */
     public function getModificationDate(): ?DCATDateTime
     {
@@ -265,7 +265,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Getter for the authority property, may return null.
      *
-     * @return DCATControlledVocabularyEntry|null The authority property
+     * @return null|DCATControlledVocabularyEntry The authority property
      */
     public function getAuthority(): ?DCATControlledVocabularyEntry
     {
@@ -275,7 +275,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Getter for the publisher property, may return null.
      *
-     * @return DCATControlledVocabularyEntry|null The publisher property
+     * @return null|DCATControlledVocabularyEntry The publisher property
      */
     public function getPublisher(): ?DCATControlledVocabularyEntry
     {
@@ -285,7 +285,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Getter for the contactPoint property, may return null.
      *
-     * @return DCATContactPoint|null The contactPoint property
+     * @return null|DCATContactPoint The contactPoint property
      */
     public function getContactPoint(): ?DCATContactPoint
     {
@@ -295,7 +295,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Getter for the accessRights property, may return null.
      *
-     * @return DCATControlledVocabularyEntry|null The accessRights property
+     * @return null|DCATControlledVocabularyEntry The accessRights property
      */
     public function getAccessRights(): ?DCATControlledVocabularyEntry
     {
@@ -305,7 +305,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Getter for the datasetStatus property, may return null.
      *
-     * @return DCATControlledVocabularyEntry|null The datasetStatus property
+     * @return null|DCATControlledVocabularyEntry The datasetStatus property
      */
     public function getDatasetStatus(): ?DCATControlledVocabularyEntry
     {
@@ -315,7 +315,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Getter for the landingPage property, may return null.
      *
-     * @return DCATURI|null The landingPage property
+     * @return null|DCATURI The landingPage property
      */
     public function getLandingPage(): ?DCATURI
     {
@@ -335,7 +335,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Getter for the temporal property, may return null.
      *
-     * @return DCATTemporal|null The temporal property
+     * @return null|DCATTemporal The temporal property
      */
     public function getTemporal(): ?DCATTemporal
     {
@@ -405,7 +405,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Getter for the releaseDate property, may return null.
      *
-     * @return DCATDateTime|null The releaseDate property
+     * @return null|DCATDateTime The releaseDate property
      */
     public function getReleaseDate(): ?DCATDateTime
     {
@@ -415,7 +415,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Getter for the version property, may return null.
      *
-     * @return DCATLiteral|null The version property
+     * @return null|DCATLiteral The version property
      */
     public function getVersion(): ?DCATLiteral
     {
@@ -435,7 +435,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Getter for the legalFoundation property, may return null.
      *
-     * @return DCATLegalFoundation|null The legalFoundation property
+     * @return null|DCATLegalFoundation The legalFoundation property
      */
     public function getLegalFoundation(): ?DCATLegalFoundation
     {
@@ -445,7 +445,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Getter for the datePlanned property, may return null.
      *
-     * @return DCATDateTime|null The datePlanned property
+     * @return null|DCATDateTime The datePlanned property
      */
     public function getDatePlanned(): ?DCATDateTime
     {
@@ -465,7 +465,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Getter for the frequency property, may return null.
      *
-     * @return DCATControlledVocabularyEntry|null The frequency property
+     * @return null|DCATControlledVocabularyEntry The frequency property
      */
     public function getFrequency(): ?DCATControlledVocabularyEntry
     {
@@ -495,7 +495,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Getter for the sourceCatalog property, may return null.
      *
-     * @return DCATControlledVocabularyEntry|null The sourceCatalog property
+     * @return null|DCATControlledVocabularyEntry The sourceCatalog property
      */
     public function getSourceCatalog(): ?DCATControlledVocabularyEntry
     {
@@ -505,7 +505,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Getter for the highValue property, may return null.
      *
-     * @return DCATBoolean|null The highValue property
+     * @return null|DCATBoolean The highValue property
      */
     public function getHighValue(): ?DCATBoolean
     {
@@ -515,7 +515,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Getter for the basisRegister property, may return null.
      *
-     * @return DCATBoolean|null The basisRegister property
+     * @return null|DCATBoolean The basisRegister property
      */
     public function getBasisRegister(): ?DCATBoolean
     {
@@ -525,7 +525,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Getter for the referentieData property, may return null.
      *
-     * @return DCATBoolean|null The referentieData property
+     * @return null|DCATBoolean The referentieData property
      */
     public function getReferentieData(): ?DCATBoolean
     {

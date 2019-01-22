@@ -79,7 +79,7 @@ class DCATTemporal extends DCATComplexEntity
     /**
      * Getter for the start property, may return null.
      *
-     * @return DCATDateTime|null The start property
+     * @return null|DCATDateTime The start property
      */
     public function getStart(): ?DCATDateTime
     {
@@ -89,7 +89,7 @@ class DCATTemporal extends DCATComplexEntity
     /**
      * Getter for the end property, may return null.
      *
-     * @return DCATDateTime|null The end property
+     * @return null|DCATDateTime The end property
      */
     public function getEnd(): ?DCATDateTime
     {
@@ -99,7 +99,7 @@ class DCATTemporal extends DCATComplexEntity
     /**
      * Getter for the label property, may return null.
      *
-     * @return DCATLiteral|null The label property
+     * @return null|DCATLiteral The label property
      */
     public function getLabel(): ?DCATLiteral
     {

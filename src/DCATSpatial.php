@@ -73,7 +73,7 @@ class DCATSpatial extends DCATComplexEntity
     /**
      * Getter for the scheme property, may return null.
      *
-     * @return DCATControlledVocabularyEntry|null The scheme property
+     * @return null|DCATControlledVocabularyEntry The scheme property
      */
     public function getScheme(): ?DCATControlledVocabularyEntry
     {
@@ -83,7 +83,7 @@ class DCATSpatial extends DCATComplexEntity
     /**
      * Getter for the value property, may return null.
      *
-     * @return DCATLiteral|null The value property
+     * @return null|DCATLiteral The value property
      */
     public function getValue(): ?DCATLiteral
     {

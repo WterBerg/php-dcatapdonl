@@ -37,7 +37,7 @@ class DCATChecksum extends DCATComplexEntity
     /**
      * Getter for the hash property, may return null.
      *
-     * @return DCATLiteral|null The hash property
+     * @return null|DCATLiteral The hash property
      */
     public function getHash(): ?DCATLiteral
     {
@@ -47,7 +47,7 @@ class DCATChecksum extends DCATComplexEntity
     /**
      * Getter for the algorithm property, may return null.
      *
-     * @return DCATLiteral|null The algorithm property
+     * @return null|DCATLiteral The algorithm property
      */
     public function getAlgorithm(): ?DCATLiteral
     {

@@ -40,7 +40,7 @@ class DCATLegalFoundation extends DCATComplexEntity
     /**
      * Getter for the reference property, may return null.
      *
-     * @return DCATLiteral|null The reference property
+     * @return null|DCATLiteral The reference property
      */
     public function getReference(): ?DCATLiteral
     {
@@ -50,7 +50,7 @@ class DCATLegalFoundation extends DCATComplexEntity
     /**
      * Getter for the uri property, may return null.
      *
-     * @return DCATURI|null The uri property
+     * @return null|DCATURI The uri property
      */
     public function getUri(): ?DCATURI
     {
@@ -60,7 +60,7 @@ class DCATLegalFoundation extends DCATComplexEntity
     /**
      * Getter for the label property, may return null.
      *
-     * @return DCATLiteral|null The label property
+     * @return null|DCATLiteral The label property
      */
     public function getLabel(): ?DCATLiteral
     {

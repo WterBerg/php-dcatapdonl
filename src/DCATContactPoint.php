@@ -73,7 +73,7 @@ class DCATContactPoint extends DCATComplexEntity
     /**
      * Getter for the fullName property, may return null.
      *
-     * @return DCATLiteral|null The fullName property
+     * @return null|DCATLiteral The fullName property
      */
     public function getFullName(): ?DCATLiteral
     {
@@ -83,7 +83,7 @@ class DCATContactPoint extends DCATComplexEntity
     /**
      * Getter for the address property, may return null.
      *
-     * @return DCATLiteral|null The address property
+     * @return null|DCATLiteral The address property
      */
     public function getAddress(): ?DCATLiteral
     {
@@ -93,7 +93,7 @@ class DCATContactPoint extends DCATComplexEntity
     /**
      * Getter for the title property, may return null.
      *
-     * @return DCATLiteral|null The title property
+     * @return null|DCATLiteral The title property
      */
     public function getTitle(): ?DCATLiteral
     {
@@ -103,7 +103,7 @@ class DCATContactPoint extends DCATComplexEntity
     /**
      * Getter for the email property, may return null.
      *
-     * @return DCATLiteral|null The email property
+     * @return null|DCATLiteral The email property
      */
     public function getEmail(): ?DCATLiteral
     {
@@ -113,7 +113,7 @@ class DCATContactPoint extends DCATComplexEntity
     /**
      * Getter for the webpage property, may return null.
      *
-     * @return DCATURI|null The webpage property
+     * @return null|DCATURI The webpage property
      */
     public function getWebpage(): ?DCATURI
     {
@@ -123,7 +123,7 @@ class DCATContactPoint extends DCATComplexEntity
     /**
      * Getter for the phone property, may return null.
      *
-     * @return DCATLiteral|null The phone property
+     * @return null|DCATLiteral The phone property
      */
     public function getPhone(): ?DCATLiteral
     {
