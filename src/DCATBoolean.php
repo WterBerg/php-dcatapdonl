@@ -9,8 +9,8 @@ namespace DCAT_AP_DONL;
  */
 class DCATBoolean extends DCATLiteral
 {
-    const TRUE  = 'True';
-    const FALSE = 'False';
+    const TRUE  = 'true';
+    const FALSE = 'false';
 
     /**
      * Determines and returns whether or not the DCATBoolean is valid.

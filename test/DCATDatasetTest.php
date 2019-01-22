@@ -75,9 +75,9 @@ class DCATDatasetTest extends TestCase
             $this->assertEquals('https://data.overheid.nl', $dataset->getSourceCatalog()->getData());
             $this->assertEquals('myTitle', $dataset->getTitle()->getData());
             $this->assertEquals('1.0', $dataset->getVersion()->getData());
-            $this->assertEquals('True', $dataset->getHighValue()->getData());
-            $this->assertEquals('True', $dataset->getReferentieData()->getData());
-            $this->assertEquals('True', $dataset->getBasisRegister()->getData());
+            $this->assertEquals('true', $dataset->getHighValue()->getData());
+            $this->assertEquals('true', $dataset->getReferentieData()->getData());
+            $this->assertEquals('true', $dataset->getBasisRegister()->getData());
             $this->assertEquals(['label' => 'MyLabel'], $dataset->getTemporal()->getData());
             $this->assertEquals(['label' => 'MyLaw'], $dataset->getLegalFoundation()->getData());
             $this->assertEquals(['fullName' => 'Willem ter Berg'], $dataset->getContactPoint()->getData());
