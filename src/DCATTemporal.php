@@ -3,6 +3,7 @@
 namespace DCAT_AP_DONL;
 
 use DateTime;
+use Exception;
 
 /**
  * Class DCATTemporal.
@@ -62,15 +63,19 @@ class DCATTemporal extends DCATComplexEntity
             return $result;
         }
 
-        $start = new DateTime($this->start->getData());
-        $end   = new DateTime($this->end->getData());
+        try {
+            $start = new DateTime($this->start->getData());
+            $end = new DateTime($this->end->getData());
 
-        if ($start >= $end) {
-            $result->addMessage(
-                sprintf(
-                    'start must be smalled than end; got %s and %s',
-                    $this->start->getData(), $this->end->getData())
-            );
+            if ($start >= $end) {
+                $result->addMessage(
+                    sprintf(
+                        'start must be smalled than end; got %s and %s',
+                        $this->start->getData(), $this->end->getData())
+                );
+            }
+        } catch (Exception $e) {
+            $result->addMessage('failed to convert a temporal property into a DateTime object');
         }
 
         return $result;

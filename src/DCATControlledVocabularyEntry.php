@@ -16,12 +16,13 @@ class DCATControlledVocabularyEntry extends DCATLiteral
      * DCATControlledVocabularyEntry constructor.
      *
      * @param string $value                 The value of this DCAT controlled vocabulary entry
-     * @param string $controlled_vocabulary The name of the controlled
-     *                                      vocabulary to validate against
+     * @param string $controlled_vocabulary The name of the controlled vocabulary to validate
+     *                                      against
      */
     public function __construct(string $value, string $controlled_vocabulary)
     {
         parent::__construct($value);
+
         $this->controlled_vocabulary = $controlled_vocabulary;
     }
 
@@ -48,7 +49,7 @@ class DCATControlledVocabularyEntry extends DCATLiteral
 
         if (!$vocabulary->containsEntry($this->value)) {
             $result->addMessage(
-                \sprintf(
+                sprintf(
                     'value %s is not part of vocabulary %s',
                     $this->getData(), $this->getControlledVocabulary()
                 )

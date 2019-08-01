@@ -309,7 +309,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     }
 
     /**
-     * Setter for the license property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * Setter for the license property. Expects a DCATControlledVocabularyEntry of vocabulary
      * 'Overheid:License'.
      *
      * @param DCATControlledVocabularyEntry $license The value to set
@@ -348,7 +348,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     }
 
     /**
-     * Adds a value to the language property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * Adds a value to the language property. Expects a DCATControlledVocabularyEntry of vocabulary
      * 'DONL:Language'.
      *
      * @param DCATControlledVocabularyEntry $language The value to add
@@ -367,7 +367,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     }
 
     /**
-     * Setter for the metadataLanguage property. Expect a DCATControlledVocabularyEntry of
+     * Setter for the metadataLanguage property. Expects a DCATControlledVocabularyEntry of
      * vocabulary 'DONL:Language'.
      *
      * @param DCATControlledVocabularyEntry $metadataLanguage The value to set
@@ -386,7 +386,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     }
 
     /**
-     * Setter for the format property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * Setter for the format property. Expects a DCATControlledVocabularyEntry of vocabulary
      * 'MDR:FiletypeNAL'.
      *
      * @param DCATControlledVocabularyEntry $format The value to set
@@ -415,7 +415,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     }
 
     /**
-     * Setter for the status property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * Setter for the status property. Expects a DCATControlledVocabularyEntry of vocabulary
      * 'ADMS:Distributiestatus'.
      *
      * @param DCATControlledVocabularyEntry $status The value to set
@@ -474,7 +474,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     }
 
     /**
-     * Setter for the mediaType property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * Setter for the mediaType property. Expects a DCATControlledVocabularyEntry of vocabulary
      * 'IANA:Mediatypes'.
      *
      * @param DCATControlledVocabularyEntry $mediaType The value to set

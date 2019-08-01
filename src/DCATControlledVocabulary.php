@@ -74,7 +74,7 @@ class DCATControlledVocabulary
     {
         if (!isset(self::$LISTS[$name])) {
             if (!isset(DCATControlledVocabulary::CONTROLLED_VOCABULARIES[$name])) {
-                throw new DCATException(\sprintf('no vocabulary found with name %s', $name));
+                throw new DCATException(sprintf('no vocabulary found with name %s', $name));
             }
 
             $list = new DCATControlledVocabulary(
@@ -159,7 +159,7 @@ class DCATControlledVocabulary
      */
     public function containsEntry(string $entry): bool
     {
-        return false !== \array_search($entry, $this->entries, false);
+        return false !== array_search($entry, $this->entries, false);
     }
 
     /**
@@ -172,31 +172,38 @@ class DCATControlledVocabulary
     {
         $this->entries = [];
 
-        $curl = \curl_init();
-        \curl_setopt($curl, CURLOPT_URL, $this->source);
-        \curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $this->source);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
-        $remoteContents = \curl_exec($curl);
-        $requestCode    = \curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        $remoteContents = curl_exec($curl);
+        $requestCode    = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
         if ($requestCode < 200 || $requestCode >= 300) {
-            \curl_close($curl);
+            curl_close($curl);
+
             throw new DCATException(
-                \sprintf('unable to retrieve contents from source %s', $this->getSource())
+                sprintf('unable to retrieve contents from source %s', $this->getSource())
             );
         }
 
-        $parsed = \json_decode($remoteContents, true);
+        $parsed = json_decode($remoteContents, true);
 
-        if ('Overheid:License' == $this->name) {
+        if (null === $parsed) {
+            throw new DCATException(
+                sprintf('failed to parse JSON for vocabulary %s', $this->source)
+            );
+        }
+
+        if ('Overheid:License' === $this->name) {
             foreach ($parsed as $entry) {
                 $this->entries[] = $entry['id'];
             }
         } else {
-            $this->entries = \array_keys($parsed);
+            $this->entries = array_keys($parsed);
         }
 
-        \curl_close($curl);
+        curl_close($curl);
     }
 
     /**

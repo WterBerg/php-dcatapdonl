@@ -27,11 +27,9 @@ class DCATBoolean extends DCATLiteral
     {
         $result = parent::validate();
 
-        if ($this->value && !\in_array($this->value, [self::TRUE, self::FALSE])) {
+        if ($this->value && !in_array($this->value, [self::TRUE, self::FALSE])) {
             $result->addMessage(
-                \sprintf(
-                    'value is not one of [ %s, %s ]', self::TRUE, self::FALSE
-                )
+                sprintf('value is not one of [ %s, %s ]', self::TRUE, self::FALSE)
             );
         }
 

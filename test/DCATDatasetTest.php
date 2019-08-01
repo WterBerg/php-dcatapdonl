@@ -46,6 +46,7 @@ class DCATDatasetTest extends TestCase
             $dataset->setHighValue(new DCATBoolean(DCATBoolean::TRUE));
             $dataset->setReferentieData(new DCATBoolean(DCATBoolean::TRUE));
             $dataset->setBasisRegister(new DCATBoolean(DCATBoolean::TRUE));
+            $dataset->setNationalCoverage(new DCATBoolean(DCATBoolean::TRUE));
 
             $temporal = new DCATTemporal();
             $temporal->setLabel(new DCATLiteral('MyLabel'));
@@ -78,6 +79,7 @@ class DCATDatasetTest extends TestCase
             $this->assertEquals('true', $dataset->getHighValue()->getData());
             $this->assertEquals('true', $dataset->getReferentieData()->getData());
             $this->assertEquals('true', $dataset->getBasisRegister()->getData());
+            $this->assertEquals('true', $dataset->getNationalCoverage()->getData());
             $this->assertEquals(['label' => 'MyLabel'], $dataset->getTemporal()->getData());
             $this->assertEquals(['label' => 'MyLaw'], $dataset->getLegalFoundation()->getData());
             $this->assertEquals(['fullName' => 'Willem ter Berg'], $dataset->getContactPoint()->getData());

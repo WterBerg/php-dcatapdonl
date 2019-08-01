@@ -31,7 +31,7 @@ class DCATValidationResult
      */
     public function validated()
     {
-        return 0 === \count($this->getMessages());
+        return 0 === count($this->getMessages());
     }
 
     /**
@@ -61,7 +61,7 @@ class DCATValidationResult
      */
     public function addMessages(array $messages)
     {
-        $this->messages = \array_merge($this->messages, $messages);
+        $this->messages = array_merge($this->messages, $messages);
     }
 
     /**
@@ -91,6 +91,6 @@ class DCATValidationResult
      */
     public function addNotices(array $notices): void
     {
-        $this->notices = \array_merge($this->notices, $notices);
+        $this->notices = array_merge($this->notices, $notices);
     }
 }

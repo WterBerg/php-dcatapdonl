@@ -5,7 +5,7 @@ namespace DCAT_AP_DONL;
 /**
  * Class DCATDataset.
  *
- * Represents the complex entity DCATDataset.
+ * Represents the complex entity DCATDataset which is the primary class of the DCAT-AP-DONL model.
  */
 class DCATDataset extends DCATComplexEntity
 {
@@ -17,7 +17,7 @@ class DCATDataset extends DCATComplexEntity
         'alternativeIdentifier', 'relatedResource', 'source', 'hasVersion', 'isVersionOf',
         'releaseDate', 'version', 'versionNotes', 'legalFoundation', 'datePlanned', 'documentation',
         'frequency', 'provenance', 'sample', 'sourceCatalog', 'highValue', 'basisRegister',
-        'referentieData', 'distribution',
+        'referentieData', 'nationalCoverage', 'distribution',
     ];
 
     /** @var string[] */
@@ -133,6 +133,9 @@ class DCATDataset extends DCATComplexEntity
 
     /** @var DCATBoolean */
     protected $referentieData;
+
+    /** @var DCATBoolean */
+    protected $nationalCoverage;
 
     /** @var DCATDistribution[] */
     protected $distribution;
@@ -533,6 +536,16 @@ class DCATDataset extends DCATComplexEntity
     }
 
     /**
+     * Getter for the nationalCoverage property, may return null.
+     *
+     * @return null|DCATBoolean The nationalCoverage property
+     */
+    public function getNationalCoverage(): ?DCATBoolean
+    {
+        return $this->nationalCoverage;
+    }
+
+    /**
      * Getter for the distribution property, may return an empty array.
      *
      * @return DCATDistribution[] The distribution property
@@ -583,7 +596,7 @@ class DCATDataset extends DCATComplexEntity
     }
 
     /**
-     * Setter for the license property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * Setter for the license property. Expects a DCATControlledVocabularyEntry of vocabulary
      * 'Overheid:License'.
      *
      * @param DCATControlledVocabularyEntry $license The value to set
@@ -602,7 +615,7 @@ class DCATDataset extends DCATComplexEntity
     }
 
     /**
-     * Setter for the metadataLanguage property. Expect a DCATControlledVocabularyEntry of
+     * Setter for the metadataLanguage property. Expects a DCATControlledVocabularyEntry of
      * vocabulary 'DONL:Language'.
      *
      * @param DCATControlledVocabularyEntry $metadataLanguage The value to set
@@ -621,7 +634,7 @@ class DCATDataset extends DCATComplexEntity
     }
 
     /**
-     * Adds a value to the language property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * Adds a value to the language property. Expects a DCATControlledVocabularyEntry of vocabulary
      * 'DONL:Language'.
      *
      * @param DCATControlledVocabularyEntry $language The value to add
@@ -640,7 +653,7 @@ class DCATDataset extends DCATComplexEntity
     }
 
     /**
-     * Adds a value to the theme property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * Adds a value to the theme property. Expects a DCATControlledVocabularyEntry of vocabulary
      * 'Overheid:Taxonomiebeleidsagenda'.
      *
      * @param DCATControlledVocabularyEntry $theme The value to add
@@ -669,7 +682,7 @@ class DCATDataset extends DCATComplexEntity
     }
 
     /**
-     * Setter for the authority property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * Setter for the authority property. Expects a DCATControlledVocabularyEntry of vocabulary
      * 'DONL:Organization'.
      *
      * @param DCATControlledVocabularyEntry $authority The value to set
@@ -688,7 +701,7 @@ class DCATDataset extends DCATComplexEntity
     }
 
     /**
-     * Setter for the publisher property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * Setter for the publisher property. Expects a DCATControlledVocabularyEntry of vocabulary
      * 'DONL:Organization'.
      *
      * @param DCATControlledVocabularyEntry $publisher The value to set
@@ -717,7 +730,7 @@ class DCATDataset extends DCATComplexEntity
     }
 
     /**
-     * Setter for the accessRights property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * Setter for the accessRights property. Expects a DCATControlledVocabularyEntry of vocabulary
      * 'Overheid:Openbaarheidsniveau'.
      *
      * @param DCATControlledVocabularyEntry $accessRights The value to set
@@ -736,7 +749,7 @@ class DCATDataset extends DCATComplexEntity
     }
 
     /**
-     * Setter for the datasetStatus property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * Setter for the datasetStatus property. Expects a DCATControlledVocabularyEntry of vocabulary
      * 'Overheid:DatasetStatus'.
      *
      * @param DCATControlledVocabularyEntry $datasetStatus The value to set
@@ -905,7 +918,7 @@ class DCATDataset extends DCATComplexEntity
     }
 
     /**
-     * Setter for the frequency property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * Setter for the frequency property. Expects a DCATControlledVocabularyEntry of vocabulary
      * 'Overheid:Frequency'.
      *
      * @param DCATControlledVocabularyEntry $frequency The value to set
@@ -944,7 +957,7 @@ class DCATDataset extends DCATComplexEntity
     }
 
     /**
-     * Setter for the sourceCatalog property. Expect a DCATControlledVocabularyEntry of vocabulary
+     * Setter for the sourceCatalog property. Expects a DCATControlledVocabularyEntry of vocabulary
      * 'DONL:Catalogs'.
      *
      * @param DCATControlledVocabularyEntry $sourceCatalog The value to set
@@ -1000,5 +1013,15 @@ class DCATDataset extends DCATComplexEntity
     public function setBasisRegister(DCATBoolean $basisRegister): void
     {
         $this->basisRegister = $basisRegister;
+    }
+
+    /**
+     * Setter for the nationalCoverage property.
+     *
+     * @param DCATBoolean $nationalCoverage the value to set
+     */
+    public function setNationalCoverage(DCATBoolean $nationalCoverage): void
+    {
+        $this->nationalCoverage = $nationalCoverage;
     }
 }

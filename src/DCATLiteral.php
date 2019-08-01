@@ -20,7 +20,7 @@ class DCATLiteral implements DCATEntity
     public function __construct(string $value = null)
     {
         if (null !== $value) {
-            $this->value = \trim($value);
+            $this->value = trim($value);
         }
     }
 

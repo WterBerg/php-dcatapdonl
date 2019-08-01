@@ -48,7 +48,7 @@ abstract class DCATComplexEntity implements DCATEntity
                 continue;
             }
 
-            if (\is_array($prop)) {
+            if (is_array($prop)) {
                 foreach ($prop as $value) {
                     /* @var DCATEntity $value */
                     $data[$property][] = $value->getData();
@@ -82,21 +82,21 @@ abstract class DCATComplexEntity implements DCATEntity
         foreach ($this->properties as $property) {
             $prop = $this->$property;
 
-            if (null !== $prop || (\is_array($this->$property) && \count($this->$property) > 0)) {
+            if (null !== $prop || (is_array($this->$property) && count($this->$property) > 0)) {
                 $propertiesPresent = true;
             }
 
             if (null === $prop) {
-                if (\in_array($property, $this->requiredProperties)) {
-                    $result->addMessage(\sprintf('%s: value is missing', $property));
+                if (in_array($property, $this->requiredProperties)) {
+                    $result->addMessage(sprintf('%s: value is missing', $property));
                 }
 
                 continue;
             }
 
-            if (\is_array($prop)) {
-                if (0 == \count($prop) && \in_array($property, $this->requiredProperties)) {
-                    $result->addMessage(\sprintf('%s: value is empty', $property));
+            if (is_array($prop)) {
+                if (0 == count($prop) && in_array($property, $this->requiredProperties)) {
+                    $result->addMessage(sprintf('%s: value is empty', $property));
 
                     continue;
                 }
@@ -105,9 +105,9 @@ abstract class DCATComplexEntity implements DCATEntity
                     /** @var DCATEntity $arrayElement */
                     $messages = $arrayElement->validate()->getMessages();
 
-                    for ($i = 0; $i < \count($messages); ++$i) {
+                    for ($i = 0; $i < count($messages); ++$i) {
                         $result->addMessage(
-                            \sprintf('%s: %s', $property, $messages[$i])
+                            sprintf('%s: %s', $property, $messages[$i])
                         );
                     }
                 }
@@ -117,9 +117,9 @@ abstract class DCATComplexEntity implements DCATEntity
 
             /** @var DCATEntity $prop */
             $messages = $prop->validate()->getMessages();
-            for ($i = 0; $i < \count($messages); ++$i) {
+            for ($i = 0; $i < count($messages); ++$i) {
                 $result->addMessage(
-                    \sprintf('%s: %s', $property, $messages[$i])
+                    sprintf('%s: %s', $property, $messages[$i])
                 );
             }
         }

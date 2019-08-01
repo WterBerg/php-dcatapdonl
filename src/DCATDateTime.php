@@ -2,6 +2,8 @@
 
 namespace DCAT_AP_DONL;
 
+use DateTime;
+
 /**
  * Class DCATDateTime.
  *
@@ -16,7 +18,7 @@ class DCATDateTime extends DCATLiteral
      * DCATDateTime constructor.
      *
      * @param string $value  The value of this DCAT datetime
-     * @param string $format The format of this DCAT datetime, defaults to 'Y-m-d\tH:i:s'
+     * @param string $format The format of this DCAT datetime, defaults to 'Y-m-d\TH:i:s'
      */
     public function __construct(string $value, string $format = 'Y-m-d\TH:i:s')
     {
@@ -41,7 +43,7 @@ class DCATDateTime extends DCATLiteral
 
         if (!$this->isDateTime()) {
             $result->addMessage(
-                \sprintf(
+                sprintf(
                     'value %s is not conform the given format %s',
                     $this->getData(), $this->getFormat()
                 )
@@ -68,6 +70,6 @@ class DCATDateTime extends DCATLiteral
      */
     protected function isDateTime(): bool
     {
-        return false != \DateTime::createFromFormat($this->format, $this->value);
+        return false != DateTime::createFromFormat($this->format, $this->value);
     }
 }
