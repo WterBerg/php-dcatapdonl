@@ -65,7 +65,7 @@ class DCATTemporal extends DCATComplexEntity
 
         try {
             $start = new DateTime($this->start->getData());
-            $end = new DateTime($this->end->getData());
+            $end   = new DateTime($this->end->getData());
 
             if ($start >= $end) {
                 $result->addMessage(
