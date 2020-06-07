@@ -49,10 +49,8 @@ class DCATControlledVocabularyEntry extends DCATLiteral
 
         if (!$vocabulary->containsEntry($this->value)) {
             $result->addMessage(
-                sprintf(
-                    'value %s is not part of vocabulary %s',
-                    $this->getData(), $this->getControlledVocabulary()
-                )
+                'value ' . $this->getData() . ' is not part of vocabulary ' .
+                $this->getControlledVocabulary()
             );
         }
 

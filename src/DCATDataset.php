@@ -170,9 +170,7 @@ class DCATDataset extends DCATComplexEntity
      */
     public function validate(): DCATValidationResult
     {
-        $result = parent::validate();
-
-        return $result;
+        return parent::validate();
     }
 
     /**
@@ -363,6 +361,18 @@ class DCATDataset extends DCATComplexEntity
     public function getAlternativeIdentifier(): array
     {
         return $this->alternativeIdentifier;
+    }
+
+    /**
+     * Alias of `DCATDataset::getAlternativeIdentifier()`.
+     *
+     * @return array|DCATURI[] The alternativeIdentifier property
+     *
+     * @see DCATDataset::getAlternativeIdentifier()
+     */
+    public function getAlternateIdentifier(): array
+    {
+        return $this->getAlternativeIdentifier();
     }
 
     /**
@@ -606,9 +616,7 @@ class DCATDataset extends DCATComplexEntity
     public function setLicense(DCATControlledVocabularyEntry $license): void
     {
         if ('Overheid:License' !== $license->getControlledVocabulary()) {
-            throw new DCATException(
-                'Expected a DCATControlledVocabularyEntry of vocabulary Overheid:License'
-            );
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary Overheid:License');
         }
 
         $this->license = $license;
@@ -625,9 +633,7 @@ class DCATDataset extends DCATComplexEntity
     public function setMetadataLanguage(DCATControlledVocabularyEntry $metadataLanguage): void
     {
         if ('DONL:Language' !== $metadataLanguage->getControlledVocabulary()) {
-            throw new DCATException(
-                'Expected a DCATControlledVocabularyEntry of vocabulary DONL:Language'
-            );
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary DONL:Language');
         }
 
         $this->metadataLanguage = $metadataLanguage;
@@ -644,9 +650,7 @@ class DCATDataset extends DCATComplexEntity
     public function addLanguage(DCATControlledVocabularyEntry $language): void
     {
         if ('DONL:Language' !== $language->getControlledVocabulary()) {
-            throw new DCATException(
-                'Expected a DCATControlledVocabularyEntry of vocabulary DONL:Language'
-            );
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary DONL:Language');
         }
 
         $this->language[] = $language;
@@ -663,9 +667,7 @@ class DCATDataset extends DCATComplexEntity
     public function addTheme(DCATControlledVocabularyEntry $theme): void
     {
         if ('Overheid:Taxonomiebeleidsagenda' !== $theme->getControlledVocabulary()) {
-            throw new DCATException(
-                'Expected a DCATControlledVocabularyEntry of vocabulary Overheid:Taxonomiebeleidsagenda'
-            );
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary Overheid:Taxonomiebeleidsagenda');
         }
 
         $this->theme[] = $theme;
@@ -692,9 +694,7 @@ class DCATDataset extends DCATComplexEntity
     public function setAuthority(DCATControlledVocabularyEntry $authority): void
     {
         if ('DONL:Organization' !== $authority->getControlledVocabulary()) {
-            throw new DCATException(
-                'Expected a DCATControlledVocabularyEntry of vocabulary DONL:Organization'
-            );
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary DONL:Organization');
         }
 
         $this->authority = $authority;
@@ -711,9 +711,7 @@ class DCATDataset extends DCATComplexEntity
     public function setPublisher(DCATControlledVocabularyEntry $publisher): void
     {
         if ('DONL:Organization' !== $publisher->getControlledVocabulary()) {
-            throw new DCATException(
-                'Expected a DCATControlledVocabularyEntry of vocabulary DONL:Organization'
-            );
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary DONL:Organization');
         }
 
         $this->publisher = $publisher;
@@ -740,9 +738,7 @@ class DCATDataset extends DCATComplexEntity
     public function setAccessRights(DCATControlledVocabularyEntry $accessRights): void
     {
         if ('Overheid:Openbaarheidsniveau' !== $accessRights->getControlledVocabulary()) {
-            throw new DCATException(
-                'Expected a DCATControlledVocabularyEntry of vocabulary Overheid:Openbaarheidsniveau'
-            );
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary Overheid:Openbaarheidsniveau');
         }
 
         $this->accessRights = $accessRights;
@@ -759,9 +755,7 @@ class DCATDataset extends DCATComplexEntity
     public function setDatasetStatus(DCATControlledVocabularyEntry $datasetStatus): void
     {
         if ('Overheid:DatasetStatus' !== $datasetStatus->getControlledVocabulary()) {
-            throw new DCATException(
-                'Expected a DCATControlledVocabularyEntry of vocabulary Overheid:DatasetStatus'
-            );
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary Overheid:DatasetStatus');
         }
 
         $this->datasetStatus = $datasetStatus;
@@ -928,9 +922,7 @@ class DCATDataset extends DCATComplexEntity
     public function setFrequency(DCATControlledVocabularyEntry $frequency): void
     {
         if ('Overheid:Frequency' !== $frequency->getControlledVocabulary()) {
-            throw new DCATException(
-                'Expected a DCATControlledVocabularyEntry of vocabulary Overheid:Frequency'
-            );
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary Overheid:Frequency');
         }
 
         $this->frequency = $frequency;
@@ -967,9 +959,7 @@ class DCATDataset extends DCATComplexEntity
     public function setSourceCatalog(DCATControlledVocabularyEntry $sourceCatalog): void
     {
         if ('DONL:Catalogs' !== $sourceCatalog->getControlledVocabulary()) {
-            throw new DCATException(
-                'Expected a DCATControlledVocabularyEntry of vocabulary DONL:Catalogs'
-            );
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary DONL:Catalogs');
         }
 
         $this->sourceCatalog = $sourceCatalog;

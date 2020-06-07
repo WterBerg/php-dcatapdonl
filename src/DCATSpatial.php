@@ -60,10 +60,8 @@ class DCATSpatial extends DCATComplexEntity
 
         if (!$this->valueMatchesScheme()) {
             $result->addMessage(
-                sprintf(
-                    'value %s fails to validate against scheme %s',
-                    $this->value->getData(), $this->scheme->getData()
-                )
+                'value ' . $this->value->getData() . ' fails to validate against scheme ' .
+                $this->scheme->getData()
             );
         }
 
@@ -160,7 +158,7 @@ class DCATSpatial extends DCATComplexEntity
     {
         $match = preg_match('/^\d{6}(\.\d{3})? \d{6}(\.\d{3})?$/', $this->value->getData());
 
-        return  1 == $match;
+        return  1 === $match;
     }
 
     /**
@@ -172,6 +170,6 @@ class DCATSpatial extends DCATComplexEntity
     {
         $match = preg_match('/^[1-9]\d{3}([A-Z]{2}(\d+(\S+)?)?)?$/', $this->value->getData());
 
-        return 1 == $match;
+        return 1 === $match;
     }
 }

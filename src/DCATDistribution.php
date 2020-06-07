@@ -15,7 +15,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     protected static $PROPERTIES = [
         'accessURL', 'license', 'title', 'description', 'language', 'metadataLanguage', 'format',
         'rights', 'status', 'releaseDate', 'modificationDate', 'byteSize', 'downloadURL',
-        'mediaType', 'linkedSchema', 'checksum', 'documentation',
+        'mediaType', 'linkedSchema', 'checksum', 'documentation', 'distributionType',
     ];
 
     /** @var string[] */
@@ -74,6 +74,9 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     /** @var DCATURI[] */
     protected $documentation;
 
+    /** @var DCATControlledVocabularyEntry */
+    protected $distributionType;
+
     /**
      * {@inheritdoc}
      */
@@ -97,7 +100,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
      */
     public function equalTo(DCATDistribution $target): bool
     {
-        return $this->serialize() == $target->serialize();
+        return $this->serialize() === $target->serialize();
     }
 
     /**
@@ -123,9 +126,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
      */
     public function unserialize($serialized): void
     {
-        throw new DCATException(
-            'DCATDistribution::unserialize(string) is not implemented'
-        );
+        throw new DCATException('DCATDistribution::unserialize(string) is not implemented');
     }
 
     /**
@@ -299,6 +300,16 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     }
 
     /**
+     * Getter for the distributionType property, may return null.
+     *
+     * @return null|DCATControlledVocabularyEntry The distributionType property
+     */
+    public function getDistributionType(): ?DCATControlledVocabularyEntry
+    {
+        return $this->distributionType ?: null;
+    }
+
+    /**
      * Setter for the accessURL property.
      *
      * @param DCATURI $accessURL The value to set
@@ -319,9 +330,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     public function setLicense(DCATControlledVocabularyEntry $license): void
     {
         if ('Overheid:License' !== $license->getControlledVocabulary()) {
-            throw new DCATException(
-                'Expected a DCATControlledVocabularyEntry of vocabulary Overheid:License'
-            );
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary Overheid:License');
         }
 
         $this->license = $license;
@@ -358,9 +367,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     public function addLanguage(DCATControlledVocabularyEntry $language): void
     {
         if ('DONL:Language' !== $language->getControlledVocabulary()) {
-            throw new DCATException(
-                'Expected a DCATControlledVocabularyEntry of vocabulary DONL:Language'
-            );
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary DONL:Language');
         }
 
         $this->language[] = $language;
@@ -377,9 +384,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     public function setMetadataLanguage(DCATControlledVocabularyEntry $metadataLanguage): void
     {
         if ('DONL:Language' !== $metadataLanguage->getControlledVocabulary()) {
-            throw new DCATException(
-                'Expected a DCATControlledVocabularyEntry of vocabulary DONL:Language'
-            );
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary DONL:Language');
         }
 
         $this->metadataLanguage = $metadataLanguage;
@@ -396,9 +401,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     public function setFormat(DCATControlledVocabularyEntry $format): void
     {
         if ('MDR:FiletypeNAL' !== $format->getControlledVocabulary()) {
-            throw new DCATException(
-                'Expected a DCATControlledVocabularyEntry of vocabulary MDR:FiletypeNAL'
-            );
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary MDR:FiletypeNAL');
         }
 
         $this->format = $format;
@@ -425,9 +428,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     public function setStatus(DCATControlledVocabularyEntry $status): void
     {
         if ('ADMS:Distributiestatus' !== $status->getControlledVocabulary()) {
-            throw new DCATException(
-                'Expected a DCATControlledVocabularyEntry of vocabulary ADMS:Distributiestatus'
-            );
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary ADMS:Distributiestatus');
         }
 
         $this->status = $status;
@@ -484,9 +485,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     public function setMediaType(DCATControlledVocabularyEntry $mediaType): void
     {
         if ('IANA:Mediatypes' !== $mediaType->getControlledVocabulary()) {
-            throw new DCATException(
-                'Expected a DCATControlledVocabularyEntry of vocabulary IANA:Mediatypes'
-            );
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary IANA:Mediatypes');
         }
 
         $this->mediaType = $mediaType;
@@ -520,5 +519,22 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     public function addDocumentation(DCATURI $documentation): void
     {
         $this->documentation[] = $documentation;
+    }
+
+    /**
+     * Setter for the distributionType property. Expects a DCATControlledVocabularyEntry of
+     * vocabulary 'DONL:DistributionType'.
+     *
+     * @param DCATControlledVocabularyEntry $distributionType The value to set
+     *
+     * @throws DCATException Thrown when the vocabulary is not 'DONL:DistributionType'
+     */
+    public function setDistributionType(DCATControlledVocabularyEntry $distributionType): void
+    {
+        if ('DONL:DistributionType' !== $distributionType->getControlledVocabulary()) {
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary DONL:DistributionType');
+        }
+
+        $this->distributionType = $distributionType;
     }
 }

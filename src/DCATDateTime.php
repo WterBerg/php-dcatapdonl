@@ -43,10 +43,8 @@ class DCATDateTime extends DCATLiteral
 
         if (!$this->isDateTime()) {
             $result->addMessage(
-                sprintf(
-                    'value %s is not conform the given format %s',
-                    $this->getData(), $this->getFormat()
-                )
+                'value ' . $this->getData() . ' is not conform the given format ' .
+                $this->getFormat()
             );
         }
 
@@ -70,6 +68,6 @@ class DCATDateTime extends DCATLiteral
      */
     protected function isDateTime(): bool
     {
-        return false != DateTime::createFromFormat($this->format, $this->value);
+        return false !== DateTime::createFromFormat($this->format, $this->value);
     }
 }

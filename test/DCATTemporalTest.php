@@ -1,5 +1,7 @@
 <?php
 
+namespace DCAT_AP_DONL\Test;
+
 use DCAT_AP_DONL\DCATDateTime;
 use DCAT_AP_DONL\DCATLiteral;
 use DCAT_AP_DONL\DCATTemporal;
@@ -55,5 +57,20 @@ class DCATTemporalTest extends TestCase
         $this->assertEquals('2000-01-01T00:00:00', $temporal->getStart()->getData());
         $this->assertEquals('2001-01-01T00:00:00', $temporal->getEnd()->getData());
         $this->assertEquals('MyLabel', $temporal->getLabel()->getData());
+    }
+
+    public function testMessageIsGeneratedOnInvalidDateTimeFormats(): void
+    {
+        $temporal = new DCATTemporal();
+        $temporal->setStart(new DCATDateTime('2000-01-01T00:00:00'));
+        $temporal->setEnd(new DCATDateTime('test'));
+
+        $validation_result = $temporal->validate();
+        $last_message      = array_reverse($validation_result->getMessages())[0];
+
+        $this->assertEquals(
+            'failed to convert a temporal property into a DateTime object',
+            $last_message
+        );
     }
 }

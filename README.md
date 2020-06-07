@@ -1,13 +1,16 @@
 # wterberg/dcatapdonl
 
 [![Build Status][travis-image]][travis-url] 
-[![codecov][codecov-image]][codecov-url]
+[![Quality Gate Status][sonarcloud-quality-image]][sonarcloud-quality-url]
+[![Coverage][sonarcloud-coverage-image]][sonarcloud-coverage-url]
 [![License: MIT][mit-image]][mit-url]
 
 [travis-image]: https://travis-ci.org/WterBerg/php-dcatapdonl.svg?branch=master
 [travis-url]: https://travis-ci.org/WterBerg/php-dcatapdonl
-[codecov-image]: https://codecov.io/gh/WterBerg/php-dcatapdonl/branch/master/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/WterBerg/php-dcatapdonl
+[sonarcloud-quality-image]: https://sonarcloud.io/api/project_badges/measure?project=WterBerg_php-dcatapdonl&metric=alert_status
+[sonarcloud-quality-url]: https://sonarcloud.io/dashboard?id=WterBerg_php-dcatapdonl
+[sonarcloud-coverage-image]: https://sonarcloud.io/api/project_badges/measure?project=WterBerg_php-dcatapdonl&metric=coverage
+[sonarcloud-coverage-url]: https://sonarcloud.io/dashboard?id=WterBerg_php-dcatapdonl
 [mit-image]: https://img.shields.io/badge/License-MIT-yellow.svg
 [mit-url]: https://opensource.org/licenses/MIT
 
@@ -36,4 +39,4 @@ var_dump($validation->getMessages());
 
 ## license
 
-wterberg/dcatapdonl is licensed under the MIT license. For more information visit the LICENSE file.
+wterberg/dcatapdonl is licensed under the MIT license. For more information visit the LICENSE.md file.

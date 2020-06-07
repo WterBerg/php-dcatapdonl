@@ -1,5 +1,7 @@
 <?php
 
+namespace DCAT_AP_DONL\Test;
+
 use DCAT_AP_DONL\DCATBoolean;
 use DCAT_AP_DONL\DCATContactPoint;
 use DCAT_AP_DONL\DCATControlledVocabularyEntry;
@@ -248,5 +250,15 @@ class DCATDatasetTest extends TestCase
         } catch (DCATException $e) {
             $this->assertEquals('Expected a DCATControlledVocabularyEntry of vocabulary Overheid:Taxonomiebeleidsagenda', $e->getMessage());
         }
+    }
+
+    public function testGetAlternateIdentifierAlias(): void
+    {
+        $test_value = 'testValue';
+        $dataset    = new DCATDataset();
+        $dataset->addAlternativeIdentifier(new DCATURI($test_value));
+
+        $this->assertEquals($test_value, $dataset->getAlternativeIdentifier()[0]->getData());
+        $this->assertEquals($test_value, $dataset->getAlternateIdentifier()[0]->getData());
     }
 }
