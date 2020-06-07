@@ -80,48 +80,22 @@ abstract class DCATComplexEntity implements DCATEntity
         $propertiesPresent = false;
 
         foreach ($this->properties as $property) {
-            $prop = $this->$property;
+            $value = $this->$property;
 
-            if (null !== $prop || (is_array($this->$property) && count($this->$property) > 0)) {
+            if (null !== $value || (is_array($this->$property) && count($this->$property) > 0)) {
                 $propertiesPresent = true;
             }
 
-            if (null === $prop) {
+            if (null === $value) {
                 if (in_array($property, $this->requiredProperties)) {
                     $result->addMessage(sprintf('%s: value is missing', $property));
                 }
-
                 continue;
             }
 
-            if (is_array($prop)) {
-                if (0 == count($prop) && in_array($property, $this->requiredProperties)) {
-                    $result->addMessage(sprintf('%s: value is empty', $property));
-
-                    continue;
-                }
-
-                foreach ($prop as $arrayElement) {
-                    /** @var DCATEntity $arrayElement */
-                    $messages = $arrayElement->validate()->getMessages();
-
-                    for ($i = 0; $i < count($messages); ++$i) {
-                        $result->addMessage(
-                            sprintf('%s: %s', $property, $messages[$i])
-                        );
-                    }
-                }
-
-                continue;
-            }
-
-            /** @var DCATEntity $prop */
-            $messages = $prop->validate()->getMessages();
-            for ($i = 0; $i < count($messages); ++$i) {
-                $result->addMessage(
-                    sprintf('%s: %s', $property, $messages[$i])
-                );
-            }
+            is_array($value)
+                ? $this->addMultivaluedPropertyMessages($property, $value, $result)
+                : $this->addSinglevaluedPropertyMessage($property, $value, $result);
         }
 
         if (!$propertiesPresent) {
@@ -129,5 +103,47 @@ abstract class DCATComplexEntity implements DCATEntity
         }
 
         return $result;
+    }
+
+    /**
+     * Add the validation messages of a single valued property to the validation result.
+     *
+     * @param string               $name   The name of the DCAT property
+     * @param DCATEntity           $value  The value of the DCAT property
+     * @param DCATValidationResult $result The validation result so far
+     */
+    private function addSinglevaluedPropertyMessage(string $name, DCATEntity $value,
+                                                    DCATValidationResult $result): void
+    {
+        $messages = $value->validate()->getMessages();
+
+        for ($i = 0; $i < count($messages); ++$i) {
+            $result->addMessage(sprintf('%s: %s', $name, $messages[$i]));
+        }
+    }
+
+    /**
+     * Add the validation messages of a multivalued property to the validation result.
+     *
+     * @param string               $name   The name of the DCAT property
+     * @param DCATEntity[]         $values The values of the DCAT property
+     * @param DCATValidationResult $result The validation result so far
+     */
+    private function addMultivaluedPropertyMessages(string $name, array $values,
+                                                    DCATValidationResult $result): void
+    {
+        if (0 == count($values) && in_array($name, $this->requiredProperties)) {
+            $result->addMessage(sprintf('%s: value is empty', $name));
+
+            return;
+        }
+
+        foreach ($values as $arrayElement) {
+            $messages = $arrayElement->validate()->getMessages();
+
+            for ($i = 0; $i < count($messages); ++$i) {
+                $result->addMessage(sprintf('%s: %s', $name, $messages[$i]));
+            }
+        }
     }
 }

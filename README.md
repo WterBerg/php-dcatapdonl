@@ -1,4 +1,4 @@
-# wterberg/dcatapdonl
+# wterberg/dcat-ap-donl
 
 [![Build Status][travis-image]][travis-url] 
 [![Quality Gate Status][sonarcloud-quality-image]][sonarcloud-quality-url]
@@ -17,6 +17,25 @@
 This package allows for creation and validation of datasets conforming to the DCAT-AP-DONL 1.1 
 metadata standard, which is documented on [dcat-ap-donl.readthedocs.io](https://dcat-ap-donl.readthedocs.io).
 
+## references
+
+- [Github.com/WterBerg/php-dcatapdonl][github-url]
+- [Packagist.org/packages/wterberg/dcat-ap-donl][packagist-url]
+- [Travis-CI.org/WterBerg/php-dcatapdonl][travis-ci-url]
+- [SonarCloud.io/dashboard?id=WterBerg_php-dcatapdonl][sonarcloud-url]
+
+[github-url]: https://github.com/WterBerg/php-dcatapdonl
+[packagist-url]: https://github.com/WterBerg/php-dcatapdonl
+[travis-ci-url]: https://github.com/WterBerg/php-dcatapdonl
+[sonarcloud-url]: https://github.com/WterBerg/php-dcatapdonl
+
+## installation
+`wterberg/dcat-ap-donl` is installed via [Composer](https://getcomposer.org).
+
+```bash
+composer require wterberg/dcat-ap-donl
+```
+
 ## usage
 Usage is a simple as:
 
@@ -33,9 +52,9 @@ var_dump($validation->getMessages());
 
 ## dependencies
 
-- PHP 7.2 and up
-- PHP extension ext-curl
-- PHP extension ext-json
+- PHP 7.3 and up
+- PHP extension `ext-curl`
+- PHP extension `ext-json`
 
 ## license
 

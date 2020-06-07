@@ -5,7 +5,7 @@ php: 7.4
 
 addons:
   sonarcloud:
-    organization: 'github-wterberg'
+    organization: $SONARCLOUD_ORGANIZATION
 
 git:
   depth: false
@@ -28,4 +28,4 @@ install:
 script:
   - vendor/bin/phpunit
   - php-cs-fixer fix --dry-run
-  - sonar-scanner -D"sonar.host.url=https://sonarcloud.io" -D"sonar.login=$SONARCLOUD_TOKEN"
+  - sonar-scanner -D"sonar.host.url=$SONARCLOUD_HOST" -D"sonar.login=$SONARCLOUD_TOKEN"
