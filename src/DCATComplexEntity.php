@@ -134,6 +134,7 @@ abstract class DCATComplexEntity implements DCATEntity
     {
         if (0 == count($values) && in_array($name, $this->requiredProperties)) {
             $result->addMessage(sprintf('%s: value is empty', $name));
+
             return;
         }
 
