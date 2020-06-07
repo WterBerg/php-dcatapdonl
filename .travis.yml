@@ -6,8 +6,6 @@ php: 7.4
 addons:
   sonarcloud:
     organization: 'github-wterberg'
-    token:
-      secure: 'Wvfho/RmD/BBK8tjr9W6+aVQG3o9tMo1/ZhqhuK8I2v6TNkCZ206r7/phZ+fFiginlh0ZHoag3+ObYnMzPToAcFVHZCkxPLMy61CO1zh7VQBA/j+XEMLEMZMBJHzuFbCiJyWtteaa5Ltx3ztl4yRqUIW6xbdZIMUBQIwiHtcZqS+RwHex4Dcro6WUcISGj43Pw7jI7fIbsNNbHpy6UyJztdQ7ajFi2T2R2rhqjFxLBQYOp74PMMMv0skqlPUdFvYpdA4HJ8SnULv/GtD1Je3oYW0jcXTv8NfXFmgHFA8iC95+mpX/UlwAoKkTo6IWHgoOtSyJT1PeOOwpAblMqx7T22V6w0V7t0aI7doMh7DvLwsIBbJI685kgKXSBDmsRxXceczoYC/zjMxuuylQjxqbSZDs02pCoFgLwdpx3K8t0ilspZutsg4n7PJJhnY6O/AYMBYXwvKetA/yy6J4pwc9kwrvofD+BDZEndcFk0WShuwm3bhuEk50BueU14g0jCR3uA7oo+Sel9XuBWYTuvfgs+r6llkIOXP47OBCDUjv7HbFL05EvKomhg/iIcM6ImtYq8kIJ7Nt7UU+teojJHbiSsej/FjOyxAC4Hs0XGYkMokT0LE2QwEhso1pAGjk3/GzRpR/yBfT1epkr6lBRbhQ0onDTn1j7MHiiqtp7j8dEg='
 
 git:
   depth: false
@@ -30,4 +28,4 @@ install:
 script:
   - vendor/bin/phpunit
   - php-cs-fixer fix --dry-run
-  - sonar-scanner
+  - if [ "$TRAVIS_BRANCH" = "master" ]; then sonar-scanner -D"sonar.host.url=https://sonarcloud.io" -D"sonar.login=$SONARCLOUD_TOKEN"; fi
