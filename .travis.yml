@@ -38,6 +38,4 @@ install:
 script:
   - vendor/bin/phpunit
   - php-cs-fixer fix --dry-run
-
-after_success:
-  - sonar-scanner -Dsonar.sources=src -Dsonar.sourceEncoding=UTF-8 -Dsonar.php.tests.reportPath=./test-reports/phpunit/junit.xml -Dsonar.php.coverage.reportPaths=./test-reports/phpunit/coverage.xml -Dsonar.working.directory=./test-reports/sonar-scanner
+  - sonar-scanner
