@@ -36,7 +36,7 @@
         "fix-quality": "bash vendor/bin/php-cs-fixer fix"
     },
     "require": {
-        "php": "^7.2",
+        "php": "^7.3",
         "ext-json": "*",
         "ext-curl": "*"
     },
