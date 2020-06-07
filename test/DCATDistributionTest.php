@@ -17,21 +17,21 @@ class DCATDistributionTest extends TestCase
     public function testGettersAndSettersArePresentAndFunctional(): void
     {
         try {
-            $title    = new DCATLiteral('testTitle');
-            $description = new DCATLiteral('testDescription');
-            $access_url = new DCATURI('https://test.uri');
-            $byte_size = new DCATNumber(1);
-            $format = new DCATControlledVocabularyEntry('test', 'MDR:FiletypeNAL');
-            $license = new DCATControlledVocabularyEntry('test', 'Overheid:License');
-            $mediatype = new DCATControlledVocabularyEntry('test', 'IANA:Mediatypes');
-            $language = new DCATControlledVocabularyEntry('test', 'DONL:Language');
-            $type = new DCATControlledVocabularyEntry('test', 'DONL:DistributionType');
+            $title             = new DCATLiteral('testTitle');
+            $description       = new DCATLiteral('testDescription');
+            $access_url        = new DCATURI('https://test.uri');
+            $byte_size         = new DCATNumber(1);
+            $format            = new DCATControlledVocabularyEntry('test', 'MDR:FiletypeNAL');
+            $license           = new DCATControlledVocabularyEntry('test', 'Overheid:License');
+            $mediatype         = new DCATControlledVocabularyEntry('test', 'IANA:Mediatypes');
+            $language          = new DCATControlledVocabularyEntry('test', 'DONL:Language');
+            $type              = new DCATControlledVocabularyEntry('test', 'DONL:DistributionType');
             $modification_date = new DCATDateTime('testDate');
-            $release_date = new DCATDateTime('testDate');
-            $rights    = new DCATLiteral('testRights');
-            $status = new DCATControlledVocabularyEntry('', 'ADMS:Distributiestatus');
-            $url = new DCATURI('https://example.com');
-            $checksum = new DCATChecksum();
+            $release_date      = new DCATDateTime('testDate');
+            $rights            = new DCATLiteral('testRights');
+            $status            = new DCATControlledVocabularyEntry('', 'ADMS:Distributiestatus');
+            $url               = new DCATURI('https://example.com');
+            $checksum          = new DCATChecksum();
 
             $distribution = new DCATDistribution();
             $distribution->setTitle($title);
