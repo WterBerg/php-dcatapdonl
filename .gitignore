@@ -1,5 +1,13 @@
-/.idea/
-/vendor/
+# IDE
+/.idea/*
 
-composer.lock
+# Composer
+/vendor/*
 composer.phar
+
+# Test
+/test-reports/*
+/.php_cs.cache
+/.phpunit.result.cache
+/phpunit.xml
+/sonar-project.properties

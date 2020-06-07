@@ -1,5 +1,7 @@
 <?php
 
+namespace DCAT_AP_DONL\Test;
+
 use DCAT_AP_DONL\DCATControlledVocabulary;
 use DCAT_AP_DONL\DCATException;
 use PHPUnit\Framework\TestCase;

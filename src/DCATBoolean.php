@@ -9,8 +9,24 @@ namespace DCAT_AP_DONL;
  */
 class DCATBoolean extends DCATLiteral
 {
+    /** @var string */
     const TRUE  = 'true';
+
+    /** @var string */
     const FALSE = 'false';
+
+    /** @var string[] */
+    private $acceptableValues;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __construct(string $value = null)
+    {
+        parent::__construct($value);
+
+        $this->acceptableValues = [self::TRUE, self::FALSE];
+    }
 
     /**
      * Determines and returns whether or not the DCATBoolean is valid.
@@ -27,10 +43,10 @@ class DCATBoolean extends DCATLiteral
     {
         $result = parent::validate();
 
-        if ($this->value && !in_array($this->value, [self::TRUE, self::FALSE])) {
-            $result->addMessage(
-                sprintf('value is not one of [ %s, %s ]', self::TRUE, self::FALSE)
-            );
+        if ($this->value && !in_array($this->value, $this->acceptableValues)) {
+            $result->addMessage(sprintf(
+                'value is not one of [ %s ]', join(', ', $this->acceptableValues)
+            ));
         }
 
         return $result;

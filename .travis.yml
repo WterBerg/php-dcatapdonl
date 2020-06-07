@@ -1,33 +1,40 @@
 os: linux
-dist: xenial
+dist: bionic
 language: php
 
 php:
-- 7.2
+  - 7.2
+  - 7.3
+  - 7.4
+
+jobs:
+  include:
+    - php: 7.2
+    - php: 7.3
+    - php: 7.4
 
 git:
-    depth: false
-    submodules: false
+  depth: false
+  submodules: false
+  quiet: true
 
 branches:
-    only:
+  only:
     - master
 
 cache:
-    directories:
+  directories:
     - $HOME/.composer/cache/files
 
 before_install:
-- composer self-update
-- composer global require friendsofphp/php-cs-fixer --prefer-dist --prefer-stable --no-progress --no-interaction --quiet
-- export PATH="$PATH:$HOME/.composer/vendor/bin"
+  - composer self-update
 
 install:
-- composer install --no-suggest --dev --prefer-dist --no-scripts --no-interaction --quiet
+  - composer install --no-suggest --dev --prefer-dist --no-scripts --no-interaction --quiet
 
 script:
-- phpunit --bootstrap vendor/autoload.php --coverage-clover=clover.xml
-- php-cs-fixer fix --dry-run
+  - bash vendor/bin/phpunit --bootstrap vendor/autoload.php --coverage-clover=clover.xml
+  - bash vendor/bin/php-cs-fixer fix --dry-run
 
 after_success:
-- bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash)

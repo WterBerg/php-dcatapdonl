@@ -5,8 +5,11 @@ insert_final_newline = true
 charset = utf-8
 indent_style = space
 indent_size = 4
-max_line_length = 120
+max_line_length = off
 end_of_line = lf
+
+[{*.yml,*.yaml}]
+indent_size = 2
 
 [*.php]
 max_line_length = 100

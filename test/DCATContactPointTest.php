@@ -1,5 +1,7 @@
 <?php
 
+namespace DCAT_AP_DONL\Test;
+
 use DCAT_AP_DONL\DCATContactPoint;
 use DCAT_AP_DONL\DCATLiteral;
 use DCAT_AP_DONL\DCATURI;

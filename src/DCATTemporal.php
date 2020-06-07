@@ -64,14 +64,13 @@ class DCATTemporal extends DCATComplexEntity
         }
 
         try {
-            $start = new DateTime($this->start->getData());
-            $end   = new DateTime($this->end->getData());
+            $start_date = new DateTime($this->start->getData());
+            $end_date   = new DateTime($this->end->getData());
 
-            if ($start >= $end) {
+            if ($start_date >= $end_date) {
                 $result->addMessage(
-                    sprintf(
-                        'start must be smalled than end; got %s and %s',
-                        $this->start->getData(), $this->end->getData())
+                    'start must be smaller than end; got ' . $this->start->getData() . ' and ' .
+                    $this->end->getData()
                 );
             }
         } catch (Exception $e) {

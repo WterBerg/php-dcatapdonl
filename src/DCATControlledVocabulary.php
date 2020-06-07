@@ -10,11 +10,12 @@ namespace DCAT_AP_DONL;
  */
 class DCATControlledVocabulary
 {
-    /** @var array */
+    /** @var string[] */
     const CONTROLLED_VOCABULARIES = [
         'ADMS:Changetype'                 => 'https://waardelijsten.dcat-ap-donl.nl/adms_changetype.json',
         'ADMS:Distributiestatus'          => 'https://waardelijsten.dcat-ap-donl.nl/adms_distributiestatus.json',
         'DONL:Catalogs'                   => 'https://waardelijsten.dcat-ap-donl.nl/donl_catalogs.json',
+        'DONL:DistributionType'           => 'https://waardelijsten.dcat-ap-donl.nl/donl_distributiontype.json',
         'DONL:Language'                   => 'https://waardelijsten.dcat-ap-donl.nl/donl_language.json',
         'DONL:Organization'               => 'https://waardelijsten.dcat-ap-donl.nl/donl_organization.json',
         'IANA:Mediatypes'                 => 'https://waardelijsten.dcat-ap-donl.nl/iana_mediatypes.json',
@@ -72,14 +73,12 @@ class DCATControlledVocabulary
      */
     public static function getVocabulary(string $name): DCATControlledVocabulary
     {
-        if (!isset(self::$LISTS[$name])) {
-            if (!isset(DCATControlledVocabulary::CONTROLLED_VOCABULARIES[$name])) {
-                throw new DCATException(sprintf('no vocabulary found with name %s', $name));
+        if (!array_key_exists($name, self::$LISTS)) {
+            if (!array_key_exists($name, self::CONTROLLED_VOCABULARIES)) {
+                throw new DCATException('no vocabulary found with name ' . $name);
             }
 
-            $list = new DCATControlledVocabulary(
-                $name, DCATControlledVocabulary::CONTROLLED_VOCABULARIES[$name]
-            );
+            $list = new DCATControlledVocabulary($name, self::CONTROLLED_VOCABULARIES[$name]);
             $list->loadEntries();
             self::$LISTS[$name] = $list;
         }
@@ -98,7 +97,7 @@ class DCATControlledVocabulary
      */
     public static function addCustomVocabulary(string $name, array $entries): void
     {
-        if (isset(DCATControlledVocabulary::$LISTS[$name])) {
+        if (array_key_exists($name, self::$LISTS)) {
             throw new DCATException('a vocabulary with the given name is already defined');
         }
 
@@ -106,7 +105,7 @@ class DCATControlledVocabulary
         $customVocabulary->setEntries($entries);
         $customVocabulary->setSource('custom');
 
-        DCATControlledVocabulary::$LISTS[$name] = $customVocabulary;
+        self::$LISTS[$name] = $customVocabulary;
     }
 
     /**
@@ -120,14 +119,14 @@ class DCATControlledVocabulary
      */
     public static function addCustomExternalVocabulary(string $name, string $source): void
     {
-        if (isset(DCATControlledVocabulary::$LISTS[$name])) {
+        if (array_key_exists($name, self::$LISTS)) {
             throw new DCATException('a vocabulary with the given name is already defined');
         }
 
         $customVocabulary = new DCATControlledVocabulary($name, $source);
         $customVocabulary->loadEntries();
 
-        DCATControlledVocabulary::$LISTS[$name] = $customVocabulary;
+        self::$LISTS[$name] = $customVocabulary;
     }
 
     /**
@@ -163,10 +162,10 @@ class DCATControlledVocabulary
     }
 
     /**
-     * Loads the entries from the online resource defined in `$this->source`.
+     * Loads the entries from the source of the vocabulary.
      *
      * @throws DCATException If, for any reason, the vocabulary was unable to load the entries from
-     *                       the remote source
+     *                       the source
      */
     protected function loadEntries(): void
     {
@@ -182,17 +181,13 @@ class DCATControlledVocabulary
         if ($requestCode < 200 || $requestCode >= 300) {
             curl_close($curl);
 
-            throw new DCATException(
-                sprintf('unable to retrieve contents from source %s', $this->getSource())
-            );
+            throw new DCATException('unable to retrieve contents from source ' . $this->getSource());
         }
 
         $parsed = json_decode($remoteContents, true);
 
         if (null === $parsed) {
-            throw new DCATException(
-                sprintf('failed to parse JSON for vocabulary %s', $this->source)
-            );
+            throw new DCATException('failed to parse JSON for vocabulary ' . $this->source);
         }
 
         if ('Overheid:License' === $this->name) {

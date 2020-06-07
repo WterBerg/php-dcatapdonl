@@ -25,7 +25,7 @@ class DCATURI extends DCATLiteral
         $result = parent::validate();
 
         if (!$this->isURI($this->value)) {
-            $result->addMessage(sprintf('value %s is not a valid URI', $this->value));
+            $result->addMessage('value ' . $this->value . ' is not a valid URI');
         }
 
         return $result;
