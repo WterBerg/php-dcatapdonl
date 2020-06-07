@@ -1,31 +1,21 @@
 os: linux
+dist: focal
 language: php
-
-jobs:
-  include:
-    - php: 7.3
-      dist: bionic
-    - php: 7.4
-      dist: focal
+php: 7.4
 
 addons:
   sonarcloud:
-    organization: "github-wterberg"
-    token:
-      secure: "Wvfho/RmD/BBK8tjr9W6+aVQG3o9tMo1/ZhqhuK8I2v6TNkCZ206r7/phZ+fFiginlh0ZHoag3+ObYnMzPToAcFVHZCkxPLMy61CO1zh7VQBA/j+XEMLEMZMBJHzuFbCiJyWtteaa5Ltx3ztl4yRqUIW6xbdZIMUBQIwiHtcZqS+RwHex4Dcro6WUcISGj43Pw7jI7fIbsNNbHpy6UyJztdQ7ajFi2T2R2rhqjFxLBQYOp74PMMMv0skqlPUdFvYpdA4HJ8SnULv/GtD1Je3oYW0jcXTv8NfXFmgHFA8iC95+mpX/UlwAoKkTo6IWHgoOtSyJT1PeOOwpAblMqx7T22V6w0V7t0aI7doMh7DvLwsIBbJI685kgKXSBDmsRxXceczoYC/zjMxuuylQjxqbSZDs02pCoFgLwdpx3K8t0ilspZutsg4n7PJJhnY6O/AYMBYXwvKetA/yy6J4pwc9kwrvofD+BDZEndcFk0WShuwm3bhuEk50BueU14g0jCR3uA7oo+Sel9XuBWYTuvfgs+r6llkIOXP47OBCDUjv7HbFL05EvKomhg/iIcM6ImtYq8kIJ7Nt7UU+teojJHbiSsej/FjOyxAC4Hs0XGYkMokT0LE2QwEhso1pAGjk3/GzRpR/yBfT1epkr6lBRbhQ0onDTn1j7MHiiqtp7j8dEg="
+    organization: 'github-wterberg'
 
 git:
   depth: false
   submodules: false
   quiet: true
 
-branches:
-  only:
-    - master
-
 cache:
   directories:
-    - $HOME/.composer/cache/files
+    - '$HOME/.composer/cache/files'
+    - '$HOME/.sonar/cache'
 
 before_install:
   - composer self-update
@@ -38,6 +28,4 @@ install:
 script:
   - vendor/bin/phpunit
   - php-cs-fixer fix --dry-run
-
-after_success:
-  - sonar-scanner -Dsonar.sources=src -Dsonar.sourceEncoding=UTF-8 -Dsonar.php.tests.reportPath=./test-reports/phpunit/junit.xml -Dsonar.php.coverage.reportPaths=./test-reports/phpunit/coverage.xml -Dsonar.working.directory=./test-reports/sonar-scanner
+  - sonar-scanner -D"sonar.host.url=https://sonarcloud.io" -D"sonar.login=$SONARCLOUD_TOKEN"

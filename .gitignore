@@ -10,4 +10,3 @@ composer.phar
 /.php_cs.cache
 /.phpunit.result.cache
 /phpunit.xml
-/sonar-project.properties
