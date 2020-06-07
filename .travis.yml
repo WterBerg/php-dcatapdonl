@@ -28,4 +28,4 @@ install:
 script:
   - vendor/bin/phpunit
   - php-cs-fixer fix --dry-run
-  - if [ "$TRAVIS_BRANCH" = "master" ]; then sonar-scanner -D"sonar.host.url=https://sonarcloud.io" -D"sonar.login=$SONARCLOUD_TOKEN"; fi
+  - sonar-scanner -D"sonar.host.url=https://sonarcloud.io" -D"sonar.login=$SONARCLOUD_TOKEN"
