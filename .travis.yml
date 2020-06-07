@@ -44,12 +44,14 @@ cache:
     - $HOME/.composer/cache/files
 
 before_install:
+  - echo "extension = json.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - echo "extension = curl.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
   - composer self-update
-  - composer global require friendsofphp/php-cs-fixer --prefer-dist --prefer-stable --no-progress --no-interaction --quiet
+  - composer global require friendsofphp/php-cs-fixer --prefer-dist --prefer-stable --no-progress --no-interaction
   - export PATH="$PATH:$HOME/.composer/vendor/bin"
 
 install:
-  - composer install --no-suggest --dev --prefer-dist --no-scripts --no-interaction --quiet
+  - composer install --no-suggest --dev --prefer-dist --no-scripts --no-interaction
 
 script:
   - vendor/bin/phpunit
