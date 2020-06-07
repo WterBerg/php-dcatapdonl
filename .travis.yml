@@ -1,17 +1,34 @@
 os: linux
-dist: bionic
 language: php
-
-php:
-  - 7.2
-  - 7.3
-  - 7.4
 
 jobs:
   include:
     - php: 7.2
+      dist: xenial
+    - php: 7.2
+      dist: bionic
+    - php: 7.2
+      dist: focal
+
     - php: 7.3
+      dist: xenial
+    - php: 7.3
+      dist: bionic
+    - php: 7.3
+      dist: focal
+
     - php: 7.4
+      dist: xenial
+    - php: 7.4
+      dist: bionic
+    - php: 7.4
+      dist: focal
+
+addons:
+  sonarcloud:
+    organization: "github-wterberg"
+    token:
+      secure: $SONARCLOUD_TOKEN
 
 git:
   depth: false
@@ -28,13 +45,13 @@ cache:
 
 before_install:
   - composer self-update
+  - composer global require friendsofphp/php-cs-fixer --prefer-dist --prefer-stable --no-progress --no-interaction --quiet
+  - export PATH="$PATH:$HOME/.composer/vendor/bin"
 
 install:
   - composer install --no-suggest --dev --prefer-dist --no-scripts --no-interaction --quiet
 
 script:
-  - bash vendor/bin/phpunit --bootstrap vendor/autoload.php --coverage-clover=clover.xml
-  - bash vendor/bin/php-cs-fixer fix --dry-run
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - vendor/bin/phpunit
+  - php-cs-fixer fix --dry-run
+  - sonar-scanner -Dsonar.sources=src -Dsonar.sourceEncoding=UTF-8 -Dsonar.php.tests.reportPath=./test-reports/phpunit/junit.xml -Dsonar.php.coverage.reportPaths=./test-reports/phpunit/coverage.xml -Dsonar.working.directory=./test-reports/sonar-scanner
