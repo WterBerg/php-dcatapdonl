@@ -25,9 +25,9 @@ metadata standard, which is documented on [dcat-ap-donl.readthedocs.io](https://
 - [SonarCloud.io/dashboard?id=WterBerg_php-dcatapdonl][sonarcloud-url]
 
 [github-url]: https://github.com/WterBerg/php-dcatapdonl
-[packagist-url]: https://github.com/WterBerg/php-dcatapdonl
-[travis-ci-url]: https://github.com/WterBerg/php-dcatapdonl
-[sonarcloud-url]: https://github.com/WterBerg/php-dcatapdonl
+[packagist-url]: https://packagist.org/packages/wterberg/dcat-ap-donl
+[travis-ci-url]: https://travis-ci.org/WterBerg/php-dcatapdonl
+[sonarcloud-url]: https://sonarCloud.io/dashboard?id=WterBerg_php-dcatapdonl
 
 ## installation
 `wterberg/dcat-ap-donl` is installed via [Composer](https://getcomposer.org).
