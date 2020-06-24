@@ -50,7 +50,7 @@ class DCATDistributionTest extends TestCase
             $distribution->addDocumentation($url);
             $distribution->addDownloadURL($url);
             $distribution->addLanguage($language);
-            $distribution->addLinkedSchema($url);
+            $distribution->addLinkedSchemas($url);
             $distribution->setChecksum($checksum);
 
             $this->assertEquals($title, $distribution->getTitle());

@@ -502,6 +502,18 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     }
 
     /**
+     * Alias of addLinkedSchema.
+     *
+     * @param DCATURI $linkedSchema The value to add
+     *
+     * @see DCATDistribution::addLinkedSchema()
+     */
+    public function addLinkedSchemas(DCATURI $linkedSchema): void
+    {
+        $this->addLinkedSchema($linkedSchema);
+    }
+
+    /**
      * Setter for the checksum property.
      *
      * @param DCATChecksum $checksum The value to set
