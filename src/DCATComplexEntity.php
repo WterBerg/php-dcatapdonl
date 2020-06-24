@@ -49,8 +49,8 @@ abstract class DCATComplexEntity implements DCATEntity
             }
 
             if (is_array($prop)) {
+                /* @var DCATEntity[] $prop */
                 foreach ($prop as $value) {
-                    /* @var DCATEntity $value */
                     $data[$property][] = $value->getData();
                 }
 
@@ -132,7 +132,7 @@ abstract class DCATComplexEntity implements DCATEntity
     private function addMultivaluedPropertyMessages(string $name, array $values,
                                                     DCATValidationResult $result): void
     {
-        if (0 == count($values) && in_array($name, $this->requiredProperties)) {
+        if (empty($values) && in_array($name, $this->requiredProperties)) {
             $result->addMessage(sprintf('%s: value is empty', $name));
 
             return;

@@ -3,6 +3,7 @@ eol=lf
 
 composer.lock                   -diff
 
+/.github                        export-ignore
 /test                           export-ignore
 .gitattributes                  export-ignore
 .gitignore                      export-ignore
