@@ -607,16 +607,16 @@ class DCATDataset extends DCATComplexEntity
 
     /**
      * Setter for the license property. Expects a DCATControlledVocabularyEntry of vocabulary
-     * 'Overheid:License'.
+     * 'DONL:License'.
      *
      * @param DCATControlledVocabularyEntry $license The value to set
      *
-     * @throws DCATException Thrown when the vocabulary is not 'Overheid:License'
+     * @throws DCATException Thrown when the vocabulary is not 'DONL:License'
      */
     public function setLicense(DCATControlledVocabularyEntry $license): void
     {
-        if ('Overheid:License' !== $license->getControlledVocabulary()) {
-            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary Overheid:License');
+        if ('DONL:License' !== $license->getControlledVocabulary()) {
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary DONL:License');
         }
 
         $this->license = $license;
@@ -667,7 +667,7 @@ class DCATDataset extends DCATComplexEntity
     public function addTheme(DCATControlledVocabularyEntry $theme): void
     {
         if ('Overheid:Taxonomiebeleidsagenda' !== $theme->getControlledVocabulary()) {
-            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary Overheid:Taxonomiebeleidsagenda');
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary ' . 'Overheid:Taxonomiebeleidsagenda');
         }
 
         $this->theme[] = $theme;
@@ -738,7 +738,7 @@ class DCATDataset extends DCATComplexEntity
     public function setAccessRights(DCATControlledVocabularyEntry $accessRights): void
     {
         if ('Overheid:Openbaarheidsniveau' !== $accessRights->getControlledVocabulary()) {
-            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary Overheid:Openbaarheidsniveau');
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary ' . 'Overheid:Openbaarheidsniveau');
         }
 
         $this->accessRights = $accessRights;
@@ -755,7 +755,7 @@ class DCATDataset extends DCATComplexEntity
     public function setDatasetStatus(DCATControlledVocabularyEntry $datasetStatus): void
     {
         if ('Overheid:DatasetStatus' !== $datasetStatus->getControlledVocabulary()) {
-            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary Overheid:DatasetStatus');
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary ' . 'Overheid:DatasetStatus');
         }
 
         $this->datasetStatus = $datasetStatus;

@@ -321,16 +321,16 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
 
     /**
      * Setter for the license property. Expects a DCATControlledVocabularyEntry of vocabulary
-     * 'Overheid:License'.
+     * 'DONL:License'.
      *
      * @param DCATControlledVocabularyEntry $license The value to set
      *
-     * @throws DCATException Thrown when the vocabulary is not 'Overheid:License'
+     * @throws DCATException Thrown when the vocabulary is not 'DONL:License'
      */
     public function setLicense(DCATControlledVocabularyEntry $license): void
     {
-        if ('Overheid:License' !== $license->getControlledVocabulary()) {
-            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary Overheid:License');
+        if ('DONL:License' !== $license->getControlledVocabulary()) {
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary DONL:License');
         }
 
         $this->license = $license;
@@ -428,7 +428,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     public function setStatus(DCATControlledVocabularyEntry $status): void
     {
         if ('ADMS:Distributiestatus' !== $status->getControlledVocabulary()) {
-            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary ADMS:Distributiestatus');
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary ' . 'ADMS:Distributiestatus');
         }
 
         $this->status = $status;
@@ -544,7 +544,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     public function setDistributionType(DCATControlledVocabularyEntry $distributionType): void
     {
         if ('DONL:DistributionType' !== $distributionType->getControlledVocabulary()) {
-            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary DONL:DistributionType');
+            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary ' . 'DONL:DistributionType');
         }
 
         $this->distributionType = $distributionType;

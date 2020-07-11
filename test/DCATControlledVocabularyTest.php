@@ -30,7 +30,7 @@ class DCATControlledVocabularyTest extends TestCase
             DCATControlledVocabulary::getVocabulary('MDR:FiletypeNAL');
             DCATControlledVocabulary::getVocabulary('Overheid:DatasetStatus');
             DCATControlledVocabulary::getVocabulary('Overheid:Frequency');
-            DCATControlledVocabulary::getVocabulary('Overheid:License');
+            DCATControlledVocabulary::getVocabulary('DONL:License');
             DCATControlledVocabulary::getVocabulary('Overheid:Openbaarheidsniveau');
             DCATControlledVocabulary::getVocabulary('Overheid:SpatialGemeente');
             DCATControlledVocabulary::getVocabulary('Overheid:SpatialKoninkrijksdeel');

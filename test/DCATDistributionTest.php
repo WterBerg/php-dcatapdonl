@@ -22,7 +22,7 @@ class DCATDistributionTest extends TestCase
             $access_url        = new DCATURI('https://test.uri');
             $byte_size         = new DCATNumber(1);
             $format            = new DCATControlledVocabularyEntry('test', 'MDR:FiletypeNAL');
-            $license           = new DCATControlledVocabularyEntry('test', 'Overheid:License');
+            $license           = new DCATControlledVocabularyEntry('test', 'DONL:License');
             $mediatype         = new DCATControlledVocabularyEntry('test', 'IANA:Mediatypes');
             $language          = new DCATControlledVocabularyEntry('test', 'DONL:Language');
             $type              = new DCATControlledVocabularyEntry('test', 'DONL:DistributionType');
@@ -130,7 +130,7 @@ class DCATDistributionTest extends TestCase
 
             $this->fail();
         } catch (DCATException $e) {
-            $this->assertEquals('Expected a DCATControlledVocabularyEntry of vocabulary Overheid:License', $e->getMessage());
+            $this->assertEquals('Expected a DCATControlledVocabularyEntry of vocabulary DONL:License', $e->getMessage());
         }
     }
 

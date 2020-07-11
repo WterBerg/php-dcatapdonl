@@ -17,12 +17,12 @@ class DCATControlledVocabulary
         'DONL:Catalogs'                   => 'https://waardelijsten.dcat-ap-donl.nl/donl_catalogs.json',
         'DONL:DistributionType'           => 'https://waardelijsten.dcat-ap-donl.nl/donl_distributiontype.json',
         'DONL:Language'                   => 'https://waardelijsten.dcat-ap-donl.nl/donl_language.json',
+        'DONL:License'                    => 'https://waardelijsten.dcat-ap-donl.nl/donl_license.json',
         'DONL:Organization'               => 'https://waardelijsten.dcat-ap-donl.nl/donl_organization.json',
         'IANA:Mediatypes'                 => 'https://waardelijsten.dcat-ap-donl.nl/iana_mediatypes.json',
         'MDR:FiletypeNAL'                 => 'https://waardelijsten.dcat-ap-donl.nl/mdr_filetype_nal.json',
         'Overheid:DatasetStatus'          => 'https://waardelijsten.dcat-ap-donl.nl/overheid_dataset_status.json',
         'Overheid:Frequency'              => 'https://waardelijsten.dcat-ap-donl.nl/overheid_frequency.json',
-        'Overheid:License'                => 'https://waardelijsten.dcat-ap-donl.nl/overheid_license.json',
         'Overheid:Openbaarheidsniveau'    => 'https://waardelijsten.dcat-ap-donl.nl/overheid_openbaarheidsniveau.json',
         'Overheid:SpatialGemeente'        => 'https://waardelijsten.dcat-ap-donl.nl/overheid_spatial_gemeente.json',
         'Overheid:SpatialKoninkrijksdeel' => 'https://waardelijsten.dcat-ap-donl.nl/overheid_spatial_koninkrijksdeel.json',
@@ -190,13 +190,7 @@ class DCATControlledVocabulary
             throw new DCATException('failed to parse JSON for vocabulary ' . $this->source);
         }
 
-        if ('Overheid:License' === $this->name) {
-            foreach ($parsed as $entry) {
-                $this->entries[] = $entry['id'];
-            }
-        } else {
-            $this->entries = array_keys($parsed);
-        }
+        $this->entries = array_keys($parsed);
 
         curl_close($curl);
     }
