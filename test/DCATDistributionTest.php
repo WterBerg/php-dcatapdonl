@@ -22,7 +22,7 @@ class DCATDistributionTest extends TestCase
             $access_url        = new DCATURI('https://test.uri');
             $byte_size         = new DCATNumber(1);
             $format            = new DCATControlledVocabularyEntry('test', 'MDR:FiletypeNAL');
-            $license           = new DCATControlledVocabularyEntry('test', 'Overheid:License');
+            $license           = new DCATControlledVocabularyEntry('test', 'DONL:License');
             $mediatype         = new DCATControlledVocabularyEntry('test', 'IANA:Mediatypes');
             $language          = new DCATControlledVocabularyEntry('test', 'DONL:Language');
             $type              = new DCATControlledVocabularyEntry('test', 'DONL:DistributionType');
@@ -114,11 +114,14 @@ class DCATDistributionTest extends TestCase
     {
         try {
             $dataset = new DCATDistribution();
-            $dataset->setFormat(new DCATControlledVocabularyEntry('', 'MDF:FiletypeNAL'));
+            $dataset->setFormat(new DCATControlledVocabularyEntry('', 'UnknownVocabulary'));
 
             $this->fail();
         } catch (DCATException $e) {
-            $this->assertEquals('Expected a DCATControlledVocabularyEntry of vocabulary MDR:FiletypeNAL', $e->getMessage());
+            $this->assertEquals(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, 'MDR:FiletypeNAL'),
+                $e->getMessage()
+            );
         }
     }
 
@@ -130,7 +133,10 @@ class DCATDistributionTest extends TestCase
 
             $this->fail();
         } catch (DCATException $e) {
-            $this->assertEquals('Expected a DCATControlledVocabularyEntry of vocabulary Overheid:License', $e->getMessage());
+            $this->assertEquals(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, 'DONL:License'),
+                $e->getMessage()
+            );
         }
     }
 
@@ -142,7 +148,10 @@ class DCATDistributionTest extends TestCase
 
             $this->fail();
         } catch (DCATException $e) {
-            $this->assertEquals('Expected a DCATControlledVocabularyEntry of vocabulary DONL:Language', $e->getMessage());
+            $this->assertEquals(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, 'DONL:Language'),
+                $e->getMessage()
+            );
         }
     }
 
@@ -154,7 +163,10 @@ class DCATDistributionTest extends TestCase
 
             $this->fail();
         } catch (DCATException $e) {
-            $this->assertEquals('Expected a DCATControlledVocabularyEntry of vocabulary DONL:Language', $e->getMessage());
+            $this->assertEquals(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, 'DONL:Language'),
+                $e->getMessage()
+            );
         }
     }
 
@@ -166,7 +178,10 @@ class DCATDistributionTest extends TestCase
 
             $this->fail();
         } catch (DCATException $e) {
-            $this->assertEquals('Expected a DCATControlledVocabularyEntry of vocabulary ADMS:Distributiestatus', $e->getMessage());
+            $this->assertEquals(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, 'ADMS:Distributiestatus'),
+                $e->getMessage()
+            );
         }
     }
 
@@ -178,7 +193,10 @@ class DCATDistributionTest extends TestCase
 
             $this->fail();
         } catch (DCATException $e) {
-            $this->assertEquals('Expected a DCATControlledVocabularyEntry of vocabulary IANA:Mediatypes', $e->getMessage());
+            $this->assertEquals(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, 'IANA:Mediatypes'),
+                $e->getMessage()
+            );
         }
     }
 
@@ -190,7 +208,10 @@ class DCATDistributionTest extends TestCase
 
             $this->fail();
         } catch (DCATException $e) {
-            $this->assertEquals('Expected a DCATControlledVocabularyEntry of vocabulary DONL:DistributionType', $e->getMessage());
+            $this->assertEquals(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, 'DONL:DistributionType'),
+                $e->getMessage()
+            );
         }
     }
 }

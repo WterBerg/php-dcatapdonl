@@ -44,9 +44,7 @@ class DCATBoolean extends DCATLiteral
         $result = parent::validate();
 
         if ($this->value && !in_array($this->value, $this->acceptableValues)) {
-            $result->addMessage(sprintf(
-                'value is not one of [ %s ]', join(', ', $this->acceptableValues)
-            ));
+            $result->addMessage('value is not one of ' . join(', ', $this->acceptableValues));
         }
 
         return $result;

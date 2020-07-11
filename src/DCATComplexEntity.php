@@ -88,8 +88,9 @@ abstract class DCATComplexEntity implements DCATEntity
 
             if (null === $value) {
                 if (in_array($property, $this->requiredProperties)) {
-                    $result->addMessage(sprintf('%s: value is missing', $property));
+                    $result->addMessage($property . ': value is missing');
                 }
+
                 continue;
             }
 
@@ -118,7 +119,7 @@ abstract class DCATComplexEntity implements DCATEntity
         $messages = $value->validate()->getMessages();
 
         for ($i = 0; $i < count($messages); ++$i) {
-            $result->addMessage(sprintf('%s: %s', $name, $messages[$i]));
+            $result->addMessage($name . ': ' . $messages[$i]);
         }
     }
 
@@ -133,7 +134,7 @@ abstract class DCATComplexEntity implements DCATEntity
                                                     DCATValidationResult $result): void
     {
         if (empty($values) && in_array($name, $this->requiredProperties)) {
-            $result->addMessage(sprintf('%s: value is empty', $name));
+            $result->addMessage($name . ': value is empty');
 
             return;
         }
@@ -142,7 +143,7 @@ abstract class DCATComplexEntity implements DCATEntity
             $messages = $arrayElement->validate()->getMessages();
 
             for ($i = 0; $i < count($messages); ++$i) {
-                $result->addMessage(sprintf('%s: %s', $name, $messages[$i]));
+                $result->addMessage($name . ': ' . $messages[$i]);
             }
         }
     }

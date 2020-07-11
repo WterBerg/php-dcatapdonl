@@ -11,18 +11,18 @@ namespace DCAT_AP_DONL;
 class DCATControlledVocabulary
 {
     /** @var string[] */
-    const CONTROLLED_VOCABULARIES = [
+    public const CONTROLLED_VOCABULARIES = [
         'ADMS:Changetype'                 => 'https://waardelijsten.dcat-ap-donl.nl/adms_changetype.json',
         'ADMS:Distributiestatus'          => 'https://waardelijsten.dcat-ap-donl.nl/adms_distributiestatus.json',
         'DONL:Catalogs'                   => 'https://waardelijsten.dcat-ap-donl.nl/donl_catalogs.json',
         'DONL:DistributionType'           => 'https://waardelijsten.dcat-ap-donl.nl/donl_distributiontype.json',
         'DONL:Language'                   => 'https://waardelijsten.dcat-ap-donl.nl/donl_language.json',
+        'DONL:License'                    => 'https://waardelijsten.dcat-ap-donl.nl/donl_license.json',
         'DONL:Organization'               => 'https://waardelijsten.dcat-ap-donl.nl/donl_organization.json',
         'IANA:Mediatypes'                 => 'https://waardelijsten.dcat-ap-donl.nl/iana_mediatypes.json',
         'MDR:FiletypeNAL'                 => 'https://waardelijsten.dcat-ap-donl.nl/mdr_filetype_nal.json',
         'Overheid:DatasetStatus'          => 'https://waardelijsten.dcat-ap-donl.nl/overheid_dataset_status.json',
         'Overheid:Frequency'              => 'https://waardelijsten.dcat-ap-donl.nl/overheid_frequency.json',
-        'Overheid:License'                => 'https://waardelijsten.dcat-ap-donl.nl/overheid_license.json',
         'Overheid:Openbaarheidsniveau'    => 'https://waardelijsten.dcat-ap-donl.nl/overheid_openbaarheidsniveau.json',
         'Overheid:SpatialGemeente'        => 'https://waardelijsten.dcat-ap-donl.nl/overheid_spatial_gemeente.json',
         'Overheid:SpatialKoninkrijksdeel' => 'https://waardelijsten.dcat-ap-donl.nl/overheid_spatial_koninkrijksdeel.json',
@@ -31,6 +31,9 @@ class DCATControlledVocabulary
         'Overheid:SpatialWaterschap'      => 'https://waardelijsten.dcat-ap-donl.nl/overheid_spatial_waterschap.json',
         'Overheid:Taxonomiebeleidsagenda' => 'https://waardelijsten.dcat-ap-donl.nl/overheid_taxonomiebeleidsagenda.json',
     ];
+
+    /** @var string */
+    public const DUPLICATE_VOCABULARY_ERROR = 'a vocabulary with that name is already defined';
 
     /** @var DCATControlledVocabulary[] */
     protected static $LISTS = [];
@@ -98,7 +101,7 @@ class DCATControlledVocabulary
     public static function addCustomVocabulary(string $name, array $entries): void
     {
         if (array_key_exists($name, self::$LISTS)) {
-            throw new DCATException('a vocabulary with the given name is already defined');
+            throw new DCATException(self::DUPLICATE_VOCABULARY_ERROR);
         }
 
         $customVocabulary = new DCATControlledVocabulary($name);
@@ -120,7 +123,7 @@ class DCATControlledVocabulary
     public static function addCustomExternalVocabulary(string $name, string $source): void
     {
         if (array_key_exists($name, self::$LISTS)) {
-            throw new DCATException('a vocabulary with the given name is already defined');
+            throw new DCATException(self::DUPLICATE_VOCABULARY_ERROR);
         }
 
         $customVocabulary = new DCATControlledVocabulary($name, $source);
@@ -178,7 +181,7 @@ class DCATControlledVocabulary
         $remoteContents = curl_exec($curl);
         $requestCode    = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
-        if ($requestCode < 200 || $requestCode >= 300) {
+        if ($requestCode < 200 || $requestCode >= 399) {
             curl_close($curl);
 
             throw new DCATException('unable to retrieve contents from source ' . $this->getSource());
@@ -190,13 +193,7 @@ class DCATControlledVocabulary
             throw new DCATException('failed to parse JSON for vocabulary ' . $this->source);
         }
 
-        if ('Overheid:License' === $this->name) {
-            foreach ($parsed as $entry) {
-                $this->entries[] = $entry['id'];
-            }
-        } else {
-            $this->entries = array_keys($parsed);
-        }
+        $this->entries = array_keys($parsed);
 
         curl_close($curl);
     }
