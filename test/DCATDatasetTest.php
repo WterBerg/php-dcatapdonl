@@ -140,7 +140,10 @@ class DCATDatasetTest extends TestCase
 
             $this->fail();
         } catch (DCATException $e) {
-            $this->assertEquals('Expected a DCATControlledVocabularyEntry of vocabulary Overheid:Openbaarheidsniveau', $e->getMessage());
+            $this->assertEquals(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, 'Overheid:Openbaarheidsniveau'),
+                $e->getMessage()
+            );
         }
     }
 
@@ -152,7 +155,10 @@ class DCATDatasetTest extends TestCase
 
             $this->fail();
         } catch (DCATException $e) {
-            $this->assertEquals('Expected a DCATControlledVocabularyEntry of vocabulary DONL:Organization', $e->getMessage());
+            $this->assertEquals(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, 'DONL:Organization'),
+                $e->getMessage()
+            );
         }
     }
 
@@ -164,7 +170,10 @@ class DCATDatasetTest extends TestCase
 
             $this->fail();
         } catch (DCATException $e) {
-            $this->assertEquals('Expected a DCATControlledVocabularyEntry of vocabulary Overheid:DatasetStatus', $e->getMessage());
+            $this->assertEquals(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, 'Overheid:DatasetStatus'),
+                $e->getMessage()
+            );
         }
     }
 
@@ -176,7 +185,10 @@ class DCATDatasetTest extends TestCase
 
             $this->fail();
         } catch (DCATException $e) {
-            $this->assertEquals('Expected a DCATControlledVocabularyEntry of vocabulary Overheid:Frequency', $e->getMessage());
+            $this->assertEquals(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, 'Overheid:Frequency'),
+                $e->getMessage()
+            );
         }
     }
 
@@ -188,7 +200,10 @@ class DCATDatasetTest extends TestCase
 
             $this->fail();
         } catch (DCATException $e) {
-            $this->assertEquals('Expected a DCATControlledVocabularyEntry of vocabulary DONL:License', $e->getMessage());
+            $this->assertEquals(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, 'DONL:License'),
+                $e->getMessage()
+            );
         }
     }
 
@@ -200,7 +215,10 @@ class DCATDatasetTest extends TestCase
 
             $this->fail();
         } catch (DCATException $e) {
-            $this->assertEquals('Expected a DCATControlledVocabularyEntry of vocabulary DONL:Language', $e->getMessage());
+            $this->assertEquals(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, 'DONL:Language'),
+                $e->getMessage()
+            );
         }
     }
 
@@ -212,7 +230,10 @@ class DCATDatasetTest extends TestCase
 
             $this->fail();
         } catch (DCATException $e) {
-            $this->assertEquals('Expected a DCATControlledVocabularyEntry of vocabulary DONL:Organization', $e->getMessage());
+            $this->assertEquals(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, 'DONL:Organization'),
+                $e->getMessage()
+            );
         }
     }
 
@@ -224,7 +245,10 @@ class DCATDatasetTest extends TestCase
 
             $this->fail();
         } catch (DCATException $e) {
-            $this->assertEquals('Expected a DCATControlledVocabularyEntry of vocabulary DONL:Catalogs', $e->getMessage());
+            $this->assertEquals(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, 'DONL:Catalogs'),
+                $e->getMessage()
+            );
         }
     }
 
@@ -236,7 +260,10 @@ class DCATDatasetTest extends TestCase
 
             $this->fail();
         } catch (DCATException $e) {
-            $this->assertEquals('Expected a DCATControlledVocabularyEntry of vocabulary DONL:Language', $e->getMessage());
+            $this->assertEquals(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, 'DONL:Language'),
+                $e->getMessage()
+            );
         }
     }
 
@@ -248,7 +275,10 @@ class DCATDatasetTest extends TestCase
 
             $this->fail();
         } catch (DCATException $e) {
-            $this->assertEquals('Expected a DCATControlledVocabularyEntry of vocabulary Overheid:Taxonomiebeleidsagenda', $e->getMessage());
+            $this->assertEquals(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, 'Overheid:Taxonomiebeleidsagenda'),
+                $e->getMessage()
+            );
         }
     }
 

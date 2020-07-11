@@ -32,8 +32,8 @@
     },
     "scripts": {
         "test": "bash vendor/bin/phpunit",
-        "quality": "bash vendor/bin/php-cs-fixer fix --dry-run",
-        "fix-quality": "bash vendor/bin/php-cs-fixer fix"
+        "quality": "php-cs-fixer fix --dry-run",
+        "fix-quality": "php-cs-fixer fix"
     },
     "require": {
         "php": "^7.3",

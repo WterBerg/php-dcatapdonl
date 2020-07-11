@@ -10,6 +10,9 @@ namespace DCAT_AP_DONL;
 class DCATControlledVocabularyEntry extends DCATLiteral
 {
     /** @var string */
+    public const VOCABULARY_ERROR_FORMAT = 'Expected entry of vocabulary %s';
+
+    /** @var string */
     protected $controlled_vocabulary;
 
     /**

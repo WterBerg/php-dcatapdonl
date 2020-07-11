@@ -329,8 +329,10 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
      */
     public function setLicense(DCATControlledVocabularyEntry $license): void
     {
-        if ('DONL:License' !== $license->getControlledVocabulary()) {
-            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary DONL:License');
+        $vocabulary = 'DONL:License';
+
+        if ($vocabulary !== $license->getControlledVocabulary()) {
+            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
         }
 
         $this->license = $license;
@@ -366,8 +368,10 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
      */
     public function addLanguage(DCATControlledVocabularyEntry $language): void
     {
-        if ('DONL:Language' !== $language->getControlledVocabulary()) {
-            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary DONL:Language');
+        $vocabulary = 'DONL:Language';
+
+        if ($vocabulary !== $language->getControlledVocabulary()) {
+            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
         }
 
         $this->language[] = $language;
@@ -383,8 +387,10 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
      */
     public function setMetadataLanguage(DCATControlledVocabularyEntry $metadataLanguage): void
     {
-        if ('DONL:Language' !== $metadataLanguage->getControlledVocabulary()) {
-            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary DONL:Language');
+        $vocabulary = 'DONL:Language';
+
+        if ($vocabulary !== $metadataLanguage->getControlledVocabulary()) {
+            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
         }
 
         $this->metadataLanguage = $metadataLanguage;
@@ -400,8 +406,10 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
      */
     public function setFormat(DCATControlledVocabularyEntry $format): void
     {
-        if ('MDR:FiletypeNAL' !== $format->getControlledVocabulary()) {
-            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary MDR:FiletypeNAL');
+        $vocabulary = 'MDR:FiletypeNAL';
+
+        if ($vocabulary !== $format->getControlledVocabulary()) {
+            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
         }
 
         $this->format = $format;
@@ -427,8 +435,10 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
      */
     public function setStatus(DCATControlledVocabularyEntry $status): void
     {
-        if ('ADMS:Distributiestatus' !== $status->getControlledVocabulary()) {
-            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary ' . 'ADMS:Distributiestatus');
+        $vocabulary = 'ADMS:Distributiestatus';
+
+        if ($vocabulary !== $status->getControlledVocabulary()) {
+            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
         }
 
         $this->status = $status;
@@ -484,8 +494,10 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
      */
     public function setMediaType(DCATControlledVocabularyEntry $mediaType): void
     {
-        if ('IANA:Mediatypes' !== $mediaType->getControlledVocabulary()) {
-            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary IANA:Mediatypes');
+        $vocabulary = 'IANA:Mediatypes';
+
+        if ($vocabulary !== $mediaType->getControlledVocabulary()) {
+            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
         }
 
         $this->mediaType = $mediaType;
@@ -543,8 +555,10 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
      */
     public function setDistributionType(DCATControlledVocabularyEntry $distributionType): void
     {
-        if ('DONL:DistributionType' !== $distributionType->getControlledVocabulary()) {
-            throw new DCATException('Expected a DCATControlledVocabularyEntry of vocabulary ' . 'DONL:DistributionType');
+        $vocabulary = 'DONL:DistributionType';
+
+        if ($vocabulary !== $distributionType->getControlledVocabulary()) {
+            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
         }
 
         $this->distributionType = $distributionType;

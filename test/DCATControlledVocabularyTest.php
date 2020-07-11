@@ -113,7 +113,10 @@ class DCATControlledVocabularyTest extends TestCase
 
             $this->fail();
         } catch (DCATException $e) {
-            $this->assertEquals('a vocabulary with the given name is already defined', $e->getMessage());
+            $this->assertEquals(
+                DCATControlledVocabulary::DUPLICATE_VOCABULARY_ERROR,
+                $e->getMessage())
+            ;
         }
     }
 
@@ -155,7 +158,7 @@ class DCATControlledVocabularyTest extends TestCase
             $this->fail();
         } catch (DCATException $e) {
             $this->assertEquals(
-                'unable to retrieve contents from source https://waardelijsten.dcat-ap-donl.nl/does_not_exist.json',
+                'failed to parse JSON for vocabulary https://waardelijsten.dcat-ap-donl.nl/does_not_exist.json',
                 $e->getMessage()
             );
         }
@@ -169,7 +172,7 @@ class DCATControlledVocabularyTest extends TestCase
             $this->fail();
         } catch (DCATException $e) {
             $this->assertEquals(
-                'a vocabulary with the given name is already defined',
+                DCATControlledVocabulary::DUPLICATE_VOCABULARY_ERROR,
                 $e->getMessage()
             );
         }

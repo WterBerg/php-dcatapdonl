@@ -11,7 +11,7 @@ namespace DCAT_AP_DONL;
 class DCATControlledVocabulary
 {
     /** @var string[] */
-    const CONTROLLED_VOCABULARIES = [
+    public const CONTROLLED_VOCABULARIES = [
         'ADMS:Changetype'                 => 'https://waardelijsten.dcat-ap-donl.nl/adms_changetype.json',
         'ADMS:Distributiestatus'          => 'https://waardelijsten.dcat-ap-donl.nl/adms_distributiestatus.json',
         'DONL:Catalogs'                   => 'https://waardelijsten.dcat-ap-donl.nl/donl_catalogs.json',
@@ -31,6 +31,9 @@ class DCATControlledVocabulary
         'Overheid:SpatialWaterschap'      => 'https://waardelijsten.dcat-ap-donl.nl/overheid_spatial_waterschap.json',
         'Overheid:Taxonomiebeleidsagenda' => 'https://waardelijsten.dcat-ap-donl.nl/overheid_taxonomiebeleidsagenda.json',
     ];
+
+    /** @var string */
+    public const DUPLICATE_VOCABULARY_ERROR = 'a vocabulary with that name is already defined';
 
     /** @var DCATControlledVocabulary[] */
     protected static $LISTS = [];
@@ -98,7 +101,7 @@ class DCATControlledVocabulary
     public static function addCustomVocabulary(string $name, array $entries): void
     {
         if (array_key_exists($name, self::$LISTS)) {
-            throw new DCATException('a vocabulary with the given name is already defined');
+            throw new DCATException(self::DUPLICATE_VOCABULARY_ERROR);
         }
 
         $customVocabulary = new DCATControlledVocabulary($name);
@@ -120,7 +123,7 @@ class DCATControlledVocabulary
     public static function addCustomExternalVocabulary(string $name, string $source): void
     {
         if (array_key_exists($name, self::$LISTS)) {
-            throw new DCATException('a vocabulary with the given name is already defined');
+            throw new DCATException(self::DUPLICATE_VOCABULARY_ERROR);
         }
 
         $customVocabulary = new DCATControlledVocabulary($name, $source);
@@ -178,7 +181,7 @@ class DCATControlledVocabulary
         $remoteContents = curl_exec($curl);
         $requestCode    = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
-        if ($requestCode < 200 || $requestCode >= 300) {
+        if ($requestCode < 200 || $requestCode >= 399) {
             curl_close($curl);
 
             throw new DCATException('unable to retrieve contents from source ' . $this->getSource());

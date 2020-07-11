@@ -90,6 +90,7 @@ abstract class DCATComplexEntity implements DCATEntity
                 if (in_array($property, $this->requiredProperties)) {
                     $result->addMessage($property . ': value is missing');
                 }
+
                 continue;
             }
 
