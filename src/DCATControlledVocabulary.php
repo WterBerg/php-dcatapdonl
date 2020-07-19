@@ -176,15 +176,26 @@ class DCATControlledVocabulary
 
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $this->source);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
         $remoteContents = curl_exec($curl);
+
+        if (false === $remoteContents) {
+            curl_close($curl);
+
+            throw new DCATException(
+                'unable to retrieve contents from source ' . $this->getSource()
+            );
+        }
+
         $requestCode    = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
         if ($requestCode < 200 || $requestCode >= 399) {
             curl_close($curl);
 
-            throw new DCATException('unable to retrieve contents from source ' . $this->getSource());
+            throw new DCATException(
+                'unable to retrieve contents from source ' . $this->getSource()
+            );
         }
 
         $parsed = json_decode($remoteContents, true);

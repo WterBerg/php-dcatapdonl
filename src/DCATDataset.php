@@ -618,7 +618,9 @@ class DCATDataset extends DCATComplexEntity
         $vocabulary = 'DONL:License';
 
         if ($vocabulary !== $license->getControlledVocabulary()) {
-            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
+            throw new DCATException(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
+            );
         }
 
         $this->license = $license;
@@ -637,7 +639,9 @@ class DCATDataset extends DCATComplexEntity
         $vocabulary = 'DONL:Language';
 
         if ($vocabulary !== $metadataLanguage->getControlledVocabulary()) {
-            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
+            throw new DCATException(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
+            );
         }
 
         $this->metadataLanguage = $metadataLanguage;
@@ -656,7 +660,9 @@ class DCATDataset extends DCATComplexEntity
         $vocabulary = 'DONL:Language';
 
         if ($vocabulary !== $language->getControlledVocabulary()) {
-            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
+            throw new DCATException(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
+            );
         }
 
         $this->language[] = $language;
@@ -675,7 +681,9 @@ class DCATDataset extends DCATComplexEntity
         $vocabulary = 'Overheid:Taxonomiebeleidsagenda';
 
         if ($vocabulary !== $theme->getControlledVocabulary()) {
-            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
+            throw new DCATException(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
+            );
         }
 
         $this->theme[] = $theme;
@@ -704,7 +712,9 @@ class DCATDataset extends DCATComplexEntity
         $vocabulary = 'DONL:Organization';
 
         if ($vocabulary !== $authority->getControlledVocabulary()) {
-            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
+            throw new DCATException(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
+            );
         }
 
         $this->authority = $authority;
@@ -723,7 +733,9 @@ class DCATDataset extends DCATComplexEntity
         $vocabulary = 'DONL:Organization';
 
         if ($vocabulary !== $publisher->getControlledVocabulary()) {
-            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
+            throw new DCATException(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
+            );
         }
 
         $this->publisher = $publisher;
@@ -752,7 +764,9 @@ class DCATDataset extends DCATComplexEntity
         $vocabulary = 'Overheid:Openbaarheidsniveau';
 
         if ($vocabulary !== $accessRights->getControlledVocabulary()) {
-            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
+            throw new DCATException(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
+            );
         }
 
         $this->accessRights = $accessRights;
@@ -771,7 +785,9 @@ class DCATDataset extends DCATComplexEntity
         $vocabulary = 'Overheid:DatasetStatus';
 
         if ($vocabulary !== $datasetStatus->getControlledVocabulary()) {
-            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
+            throw new DCATException(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
+            );
         }
 
         $this->datasetStatus = $datasetStatus;
@@ -940,7 +956,9 @@ class DCATDataset extends DCATComplexEntity
         $vocabulary = 'Overheid:Frequency';
 
         if ($vocabulary !== $frequency->getControlledVocabulary()) {
-            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
+            throw new DCATException(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
+            );
         }
 
         $this->frequency = $frequency;
@@ -979,7 +997,9 @@ class DCATDataset extends DCATComplexEntity
         $vocabulary = 'DONL:Catalogs';
 
         if ($vocabulary !== $sourceCatalog->getControlledVocabulary()) {
-            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
+            throw new DCATException(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
+            );
         }
 
         $this->sourceCatalog = $sourceCatalog;

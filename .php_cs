@@ -42,5 +42,6 @@ return PhpCsFixer\Config::create()
         ],
         'protected_to_private'                => true,
         'semicolon_after_instruction'         => true,
+        'single_line_throw'                   => false,
     ])
     ->setFinder($finder);
