@@ -63,7 +63,7 @@ class DCATContactPoint extends DCATComplexEntity
     {
         $result = parent::validate();
 
-        if (null == $this->email && null == $this->webpage && null == $this->phone) {
+        if (null === $this->email && null === $this->webpage && null === $this->phone) {
             $result->addMessage('email, webpage or phone is required');
         }
 

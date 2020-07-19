@@ -68,12 +68,9 @@ class DCATSpatialTest extends TestCase
             );
             $spatial->setValue(new DCATLiteral('AB'));
 
-            $this->assertEquals(
-                [
-                    'value AB fails to validate against scheme http://standaarden.overheid.nl/owms/4.0/doc/syntax-codeerschemas/overheid.postcodehuisnummer',
-                ],
-                $spatial->validate()->getMessages()
-            );
+            $this->assertEquals([
+                'value AB fails to validate against scheme http://standaarden.overheid.nl/owms/4.0/doc/syntax-codeerschemas/overheid.postcodehuisnummer',
+            ], $spatial->validate()->getMessages());
         } catch (DCATException $e) {
             $this->fail($e->getMessage());
         }
@@ -109,12 +106,9 @@ class DCATSpatialTest extends TestCase
             );
             $spatial->setValue(new DCATLiteral('1111 0987'));
 
-            $this->assertEquals(
-                [
-                    'value 1111 0987 fails to validate against scheme http://standaarden.overheid.nl/owms/4.0/doc/syntax-codeerschemas/overheid.epsg28992',
-                ],
-                $spatial->validate()->getMessages()
-            );
+            $this->assertEquals([
+                'value 1111 0987 fails to validate against scheme http://standaarden.overheid.nl/owms/4.0/doc/syntax-codeerschemas/overheid.epsg28992',
+            ], $spatial->validate()->getMessages());
         } catch (DCATException $e) {
             $this->fail($e->getMessage());
         }
@@ -150,12 +144,9 @@ class DCATSpatialTest extends TestCase
             );
             $spatial->setValue(new DCATLiteral('Ubbergen'));
 
-            $this->assertEquals(
-                [
-                    'value Ubbergen fails to validate against scheme http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.gemeente',
-                ],
-                $spatial->validate()->getMessages()
-            );
+            $this->assertEquals([
+                'value Ubbergen fails to validate against scheme http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.gemeente',
+            ], $spatial->validate()->getMessages());
         } catch (DCATException $e) {
             $this->fail($e->getMessage());
         }
@@ -191,12 +182,9 @@ class DCATSpatialTest extends TestCase
             );
             $spatial->setValue(new DCATLiteral('I_do_not_exist'));
 
-            $this->assertEquals(
-                [
-                    'value I_do_not_exist fails to validate against scheme http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.provincie',
-                ],
-                $spatial->validate()->getMessages()
-            );
+            $this->assertEquals([
+                'value I_do_not_exist fails to validate against scheme http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.provincie',
+            ], $spatial->validate()->getMessages());
         } catch (DCATException $e) {
             $this->fail($e->getMessage());
         }
@@ -232,12 +220,9 @@ class DCATSpatialTest extends TestCase
             );
             $spatial->setValue(new DCATLiteral('testValue'));
 
-            $this->assertEquals(
-                [
-                    'value testValue fails to validate against scheme http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.waterschap',
-                ],
-                $spatial->validate()->getMessages()
-            );
+            $this->assertEquals([
+                'value testValue fails to validate against scheme http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.waterschap',
+            ], $spatial->validate()->getMessages());
         } catch (DCATException $e) {
             $this->fail($e->getMessage());
         }
@@ -273,12 +258,9 @@ class DCATSpatialTest extends TestCase
             );
             $spatial->setValue(new DCATLiteral('Duitsland'));
 
-            $this->assertEquals(
-                [
-                    'value Duitsland fails to validate against scheme http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.koninkrijksdeel',
-                ],
-                $spatial->validate()->getMessages()
-            );
+            $this->assertEquals([
+                'value Duitsland fails to validate against scheme http://standaarden.overheid.nl/owms/4.0/doc/waardelijsten/overheid.koninkrijksdeel',
+            ], $spatial->validate()->getMessages());
         } catch (DCATException $e) {
             $this->fail($e->getMessage());
         }

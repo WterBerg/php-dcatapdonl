@@ -332,7 +332,9 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
         $vocabulary = 'DONL:License';
 
         if ($vocabulary !== $license->getControlledVocabulary()) {
-            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
+            throw new DCATException(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
+            );
         }
 
         $this->license = $license;
@@ -371,7 +373,9 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
         $vocabulary = 'DONL:Language';
 
         if ($vocabulary !== $language->getControlledVocabulary()) {
-            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
+            throw new DCATException(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
+            );
         }
 
         $this->language[] = $language;
@@ -390,7 +394,9 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
         $vocabulary = 'DONL:Language';
 
         if ($vocabulary !== $metadataLanguage->getControlledVocabulary()) {
-            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
+            throw new DCATException(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
+            );
         }
 
         $this->metadataLanguage = $metadataLanguage;
@@ -409,7 +415,9 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
         $vocabulary = 'MDR:FiletypeNAL';
 
         if ($vocabulary !== $format->getControlledVocabulary()) {
-            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
+            throw new DCATException(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
+            );
         }
 
         $this->format = $format;
@@ -438,7 +446,9 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
         $vocabulary = 'ADMS:Distributiestatus';
 
         if ($vocabulary !== $status->getControlledVocabulary()) {
-            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
+            throw new DCATException(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
+            );
         }
 
         $this->status = $status;
@@ -497,7 +507,9 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
         $vocabulary = 'IANA:Mediatypes';
 
         if ($vocabulary !== $mediaType->getControlledVocabulary()) {
-            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
+            throw new DCATException(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
+            );
         }
 
         $this->mediaType = $mediaType;
@@ -558,7 +570,9 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
         $vocabulary = 'DONL:DistributionType';
 
         if ($vocabulary !== $distributionType->getControlledVocabulary()) {
-            throw new DCATException(sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary));
+            throw new DCATException(
+                sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
+            );
         }
 
         $this->distributionType = $distributionType;

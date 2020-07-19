@@ -44,7 +44,7 @@ abstract class DCATComplexEntity implements DCATEntity
         foreach ($this->properties as $property) {
             $prop = $this->$property;
 
-            if (null == $prop) {
+            if (null === $prop) {
                 continue;
             }
 
