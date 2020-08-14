@@ -286,7 +286,7 @@ class DCATDatasetTest extends TestCase
     {
         $test_value = 'testValue';
         $dataset    = new DCATDataset();
-        $dataset->addAlternativeIdentifier(new DCATURI($test_value));
+        $dataset->addAlternateIdentifier(new DCATURI($test_value));
 
         $this->assertEquals($test_value, $dataset->getAlternativeIdentifier()[0]->getData());
         $this->assertEquals($test_value, $dataset->getAlternateIdentifier()[0]->getData());

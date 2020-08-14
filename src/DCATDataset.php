@@ -844,6 +844,18 @@ class DCATDataset extends DCATComplexEntity
     }
 
     /**
+     * Alias of `DCATDataset::addAlternativeIdentifier()`.
+     *
+     * @param DCATURI $alternateIdentifier The value to add
+     *
+     * @see DCATDataset::addAlternativeIdentifier()
+     */
+    public function addAlternateIdentifier(DCATURI $alternateIdentifier): void
+    {
+        $this->addAlternativeIdentifier($alternateIdentifier);
+    }
+
+    /**
      * Adds a value to the relatedResource property.
      *
      * @param DCATURI $relatedResource The value to add
