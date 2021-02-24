@@ -36,7 +36,7 @@
         "fix-quality": "php-cs-fixer fix"
     },
     "require": {
-        "php": "^7.3",
+        "php": "^7.3|^8.0",
         "ext-json": "*",
         "ext-curl": "*"
     },
