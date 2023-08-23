@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DCAT_AP_DONL;
 
 /**
@@ -17,7 +19,7 @@ interface DCATEntity
     public function getData();
 
     /**
-     * Determines and returns whether or not the DCATEntity is considered valid.
+     * Determines and returns whether the DCATEntity is considered valid.
      *
      * @return DCATValidationResult The validation result of this DCAT entity
      */

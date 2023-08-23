@@ -1,6 +1,6 @@
 <?php
 
-namespace DCAT_AP_DONL\Test;
+namespace Tests\Unit;
 
 use DCAT_AP_DONL\DCATURI;
 use PHPUnit\Framework\TestCase;

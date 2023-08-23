@@ -1,12 +1,19 @@
 # IDE
-/.idea/*
+/.idea
+/.vscode
 
 # Composer
-/vendor/*
-composer.phar
+/vendor
+/auth.json
 
-# Test
-/test-reports/*
-/.php_cs.cache
-/.phpunit.result.cache
+# Cache
+/.composer-cache
+/.phive-cache
+/*.cache
+
+# Testing
+/*.phar
+/junit.*.xml
 /phpunit.xml
+/phpstan.neon
+/.php-cs-fixer.php
