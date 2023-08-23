@@ -1,6 +1,6 @@
 <?php
 
-namespace DCAT_AP_DONL\Test;
+namespace Tests\Unit;
 
 use DCAT_AP_DONL\DCATBoolean;
 use DCAT_AP_DONL\DCATContactPoint;

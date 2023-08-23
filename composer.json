@@ -2,23 +2,26 @@
     "name": "wterberg/dcat-ap-donl",
     "description": "Allows for creation and validation of datasets conforming to the DCAT-AP-DONL 1.1 metadata standard",
     "type": "library",
-    "keywords": ["DCAT", "DCAT-AP-DONL", "DONL", "Dataset", "KOOP", "Metadata", "Standard", "NL", "Nederland"],
-    "homepage": "https://github.com/WterBerg/php-dcatapdonl",
-    "readme": "README.md",
     "license": "MIT",
-    "abandoned": false,
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist",
+        "optimize-autoloader": true
+    },
     "authors": [
         {
             "name": "Willem ter Berg",
             "email": "wrpterberg@gmail.com",
-            "homepage": "https://github.com/WterBerg",
-            "role": "Developer"
+            "homepage": "https://wterberg.nl"
         }
     ],
-    "support": {
-        "issues": "https://github.com/WterBerg/php-dcatapdonl/issues",
-        "source": "https://github.com/WterBerg/php-dcatapdonl",
-        "docs": "https://github.com/WterBerg/php-dcatapdonl/blob/master/README.md"
+    "scripts": {
+        "post-update-cmd": [
+            "vendor/bin/xs-config --type=standard --force=false",
+            "vendor/bin/xs-dependencies"
+        ]
     },
     "autoload": {
         "psr-4": {
@@ -27,20 +30,15 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "DCAT_AP_DONL\\Test\\": "test/"
+            "Tests\\": "tests/"
         }
     },
-    "scripts": {
-        "test": "bash vendor/bin/phpunit",
-        "quality": "php-cs-fixer fix --dry-run",
-        "fix-quality": "php-cs-fixer fix"
-    },
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^8.2",
         "ext-json": "*",
         "ext-curl": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9"
+        "xpertselect/tools": "^1.0"
     }
 }

@@ -145,7 +145,7 @@ class DCATControlledVocabulary
     /**
      * Returns the source of this DCAT controlled vocabulary.
      *
-     * @return string The source of this controlled vocabulary
+     * @return ?string The source of this controlled vocabulary
      */
     public function getSource(): ?string
     {
