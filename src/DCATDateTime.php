@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DCAT_AP_DONL;
 
 use DateTime;
@@ -11,23 +13,19 @@ use DateTime;
  */
 class DCATDateTime extends DCATLiteral
 {
-    /** @var string */
-    protected $format;
-
     /**
      * DCATDateTime constructor.
      *
      * @param string $value  The value of this DCAT datetime
      * @param string $format The format of this DCAT datetime, defaults to 'Y-m-d\TH:i:s'
      */
-    public function __construct(string $value, string $format = 'Y-m-d\TH:i:s')
+    public function __construct(string $value, protected string $format = 'Y-m-d\TH:i:s')
     {
         parent::__construct($value);
-        $this->format = $format;
     }
 
     /**
-     * Determines and returns whether or not the DCATDateTime is valid.
+     * Determines and returns whether the DCATDateTime is valid.
      *
      * A DCATDateTime is considered valid when:
      * - it passes the validation as defined in `DCATLiteral::validate()`
@@ -64,7 +62,7 @@ class DCATDateTime extends DCATLiteral
     /**
      * Checks if the `$this->value` property follows the format as defined by `$this->format`.
      *
-     * @return bool Whether or not this value matches the given format
+     * @return bool Whether this value matches the given format
      */
     protected function isDateTime(): bool
     {

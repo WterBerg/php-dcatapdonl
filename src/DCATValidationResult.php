@@ -10,7 +10,7 @@ namespace DCAT_AP_DONL;
 class DCATValidationResult
 {
     /** @var string[] */
-    protected $messages;
+    protected array $messages;
 
     /** @var string[] */
     protected $notices;
@@ -25,9 +25,9 @@ class DCATValidationResult
     }
 
     /**
-     * Returns whether or not the DCATEntity validated successfully.
+     * Returns whether the DCATEntity validated successfully.
      *
-     * @return bool Whether or not the validation was successful
+     * @return bool Whether the validation was successful
      */
     public function validated()
     {

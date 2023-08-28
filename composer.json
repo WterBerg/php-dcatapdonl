@@ -35,8 +35,8 @@
     },
     "require": {
         "php": "^8.2",
-        "ext-json": "*",
-        "ext-curl": "*"
+        "ext-curl": "*",
+        "ext-json": "*"
     },
     "require-dev": {
         "xpertselect/tools": "^1.0"

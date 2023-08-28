@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DCAT_AP_DONL;
 
 /**
@@ -10,7 +12,7 @@ namespace DCAT_AP_DONL;
 class DCATNumber extends DCATLiteral
 {
     /**
-     * Determines and returns whether or not the DCATNumber is valid.
+     * Determines and returns whether the DCATNumber is valid.
      *
      * A DCATNumber is considered valid when:
      * - it passes the validation as defined in `DCATLiteral::validate()`

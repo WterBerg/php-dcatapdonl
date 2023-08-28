@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DCAT_AP_DONL;
 
 /**
@@ -9,27 +11,29 @@ namespace DCAT_AP_DONL;
  */
 class DCATBoolean extends DCATLiteral
 {
-    /** @var string */
-    const TRUE  = 'true';
-
-    /** @var string */
-    const FALSE = 'false';
-
-    /** @var string[] */
-    private $acceptableValues;
-
     /**
-     * {@inheritdoc}
+     * String representation of a truthy value.
+     *
+     * @var string
      */
-    public function __construct(string $value = null)
-    {
-        parent::__construct($value);
-
-        $this->acceptableValues = [self::TRUE, self::FALSE];
-    }
+    public const TRUE  = 'true';
 
     /**
-     * Determines and returns whether or not the DCATBoolean is valid.
+     * String representation of a falsy value.
+     *
+     * @var string
+     */
+    public const FALSE = 'false';
+
+    /**
+     * The acceptable values this instance can hold.
+     *
+     * @var string[]
+     */
+    private static array $ACCEPTABLE_VALUES = [self::TRUE, self::FALSE];
+
+    /**
+     * Determines and returns whether the DCATBoolean is valid.
      *
      * A DCATBoolean is considered valid when:
      * - it passes the validation as defined in `DCATLiteral::validate()`
@@ -43,8 +47,8 @@ class DCATBoolean extends DCATLiteral
     {
         $result = parent::validate();
 
-        if ($this->value && !in_array($this->value, $this->acceptableValues)) {
-            $result->addMessage('value is not one of ' . join(', ', $this->acceptableValues));
+        if ($this->value && !in_array($this->value, self::$ACCEPTABLE_VALUES)) {
+            $result->addMessage('value is not one of ' . implode(', ', self::$ACCEPTABLE_VALUES));
         }
 
         return $result;

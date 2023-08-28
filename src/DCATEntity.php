@@ -16,7 +16,7 @@ interface DCATEntity
      *
      * @return mixed The data of the DCATEntity
      */
-    public function getData();
+    public function getData(): mixed;
 
     /**
      * Determines and returns whether the DCATEntity is considered valid.

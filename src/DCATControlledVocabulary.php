@@ -83,6 +83,7 @@ class DCATControlledVocabulary
 
             $list = new DCATControlledVocabulary($name, self::CONTROLLED_VOCABULARIES[$name]);
             $list->loadEntries();
+
             self::$LISTS[$name] = $list;
         }
 
@@ -188,7 +189,7 @@ class DCATControlledVocabulary
             );
         }
 
-        $requestCode    = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        $requestCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
         if ($requestCode < 200 || $requestCode >= 399) {
             curl_close($curl);

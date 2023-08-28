@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DCAT_AP_DONL;
 
 /**
@@ -9,18 +11,15 @@ namespace DCAT_AP_DONL;
  */
 class DCATLiteral implements DCATEntity
 {
-    /** @var string */
-    protected $value;
-
     /**
      * DCATLiteral constructor.
      *
      * @param null|string $value The value of this DCATLiteral, the value will be trimmed
      */
-    public function __construct(string $value = null)
+    public function __construct(protected ?string $value = null)
     {
-        if (null !== $value) {
-            $this->value = trim($value);
+        if (!is_null($this->value)) {
+            $this->value = trim($this->value);
         }
     }
 
@@ -35,7 +34,7 @@ class DCATLiteral implements DCATEntity
     }
 
     /**
-     * Determines and returns whether or not the DCATLiteral is valid.
+     * Determines and returns whether the DCATLiteral is valid.
      *
      * A DCATLiteral is considered valid when:
      * - its value property is a non-empty trimmed string.
@@ -46,13 +45,13 @@ class DCATLiteral implements DCATEntity
     {
         $result = new DCATValidationResult();
 
-        if (null === $this->value) {
+        if (is_null($this->value)) {
             $result->addMessage('value is missing');
 
             return $result;
         }
 
-        if (empty($this->value)) {
+        if (0 === strlen($this->value)) {
             $result->addMessage('value is empty');
         }
 
