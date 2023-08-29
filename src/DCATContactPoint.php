@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DCAT_AP_DONL;
 
 /**
@@ -11,44 +13,49 @@ namespace DCAT_AP_DONL;
  */
 class DCATContactPoint extends DCATComplexEntity
 {
-    /** @var string[] */
-    protected static $PROPERTIES = [
-        'fullName', 'address', 'title', 'email', 'webpage', 'phone',
-    ];
+    /**
+     * @var null|DCATLiteral
+     */
+    protected ?DCATLiteral $fullName;
 
-    /** @var string[] */
-    protected static $REQUIRED_PROPERTIES = [
-        'fullName',
-    ];
+    /**
+     * @var null|DCATLiteral
+     */
+    protected ?DCATLiteral $address;
 
-    /** @var DCATLiteral */
-    protected $fullName;
+    /**
+     * @var null|DCATLiteral
+     */
+    protected ?DCATLiteral $title;
 
-    /** @var DCATLiteral */
-    protected $address;
+    /**
+     * @var null|DCATLiteral
+     */
+    protected ?DCATLiteral $email;
 
-    /** @var DCATLiteral */
-    protected $title;
+    /**
+     * @var null|DCATURI
+     */
+    protected ?DCATURI $webpage;
 
-    /** @var DCATLiteral */
-    protected $email;
-
-    /** @var DCATURI */
-    protected $webpage;
-
-    /** @var DCATLiteral */
-    protected $phone;
+    /**
+     * @var null|DCATLiteral
+     */
+    protected ?DCATLiteral $phone;
 
     /**
      * DCATContactPoint constructor.
      */
     public function __construct()
     {
-        parent::__construct(self::$PROPERTIES, self::$REQUIRED_PROPERTIES);
+        parent::__construct(
+            ['fullName', 'address', 'title', 'email', 'webpage', 'phone'],
+            ['fullName']
+        );
     }
 
     /**
-     * Determines and returns whether or not the DCATContactPoint is valid.
+     * Determines and returns whether the DCATContactPoint is valid.
      *
      * A DCATContactPoint is considered valid when:
      * - It passes the validation as defined in `DCATComplexEntity::validate()`
@@ -63,7 +70,7 @@ class DCATContactPoint extends DCATComplexEntity
     {
         $result = parent::validate();
 
-        if (null === $this->email && null === $this->webpage && null === $this->phone) {
+        if (is_null($this->email) && is_null($this->webpage) && is_null($this->phone)) {
             $result->addMessage('email, webpage or phone is required');
         }
 

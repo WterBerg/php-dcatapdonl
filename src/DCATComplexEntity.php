@@ -1,39 +1,32 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DCAT_AP_DONL;
 
 /**
  * Class DCATComplexEntity.
  *
- * Represents a complex DCAT entity. A entity is considered complex when it contains more than a
- * single value.
+ * Represents a complex DCAT entity. An entity is considered complex when it contains one or more
+ * attributes rather than simply representing a value.
  */
 abstract class DCATComplexEntity implements DCATEntity
 {
-    /** @var string[] */
-    protected $properties;
-
-    /** @var string[] */
-    protected $requiredProperties;
-
     /**
      * DCATComplexEntity constructor.
      *
      * @param string[] $properties         The properties of the DCATComplexEntity
      * @param string[] $requiredProperties The properties which are required
      */
-    public function __construct(array $properties, array $requiredProperties)
+    public function __construct(protected array $properties, protected array $requiredProperties)
     {
-        $this->properties         = $properties;
-        $this->requiredProperties = $requiredProperties;
-
-        foreach ($properties as $property) {
-            $this->$property = null;
+        foreach ($this->properties as $property) {
+            $this->{$property} = null;
         }
     }
 
     /**
-     * Returns the DCATComplexEntity as a KeyValue array.
+     * Returns the DCATComplexEntity as a `{attribute} => {value}` array.
      *
      * @return array A key => value array of the entity
      */
@@ -42,9 +35,9 @@ abstract class DCATComplexEntity implements DCATEntity
         $data = [];
 
         foreach ($this->properties as $property) {
-            $prop = $this->$property;
+            $prop = $this->{$property};
 
-            if (null === $prop) {
+            if (is_null($prop)) {
                 continue;
             }
 
@@ -65,7 +58,7 @@ abstract class DCATComplexEntity implements DCATEntity
     }
 
     /**
-     * Determines and returns whether or not the DCATComplexEntity is valid.
+     * Determines and returns whether the DCATComplexEntity is valid.
      *
      * A DCATComplexEntity is considered valid when:
      * - At least one of the properties as defined in `$this->properties` is present
@@ -80,13 +73,13 @@ abstract class DCATComplexEntity implements DCATEntity
         $propertiesPresent = false;
 
         foreach ($this->properties as $property) {
-            $value = $this->$property;
+            $value = $this->{$property};
 
-            if (null !== $value || (is_array($this->$property) && count($this->$property) > 0)) {
+            if (!is_null($value) || (is_array($this->{$property}) && count($this->{$property}) > 0)) {
                 $propertiesPresent = true;
             }
 
-            if (null === $value) {
+            if (is_null($value)) {
                 if (in_array($property, $this->requiredProperties)) {
                     $result->addMessage($property . ': value is missing');
                 }
@@ -96,7 +89,7 @@ abstract class DCATComplexEntity implements DCATEntity
 
             is_array($value)
                 ? $this->addMultivaluedPropertyMessages($property, $value, $result)
-                : $this->addSinglevaluedPropertyMessage($property, $value, $result);
+                : $this->addSingleValuedPropertyMessage($property, $value, $result);
         }
 
         if (!$propertiesPresent) {
@@ -113,7 +106,7 @@ abstract class DCATComplexEntity implements DCATEntity
      * @param DCATEntity           $value  The value of the DCAT property
      * @param DCATValidationResult $result The validation result so far
      */
-    private function addSinglevaluedPropertyMessage(string $name, DCATEntity $value,
+    private function addSingleValuedPropertyMessage(string $name, DCATEntity $value,
                                                     DCATValidationResult $result): void
     {
         $messages = $value->validate()->getMessages();
@@ -133,7 +126,7 @@ abstract class DCATComplexEntity implements DCATEntity
     private function addMultivaluedPropertyMessages(string $name, array $values,
                                                     DCATValidationResult $result): void
     {
-        if (empty($values) && in_array($name, $this->requiredProperties)) {
+        if (0 === count($values) && in_array($name, $this->requiredProperties)) {
             $result->addMessage($name . ': value is empty');
 
             return;

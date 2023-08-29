@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DCAT_AP_DONL;
 
 /**
@@ -10,28 +12,26 @@ namespace DCAT_AP_DONL;
  */
 class DCATChecksum extends DCATComplexEntity
 {
-    /** @var string[] */
-    protected static $PROPERTIES = [
-        'hash', 'algorithm',
-    ];
+    /**
+     * The hash (`spdx:checksumValue`) property.
+     *
+     * @var null|DCATLiteral
+     */
+    protected ?DCATLiteral $hash;
 
-    /** @var string[] */
-    protected static $REQUIRED_PROPERTIES = [
-        'hash', 'algorithm',
-    ];
-
-    /** @var DCATLiteral */
-    protected $hash;
-
-    /** @var DCATLiteral */
-    protected $algorithm;
+    /**
+     * The 'algorithm' (`spdx:algorithm`) property.
+     *
+     * @var null|DCATLiteral
+     */
+    protected ?DCATLiteral $algorithm;
 
     /**
      * DCATChecksum constructor.
      */
     public function __construct()
     {
-        parent::__construct(self::$PROPERTIES, self::$REQUIRED_PROPERTIES);
+        parent::__construct(['hash', 'algorithm'], ['hash', 'algorithm']);
     }
 
     /**

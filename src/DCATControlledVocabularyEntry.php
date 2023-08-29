@@ -9,28 +9,24 @@ namespace DCAT_AP_DONL;
  */
 class DCATControlledVocabularyEntry extends DCATLiteral
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     public const VOCABULARY_ERROR_FORMAT = 'Expected entry of vocabulary %s';
-
-    /** @var string */
-    protected $controlled_vocabulary;
 
     /**
      * DCATControlledVocabularyEntry constructor.
      *
-     * @param string $value                 The value of this DCAT controlled vocabulary entry
-     * @param string $controlled_vocabulary The name of the controlled vocabulary to validate
-     *                                      against
+     * @param string $value                The value of this DCAT controlled vocabulary entry
+     * @param string $controlledVocabulary The name of the controlled vocabulary to validate against
      */
-    public function __construct(string $value, string $controlled_vocabulary)
+    public function __construct(string $value, protected string $controlledVocabulary)
     {
         parent::__construct($value);
-
-        $this->controlled_vocabulary = $controlled_vocabulary;
     }
 
     /**
-     * Determines and returns whether or not the DCATControlledVocabularyEntry
+     * Determines and returns whether the DCATControlledVocabularyEntry
      * is valid.
      *
      * A DCATControlledVocabularyEntry is considered valid when:
@@ -48,7 +44,7 @@ class DCATControlledVocabularyEntry extends DCATLiteral
     public function validate(): DCATValidationResult
     {
         $result     = parent::validate();
-        $vocabulary = DCATControlledVocabulary::getVocabulary($this->controlled_vocabulary);
+        $vocabulary = DCATControlledVocabulary::getVocabulary($this->controlledVocabulary);
 
         if (!$vocabulary->containsEntry($this->value)) {
             $result->addMessage(
@@ -67,6 +63,6 @@ class DCATControlledVocabularyEntry extends DCATLiteral
      */
     public function getControlledVocabulary(): string
     {
-        return $this->controlled_vocabulary;
+        return $this->controlledVocabulary;
     }
 }
