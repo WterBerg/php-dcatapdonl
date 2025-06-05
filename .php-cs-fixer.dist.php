@@ -14,13 +14,6 @@ use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
 use XpertSelect\Tools\ProjectType;
 
-/**
- * This file is part of the wterberg/dcat-ap-donl package.
- *
- * This source file is subject to the license that is
- * bundled with this source code in the LICENSE.md file.
- */
-
 include 'vendor/autoload.php';
 
 $package = InstalledVersions::getRootPackage()['name'];
