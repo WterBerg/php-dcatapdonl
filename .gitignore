@@ -4,6 +4,7 @@
 
 # Composer
 /vendor
+/composer.lock
 /auth.json
 
 # Cache
@@ -12,8 +13,10 @@
 /*.cache
 
 # Testing
+/resources/tools
 /*.phar
 /junit.*.xml
 /phpunit.xml
 /phpstan.neon
 /.php-cs-fixer.php
+/phive.xml

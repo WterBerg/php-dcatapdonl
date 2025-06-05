@@ -1,11 +1,21 @@
 <?php
 
+/**
+ * This file is part of the wterberg/dcat-ap-donl package.
+ *
+ * This source file is subject to the license that is
+ * bundled with this source code in the LICENSE.md file.
+ */
+
 namespace Tests\Unit;
 
 use DCAT_AP_DONL\DCATControlledVocabulary;
 use DCAT_AP_DONL\DCATException;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 class DCATControlledVocabularyTest extends TestCase
 {
     public function testExceptionThrownWhenRequestingNonExistentVocabulary(): void
@@ -115,8 +125,7 @@ class DCATControlledVocabularyTest extends TestCase
         } catch (DCATException $e) {
             $this->assertEquals(
                 DCATControlledVocabulary::DUPLICATE_VOCABULARY_ERROR,
-                $e->getMessage())
-            ;
+                $e->getMessage());
         }
     }
 
@@ -158,7 +167,7 @@ class DCATControlledVocabularyTest extends TestCase
             $this->fail();
         } catch (DCATException $e) {
             $this->assertEquals(
-                'failed to parse JSON for vocabulary https://waardelijsten.dcat-ap-donl.nl/does_not_exist.json',
+                'unable to retrieve contents from source https://waardelijsten.dcat-ap-donl.nl/does_not_exist.json',
                 $e->getMessage()
             );
         }

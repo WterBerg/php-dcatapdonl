@@ -1,94 +1,93 @@
 <?php
 
-namespace DCAT_AP_DONL;
+/**
+ * This file is part of the wterberg/dcat-ap-donl package.
+ *
+ * This source file is subject to the license that is
+ * bundled with this source code in the LICENSE.md file.
+ */
 
-use Serializable;
+namespace DCAT_AP_DONL;
 
 /**
  * Class DCATDistribution.
  *
  * Represents the complex entity DCATDistribution.
  */
-class DCATDistribution extends DCATComplexEntity implements Serializable
+class DCATDistribution extends DCATComplexEntity
 {
-    /** @var string[] */
-    protected static $PROPERTIES = [
+    /**
+     * @var string[]
+     */
+    protected static array $PROPERTIES = [
         'accessURL', 'license', 'title', 'description', 'language', 'metadataLanguage', 'format',
         'rights', 'status', 'releaseDate', 'modificationDate', 'byteSize', 'downloadURL',
         'mediaType', 'linkedSchema', 'checksum', 'documentation', 'distributionType',
     ];
 
-    /** @var string[] */
-    protected static $REQUIRED_PROPERTIES = [
+    /**
+     * @var string[]
+     */
+    protected static array $REQUIRED_PROPERTIES = [
         'accessURL', 'license', 'title', 'description', 'language', 'format', 'metadataLanguage',
     ];
 
-    /** @var DCATURI */
-    protected $accessURL;
+    protected ?DCATURI $accessURL;
 
-    /** @var DCATControlledVocabularyEntry */
-    protected $license;
+    protected ?DCATControlledVocabularyEntry $license;
 
-    /** @var DCATLiteral */
-    protected $title;
+    protected ?DCATLiteral $title;
 
-    /** @var DCATLiteral */
-    protected $description;
+    protected ?DCATLiteral $description;
 
-    /** @var DCATControlledVocabularyEntry[] */
-    protected $language;
+    /**
+     * @var DCATControlledVocabularyEntry[]
+     */
+    protected array $language;
 
-    /** @var DCATControlledVocabularyEntry */
-    protected $metadataLanguage;
+    protected ?DCATControlledVocabularyEntry $metadataLanguage;
 
-    /** @var DCATControlledVocabularyEntry */
-    protected $format;
+    protected ?DCATControlledVocabularyEntry $format;
 
-    /** @var DCATLiteral */
-    protected $rights;
+    protected ?DCATLiteral $rights;
 
-    /** @var DCATControlledVocabularyEntry */
-    protected $status;
+    protected ?DCATControlledVocabularyEntry $status;
 
-    /** @var DCATDateTime */
-    protected $releaseDate;
+    protected ?DCATDateTime $releaseDate;
 
-    /** @var DCATDateTime */
-    protected $modificationDate;
+    protected ?DCATDateTime $modificationDate;
 
-    /** @var DCATNumber */
-    protected $byteSize;
+    protected ?DCATNumber $byteSize;
 
-    /** @var DCATURI[] */
-    protected $downloadURL;
+    /**
+     * @var DCATURI[]
+     */
+    protected array $downloadURL;
 
-    /** @var DCATControlledVocabularyEntry */
-    protected $mediaType;
+    protected ?DCATControlledVocabularyEntry $mediaType;
 
-    /** @var DCATURI[] */
-    protected $linkedSchema;
+    /**
+     * @var DCATURI[]
+     */
+    protected array $linkedSchema;
 
-    /** @var DCATChecksum */
-    protected $checksum;
+    protected ?DCATChecksum $checksum;
 
-    /** @var DCATURI[] */
-    protected $documentation;
+    /**
+     * @var DCATURI[]
+     */
+    protected array $documentation;
 
-    /** @var DCATControlledVocabularyEntry */
-    protected $distributionType;
+    protected ?DCATControlledVocabularyEntry $distributionType;
 
     /**
      * {@inheritdoc}
      */
     public function __construct()
     {
-        parent::__construct(self::$PROPERTIES, self::$REQUIRED_PROPERTIES);
-
-        $multivalued = ['downloadURL', 'language', 'linkedSchema', 'documentation'];
-
-        foreach ($multivalued as $property) {
-            $this->$property = [];
-        }
+        parent::__construct(self::$PROPERTIES, self::$REQUIRED_PROPERTIES, [
+            'language', 'downloadURL', 'linkedSchema', 'documentation',
+        ]);
     }
 
     /**
@@ -96,37 +95,27 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
      *
      * @param DCATDistribution $target The DCATDistribution to compare against
      *
-     * @return bool Whether or not this DCATDistribution is equal to the given DCATDistribution
+     * @return bool Whether this DCATDistribution is equal to the given DCATDistribution
      */
     public function equalTo(DCATDistribution $target): bool
     {
-        return $this->serialize() === $target->serialize();
+        return $this->asSerializedString() === $target->asSerializedString();
     }
 
     /**
-     * {@inheritdoc}
+     * Creates a string representation of the values this DCATDistribution holds.
+     *
+     * @return string The string representation
      */
-    public function serialize(): string
+    public function asSerializedString(): string
     {
         $serializationValues = [];
 
         foreach (self::$PROPERTIES as $property) {
-            $serializationValues[] = $this->$property;
+            $serializationValues[] = $this->{$property};
         }
 
         return serialize($serializationValues);
-    }
-
-    /**
-     * This method is **NOT** implemented.
-     *
-     * @param string $serialized Ignored
-     *
-     * @throws DCATException Always thrown
-     */
-    public function unserialize($serialized): void
-    {
-        throw new DCATException('DCATDistribution::unserialize(string) is not implemented');
     }
 
     /**
@@ -331,7 +320,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     {
         $vocabulary = 'DONL:License';
 
-        if ($vocabulary !== $license->getControlledVocabulary()) {
+        if ($license->getControlledVocabulary() !== $vocabulary) {
             throw new DCATException(
                 sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
             );
@@ -372,7 +361,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     {
         $vocabulary = 'DONL:Language';
 
-        if ($vocabulary !== $language->getControlledVocabulary()) {
+        if ($language->getControlledVocabulary() !== $vocabulary) {
             throw new DCATException(
                 sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
             );
@@ -393,7 +382,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     {
         $vocabulary = 'DONL:Language';
 
-        if ($vocabulary !== $metadataLanguage->getControlledVocabulary()) {
+        if ($metadataLanguage->getControlledVocabulary() !== $vocabulary) {
             throw new DCATException(
                 sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
             );
@@ -414,7 +403,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     {
         $vocabulary = 'MDR:FiletypeNAL';
 
-        if ($vocabulary !== $format->getControlledVocabulary()) {
+        if ($format->getControlledVocabulary() !== $vocabulary) {
             throw new DCATException(
                 sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
             );
@@ -445,7 +434,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     {
         $vocabulary = 'ADMS:Distributiestatus';
 
-        if ($vocabulary !== $status->getControlledVocabulary()) {
+        if ($status->getControlledVocabulary() !== $vocabulary) {
             throw new DCATException(
                 sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
             );
@@ -506,7 +495,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     {
         $vocabulary = 'IANA:Mediatypes';
 
-        if ($vocabulary !== $mediaType->getControlledVocabulary()) {
+        if ($mediaType->getControlledVocabulary() !== $vocabulary) {
             throw new DCATException(
                 sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
             );
@@ -569,7 +558,7 @@ class DCATDistribution extends DCATComplexEntity implements Serializable
     {
         $vocabulary = 'DONL:DistributionType';
 
-        if ($vocabulary !== $distributionType->getControlledVocabulary()) {
+        if ($distributionType->getControlledVocabulary() !== $vocabulary) {
             throw new DCATException(
                 sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
             );

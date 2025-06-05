@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * This file is part of the wterberg/dcat-ap-donl package.
+ *
+ * This source file is subject to the license that is
+ * bundled with this source code in the LICENSE.md file.
+ */
+
 namespace DCAT_AP_DONL;
 
 /**
@@ -10,7 +17,9 @@ namespace DCAT_AP_DONL;
  */
 class DCATControlledVocabulary
 {
-    /** @var string[] */
+    /**
+     * @var string[]
+     */
     public const CONTROLLED_VOCABULARIES = [
         'ADMS:Changetype'                 => 'https://waardelijsten.dcat-ap-donl.nl/adms_changetype.json',
         'ADMS:Distributiestatus'          => 'https://waardelijsten.dcat-ap-donl.nl/adms_distributiestatus.json',
@@ -32,32 +41,12 @@ class DCATControlledVocabulary
         'Overheid:Taxonomiebeleidsagenda' => 'https://waardelijsten.dcat-ap-donl.nl/overheid_taxonomiebeleidsagenda.json',
     ];
 
-    /** @var string */
     public const DUPLICATE_VOCABULARY_ERROR = 'a vocabulary with that name is already defined';
 
-    /** @var DCATControlledVocabulary[] */
-    protected static $LISTS = [];
-
-    /** @var string */
-    protected $name;
-
-    /** @var string */
-    protected $source;
-
-    /** @var string[] */
-    protected $entries;
-
     /**
-     * DCATControlledVocabulary constructor.
-     *
-     * @param string      $name   The name of this controlled vocabulary
-     * @param null|string $source The online source of this controlled vocabulary
+     * @var DCATControlledVocabulary[]
      */
-    protected function __construct(string $name, string $source = null)
-    {
-        $this->name   = $name;
-        $this->source = $source;
-    }
+    protected static array $LISTS = [];
 
     /**
      * Retrieves the DCATControlledVocabulary that matches the given name. If it is the first time
@@ -68,11 +57,11 @@ class DCATControlledVocabulary
      *
      * @param string $name The name of the controlled vocabulary
      *
-     * @throws DCATException Thrown when either the requested vocabulary does not exist, or when the
-     *                       class was unable to load the values from its remote source
-     *
      * @return DCATControlledVocabulary The DCATControlledVocabulary representing the vocabulary
      *                                  with the given name
+     *
+     * @throws DCATException Thrown when either the requested vocabulary does not exist, or when the
+     *                       class was unable to load the values from its remote source
      */
     public static function getVocabulary(string $name): DCATControlledVocabulary
     {
@@ -93,8 +82,8 @@ class DCATControlledVocabulary
     /**
      * Adds a custom vocabulary to the DCAT model.
      *
-     * @param string $name    The name of the controlled vocabulary
-     * @param array  $entries The acceptable values for this vocabulary
+     * @param string             $name    The name of the controlled vocabulary
+     * @param array<int, string> $entries The acceptable values for this vocabulary
      *
      * @throws DCATException Thrown when trying to define a vocabulary with a name that is already
      *                       registered as a controlled vocabulary
@@ -105,11 +94,7 @@ class DCATControlledVocabulary
             throw new DCATException(self::DUPLICATE_VOCABULARY_ERROR);
         }
 
-        $customVocabulary = new DCATControlledVocabulary($name);
-        $customVocabulary->setEntries($entries);
-        $customVocabulary->setSource('custom');
-
-        self::$LISTS[$name] = $customVocabulary;
+        self::$LISTS[$name] = new DCATControlledVocabulary($name, 'custom', $entries);
     }
 
     /**
@@ -131,6 +116,18 @@ class DCATControlledVocabulary
         $customVocabulary->loadEntries();
 
         self::$LISTS[$name] = $customVocabulary;
+    }
+
+    /**
+     * DCATControlledVocabulary constructor.
+     *
+     * @param string             $name    The name of this controlled vocabulary
+     * @param null|string        $source  The online source of this controlled vocabulary
+     * @param array<int, string> $entries The entries of the vocabulary
+     */
+    protected function __construct(protected string $name, protected ?string $source = null,
+                                   protected array $entries = [])
+    {
     }
 
     /**
@@ -156,13 +153,17 @@ class DCATControlledVocabulary
     /**
      * Checks if this DCAT vocabulary contains the given value. This is a case-sensitive search.
      *
-     * @param string $entry The entry to check
+     * @param ?string $entry The entry to check
      *
      * @return bool Whether the vocabulary contains the entry
      */
-    public function containsEntry(string $entry): bool
+    public function containsEntry(?string $entry): bool
     {
-        return false !== array_search($entry, $this->entries, false);
+        if (is_null($entry)) {
+            return false;
+        }
+
+        return in_array($entry, $this->entries);
     }
 
     /**
@@ -181,7 +182,7 @@ class DCATControlledVocabulary
 
         $remoteContents = curl_exec($curl);
 
-        if (false === $remoteContents) {
+        if (!is_string($remoteContents)) {
             curl_close($curl);
 
             throw new DCATException(
@@ -201,32 +202,14 @@ class DCATControlledVocabulary
 
         $parsed = json_decode($remoteContents, true);
 
-        if (null === $parsed) {
+        if (is_null($parsed)) {
             throw new DCATException('failed to parse JSON for vocabulary ' . $this->source);
         }
 
-        $this->entries = array_keys($parsed);
+        $this->entries = array_map(function($element) {
+            return strval($element);
+        }, array_keys($parsed));
 
         curl_close($curl);
-    }
-
-    /**
-     * Manually set the entries allowed for this vocabulary.
-     *
-     * @param string[] $entries The entries to use
-     */
-    protected function setEntries(array $entries): void
-    {
-        $this->entries = $entries;
-    }
-
-    /**
-     * Setter for the source property.
-     *
-     * @param string $source The value to set
-     */
-    protected function setSource(string $source): void
-    {
-        $this->source = $source;
     }
 }

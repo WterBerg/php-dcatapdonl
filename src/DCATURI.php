@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+/**
+ * This file is part of the wterberg/dcat-ap-donl package.
+ *
+ * This source file is subject to the license that is
+ * bundled with this source code in the LICENSE.md file.
+ */
+
 namespace DCAT_AP_DONL;
 
 /**
@@ -36,12 +43,12 @@ class DCATURI extends DCATLiteral
     /**
      * Checks if the given value matches the pattern of a URI.
      *
-     * @param string $uri The potential URI to check
+     * @param null|string $uri The potential URI to check
      *
      * @return bool Whether the given value looks like a URI
      */
-    protected function isURI(string $uri): bool
+    protected function isURI(?string $uri): bool
     {
-        return false !== filter_var($uri, FILTER_VALIDATE_URL);
+        return !is_null($uri) && false !== filter_var($uri, FILTER_VALIDATE_URL);
     }
 }

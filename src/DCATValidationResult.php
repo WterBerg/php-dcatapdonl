@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * This file is part of the wterberg/dcat-ap-donl package.
+ *
+ * This source file is subject to the license that is
+ * bundled with this source code in the LICENSE.md file.
+ */
+
 namespace DCAT_AP_DONL;
 
 /**
@@ -9,27 +16,22 @@ namespace DCAT_AP_DONL;
  */
 class DCATValidationResult
 {
-    /** @var string[] */
-    protected array $messages;
-
-    /** @var string[] */
-    protected $notices;
+    /**
+     * @var string[]
+     */
+    protected array $messages = [];
 
     /**
-     * DCATValidationResult constructor.
+     * @var string[]
      */
-    public function __construct()
-    {
-        $this->messages = [];
-        $this->notices  = [];
-    }
+    protected array $notices = [];
 
     /**
      * Returns whether the DCATEntity validated successfully.
      *
      * @return bool Whether the validation was successful
      */
-    public function validated()
+    public function validated(): bool
     {
         return 0 === count($this->getMessages());
     }
@@ -39,7 +41,7 @@ class DCATValidationResult
      *
      * @return string[] The validation error messages
      */
-    public function getMessages()
+    public function getMessages(): array
     {
         return $this->messages;
     }
@@ -49,7 +51,7 @@ class DCATValidationResult
      *
      * @param string $message The message to add
      */
-    public function addMessage(string $message)
+    public function addMessage(string $message): void
     {
         $this->messages[] = $message;
     }
@@ -59,7 +61,7 @@ class DCATValidationResult
      *
      * @param string[] $messages The messages to add
      */
-    public function addMessages(array $messages)
+    public function addMessages(array $messages): void
     {
         $this->messages = array_merge($this->messages, $messages);
     }

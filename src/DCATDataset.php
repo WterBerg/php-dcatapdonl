@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * This file is part of the wterberg/dcat-ap-donl package.
+ *
+ * This source file is subject to the license that is
+ * bundled with this source code in the LICENSE.md file.
+ */
+
 namespace DCAT_AP_DONL;
 
 /**
@@ -9,8 +16,10 @@ namespace DCAT_AP_DONL;
  */
 class DCATDataset extends DCATComplexEntity
 {
-    /** @var string[] */
-    protected static $PROPERTIES = [
+    /**
+     * @var string[]
+     */
+    protected static array $PROPERTIES = [
         'identifier', 'title', 'description', 'keyword', 'license', 'metadataLanguage', 'language',
         'theme', 'modificationDate', 'authority', 'publisher', 'contactPoint', 'accessRights',
         'datasetStatus', 'landingPage', 'spatial', 'temporal', 'conformsTo',
@@ -20,146 +29,149 @@ class DCATDataset extends DCATComplexEntity
         'referentieData', 'nationalCoverage', 'distribution',
     ];
 
-    /** @var string[] */
-    protected static $REQUIRED_PROPERTIES = [
+    /**
+     * @var string[]
+     */
+    protected static array $REQUIRED_PROPERTIES = [
         'identifier', 'title', 'description', 'metadataLanguage', 'language', 'license',
         'modificationDate', 'distribution', 'authority', 'publisher', 'contactPoint', 'theme',
     ];
 
-    /** @var DCATURI */
-    protected $identifier;
+    protected ?DCATURI $identifier;
 
-    /** @var DCATLiteral */
-    protected $title;
+    protected ?DCATLiteral $title;
 
-    /** @var DCATLiteral */
-    protected $description;
+    protected ?DCATLiteral $description;
 
-    /** @var DCATLiteral[] */
-    protected $keyword;
+    /**
+     * @var DCATLiteral[]
+     */
+    protected array $keyword;
 
-    /** @var DCATControlledVocabularyEntry */
-    protected $license;
+    protected ?DCATControlledVocabularyEntry $license;
 
-    /** @var DCATControlledVocabularyEntry */
-    protected $metadataLanguage;
+    protected ?DCATControlledVocabularyEntry $metadataLanguage;
 
-    /** @var DCATControlledVocabularyEntry[] */
-    protected $language;
+    /**
+     * @var DCATControlledVocabularyEntry[]
+     */
+    protected array $language;
 
-    /** @var DCATControlledVocabularyEntry[] */
+    /**
+     * @var DCATControlledVocabularyEntry[]
+     */
     protected $theme;
 
-    /** @var DCATDateTime */
-    protected $modificationDate;
+    protected ?DCATDateTime $modificationDate;
 
-    /** @var DCATControlledVocabularyEntry */
-    protected $authority;
+    protected ?DCATControlledVocabularyEntry $authority;
 
-    /** @var DCATControlledVocabularyEntry */
-    protected $publisher;
+    protected ?DCATControlledVocabularyEntry $publisher;
 
-    /** @var DCATContactPoint */
-    protected $contactPoint;
+    protected ?DCATContactPoint $contactPoint;
 
-    /** @var DCATControlledVocabularyEntry */
-    protected $accessRights;
+    protected ?DCATControlledVocabularyEntry $accessRights;
 
-    /** @var DCATControlledVocabularyEntry */
-    protected $datasetStatus;
+    protected ?DCATControlledVocabularyEntry $datasetStatus;
 
-    /** @var DCATURI */
-    protected $landingPage;
+    protected ?DCATURI $landingPage;
 
-    /** @var DCATSpatial[] */
-    protected $spatial;
+    /**
+     * @var DCATSpatial[]
+     */
+    protected array $spatial;
 
-    /** @var DCATTemporal */
-    protected $temporal;
+    protected ?DCATTemporal $temporal;
 
-    /** @var DCATURI[] */
-    protected $conformsTo;
+    /**
+     * @var DCATURI[]
+     */
+    protected array $conformsTo;
 
-    /** @var DCATURI[] */
-    protected $alternativeIdentifier;
+    /**
+     * @var DCATURI[]
+     */
+    protected array $alternativeIdentifier;
 
-    /** @var DCATURI[] */
-    protected $relatedResource;
+    /**
+     * @var DCATURI[]
+     */
+    protected array $relatedResource;
 
-    /** @var DCATURI[] */
-    protected $source;
+    /**
+     * @var DCATURI[]
+     */
+    protected array $source;
 
-    /** @var DCATURI[] */
-    protected $hasVersion;
+    /**
+     * @var DCATURI[]
+     */
+    protected array $hasVersion;
 
-    /** @var DCATURI[] */
-    protected $isVersionOf;
+    /**
+     * @var DCATURI[]
+     */
+    protected array $isVersionOf;
 
-    /** @var DCATDateTime */
-    protected $releaseDate;
+    protected ?DCATDateTime $releaseDate;
 
-    /** @var DCATLiteral */
-    protected $version;
+    protected ?DCATLiteral $version;
 
-    /** @var DCATLiteral[] */
-    protected $versionNotes;
+    /**
+     * @var DCATLiteral[]
+     */
+    protected array $versionNotes;
 
-    /** @var DCATLegalFoundation */
-    protected $legalFoundation;
+    protected ?DCATLegalFoundation $legalFoundation;
 
-    /** @var DCATDateTime */
-    protected $datePlanned;
+    protected ?DCATDateTime $datePlanned;
 
-    /** @var DCATURI[] */
-    protected $documentation;
+    /**
+     * @var DCATURI[]
+     */
+    protected array $documentation;
 
-    /** @var DCATControlledVocabularyEntry */
-    protected $frequency;
+    protected ?DCATControlledVocabularyEntry $frequency;
 
-    /** @var DCATURI[] */
-    protected $provenance;
+    /**
+     * @var DCATURI[]
+     */
+    protected array $provenance;
 
-    /** @var DCATURI[] */
-    protected $sample;
+    /**
+     * @var DCATURI[]
+     */
+    protected array $sample;
 
-    /** @var DCATControlledVocabularyEntry */
-    protected $sourceCatalog;
+    protected ?DCATControlledVocabularyEntry $sourceCatalog;
 
-    /** @var DCATBoolean */
-    protected $highValue;
+    protected ?DCATBoolean $highValue;
 
-    /** @var DCATBoolean */
-    protected $basisRegister;
+    protected ?DCATBoolean $basisRegister;
 
-    /** @var DCATBoolean */
-    protected $referentieData;
+    protected ?DCATBoolean $referentieData;
 
-    /** @var DCATBoolean */
-    protected $nationalCoverage;
+    protected ?DCATBoolean $nationalCoverage;
 
-    /** @var DCATDistribution[] */
-    protected $distribution;
+    /**
+     * @var DCATDistribution[]
+     */
+    protected array $distribution;
 
     /**
      * DCATDataset constructor.
      */
     public function __construct()
     {
-        parent::__construct(self::$PROPERTIES, self::$REQUIRED_PROPERTIES);
-
-        $multivalued = [
+        parent::__construct(self::$PROPERTIES, self::$REQUIRED_PROPERTIES, [
             'conformsTo', 'alternativeIdentifier', 'source', 'hasVersion', 'isVersionOf',
             'versionNotes', 'documentation', 'provenance', 'sample', 'language', 'theme',
             'keyword', 'relatedResource', 'distribution', 'spatial',
-        ];
-
-        foreach ($multivalued as $property) {
-            $this->$property = [];
-        }
+        ]);
     }
 
     /**
-     * Determines and returns whether or not the DCATDataset is valid.
+     * Determines and returns whether the DCATDataset is valid.
      *
      * A DCATDataset is considered valid when:
      * - It passes the validation as defined in `DCATComplexEntity::validate()`
@@ -366,7 +378,7 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Alias of `DCATDataset::getAlternativeIdentifier()`.
      *
-     * @return array|DCATURI[] The alternativeIdentifier property
+     * @return DCATURI[] The alternativeIdentifier property
      *
      * @see DCATDataset::getAlternativeIdentifier()
      */
@@ -617,7 +629,7 @@ class DCATDataset extends DCATComplexEntity
     {
         $vocabulary = 'DONL:License';
 
-        if ($vocabulary !== $license->getControlledVocabulary()) {
+        if ($license->getControlledVocabulary() !== $vocabulary) {
             throw new DCATException(
                 sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
             );
@@ -638,7 +650,7 @@ class DCATDataset extends DCATComplexEntity
     {
         $vocabulary = 'DONL:Language';
 
-        if ($vocabulary !== $metadataLanguage->getControlledVocabulary()) {
+        if ($metadataLanguage->getControlledVocabulary() !== $vocabulary) {
             throw new DCATException(
                 sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
             );
@@ -659,7 +671,7 @@ class DCATDataset extends DCATComplexEntity
     {
         $vocabulary = 'DONL:Language';
 
-        if ($vocabulary !== $language->getControlledVocabulary()) {
+        if ($language->getControlledVocabulary() !== $vocabulary) {
             throw new DCATException(
                 sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
             );
@@ -680,7 +692,7 @@ class DCATDataset extends DCATComplexEntity
     {
         $vocabulary = 'Overheid:Taxonomiebeleidsagenda';
 
-        if ($vocabulary !== $theme->getControlledVocabulary()) {
+        if ($theme->getControlledVocabulary() !== $vocabulary) {
             throw new DCATException(
                 sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
             );
@@ -711,7 +723,7 @@ class DCATDataset extends DCATComplexEntity
     {
         $vocabulary = 'DONL:Organization';
 
-        if ($vocabulary !== $authority->getControlledVocabulary()) {
+        if ($authority->getControlledVocabulary() !== $vocabulary) {
             throw new DCATException(
                 sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
             );
@@ -732,7 +744,7 @@ class DCATDataset extends DCATComplexEntity
     {
         $vocabulary = 'DONL:Organization';
 
-        if ($vocabulary !== $publisher->getControlledVocabulary()) {
+        if ($publisher->getControlledVocabulary() !== $vocabulary) {
             throw new DCATException(
                 sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
             );
@@ -763,7 +775,7 @@ class DCATDataset extends DCATComplexEntity
     {
         $vocabulary = 'Overheid:Openbaarheidsniveau';
 
-        if ($vocabulary !== $accessRights->getControlledVocabulary()) {
+        if ($accessRights->getControlledVocabulary() !== $vocabulary) {
             throw new DCATException(
                 sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
             );
@@ -784,7 +796,7 @@ class DCATDataset extends DCATComplexEntity
     {
         $vocabulary = 'Overheid:DatasetStatus';
 
-        if ($vocabulary !== $datasetStatus->getControlledVocabulary()) {
+        if ($datasetStatus->getControlledVocabulary() !== $vocabulary) {
             throw new DCATException(
                 sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
             );
@@ -948,9 +960,9 @@ class DCATDataset extends DCATComplexEntity
     /**
      * Adds a value to the documentation property.
      *
-     * @param DCATLiteral $documentation The value to add
+     * @param DCATURI $documentation The value to add
      */
-    public function addDocumentation(DCATLiteral $documentation): void
+    public function addDocumentation(DCATURI $documentation): void
     {
         $this->documentation[] = $documentation;
     }
@@ -967,7 +979,7 @@ class DCATDataset extends DCATComplexEntity
     {
         $vocabulary = 'Overheid:Frequency';
 
-        if ($vocabulary !== $frequency->getControlledVocabulary()) {
+        if ($frequency->getControlledVocabulary() !== $vocabulary) {
             throw new DCATException(
                 sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
             );
@@ -1008,7 +1020,7 @@ class DCATDataset extends DCATComplexEntity
     {
         $vocabulary = 'DONL:Catalogs';
 
-        if ($vocabulary !== $sourceCatalog->getControlledVocabulary()) {
+        if ($sourceCatalog->getControlledVocabulary() !== $vocabulary) {
             throw new DCATException(
                 sprintf(DCATControlledVocabularyEntry::VOCABULARY_ERROR_FORMAT, $vocabulary)
             );
