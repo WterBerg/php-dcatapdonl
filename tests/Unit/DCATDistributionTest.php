@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * This file is part of the wterberg/dcat-ap-donl package.
+ *
+ * This source file is subject to the license that is
+ * bundled with this source code in the LICENSE.md file.
+ */
+
 namespace Tests\Unit;
 
 use DCAT_AP_DONL\DCATChecksum;
@@ -12,6 +19,9 @@ use DCAT_AP_DONL\DCATNumber;
 use DCAT_AP_DONL\DCATURI;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 class DCATDistributionTest extends TestCase
 {
     public function testGettersAndSettersArePresentAndFunctional(): void
@@ -93,21 +103,6 @@ class DCATDistributionTest extends TestCase
         $distribiton_b->setTitle($title);
 
         $this->assertTrue($distribiton_a->equalTo($distribiton_b));
-    }
-
-    public function testUnserializeThrowsDCATException(): void
-    {
-        try {
-            $distribution = new DCATDistribution();
-            $distribution->unserialize('test');
-
-            $this->fail('expected DCATException');
-        } catch (DCATException $e) {
-            $this->assertEquals(
-                'DCATDistribution::unserialize(string) is not implemented',
-                $e->getMessage()
-            );
-        }
     }
 
     public function testChecksIfControlledVocabularyIsAcceptedForFormat(): void

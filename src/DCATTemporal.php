@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * This file is part of the wterberg/dcat-ap-donl package.
+ *
+ * This source file is subject to the license that is
+ * bundled with this source code in the LICENSE.md file.
+ */
+
 namespace DCAT_AP_DONL;
 
 use DateTime;
@@ -18,23 +25,23 @@ use Exception;
  */
 class DCATTemporal extends DCATComplexEntity
 {
-    /** @var string[] */
-    protected static $PROPERTIES = [
+    /**
+     * @var string[]
+     */
+    protected static array $PROPERTIES = [
         'start', 'end', 'label',
     ];
 
-    /** @var string[] */
-    protected static $REQUIRED_PROPERTIES = [
-    ];
+    /**
+     * @var string[]
+     */
+    protected static array $REQUIRED_PROPERTIES = [];
 
-    /** @var DCATDateTime */
-    protected $start;
+    protected ?DCATDateTime $start;
 
-    /** @var DCATDateTime */
-    protected $end;
+    protected ?DCATDateTime $end;
 
-    /** @var DCATLiteral */
-    protected $label;
+    protected ?DCATLiteral $label;
 
     /**
      * DCATTemporal constructor.
@@ -45,7 +52,7 @@ class DCATTemporal extends DCATComplexEntity
     }
 
     /**
-     * Determines and returns whether or not the DCATTemporal is valid.
+     * Determines and returns whether the DCATTemporal is valid.
      *
      * A DCATTemporal is considered valid when:
      * - It passes the validation as defined in `DCATComplexEntity::validate()`
@@ -59,7 +66,7 @@ class DCATTemporal extends DCATComplexEntity
     {
         $result = parent::validate();
 
-        if (null == $this->start || null == $this->end) {
+        if (is_null($this->start?->getData()) || is_null($this->end?->getData())) {
             return $result;
         }
 
@@ -73,7 +80,7 @@ class DCATTemporal extends DCATComplexEntity
                     $this->end->getData()
                 );
             }
-        } catch (Exception $e) {
+        } catch (Exception) {
             $result->addMessage('failed to convert a temporal property into a DateTime object');
         }
 

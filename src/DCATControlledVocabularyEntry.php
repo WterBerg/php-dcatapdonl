@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * This file is part of the wterberg/dcat-ap-donl package.
+ *
+ * This source file is subject to the license that is
+ * bundled with this source code in the LICENSE.md file.
+ */
+
 namespace DCAT_AP_DONL;
 
 /**
@@ -36,10 +43,10 @@ class DCATControlledVocabularyEntry extends DCATLiteral
      *
      * @see DCATLiteral::validate()
      *
+     * @return DCATValidationResult The validation result of this DCAT controlled vocabulary entry
+     *
      * @throws DCATException Thrown when trying to validate this entry against a controlled
      *                       vocabulary which does not exist
-     *
-     * @return DCATValidationResult The validation result of this DCAT controlled vocabulary entry
      */
     public function validate(): DCATValidationResult
     {

@@ -1,16 +1,26 @@
 <?php
 
+/**
+ * This file is part of the wterberg/dcat-ap-donl package.
+ *
+ * This source file is subject to the license that is
+ * bundled with this source code in the LICENSE.md file.
+ */
+
 namespace Tests\Unit;
 
 use DCAT_AP_DONL\DCATComplexEntity;
 use DCAT_AP_DONL\DCATLiteral;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 class DCATComplexEntityTest extends TestCase
 {
     public function testMultiValuedRequiredPropertyIsInvalidWhenEmpty(): void
     {
-        $entity = new class() extends DCATComplexEntity {
+        $entity = new class () extends DCATComplexEntity {
             protected $myProperty;
 
             public function __construct()
@@ -33,7 +43,7 @@ class DCATComplexEntityTest extends TestCase
 
     public function testMultiValuedRequiredPropertiesHaveIndividualValidation(): void
     {
-        $entity = new class('TestName') extends DCATComplexEntity {
+        $entity = new class ('TestName') extends DCATComplexEntity {
             protected $myProperty;
 
             public function __construct(string $name)
@@ -58,7 +68,7 @@ class DCATComplexEntityTest extends TestCase
 
     public function testMultiValuedPropertiesArePartOfTheDataObject(): void
     {
-        $entity = new class('TestName') extends DCATComplexEntity {
+        $entity = new class ('TestName') extends DCATComplexEntity {
             protected $myProperty;
 
             public function __construct(string $name)

@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+/**
+ * This file is part of the wterberg/dcat-ap-donl package.
+ *
+ * This source file is subject to the license that is
+ * bundled with this source code in the LICENSE.md file.
+ */
+
 namespace DCAT_AP_DONL;
 
 /**
@@ -13,34 +20,16 @@ namespace DCAT_AP_DONL;
  */
 class DCATContactPoint extends DCATComplexEntity
 {
-    /**
-     * @var null|DCATLiteral
-     */
     protected ?DCATLiteral $fullName;
 
-    /**
-     * @var null|DCATLiteral
-     */
     protected ?DCATLiteral $address;
 
-    /**
-     * @var null|DCATLiteral
-     */
     protected ?DCATLiteral $title;
 
-    /**
-     * @var null|DCATLiteral
-     */
     protected ?DCATLiteral $email;
 
-    /**
-     * @var null|DCATURI
-     */
     protected ?DCATURI $webpage;
 
-    /**
-     * @var null|DCATLiteral
-     */
     protected ?DCATLiteral $phone;
 
     /**

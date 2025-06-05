@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+/**
+ * This file is part of the wterberg/dcat-ap-donl package.
+ *
+ * This source file is subject to the license that is
+ * bundled with this source code in the LICENSE.md file.
+ */
+
 namespace DCAT_AP_DONL;
 
 /**
@@ -15,20 +22,22 @@ abstract class DCATComplexEntity implements DCATEntity
     /**
      * DCATComplexEntity constructor.
      *
-     * @param string[] $properties         The properties of the DCATComplexEntity
-     * @param string[] $requiredProperties The properties which are required
+     * @param string[] $properties           The properties of the DCATComplexEntity
+     * @param string[] $requiredProperties   The properties which are required
+     * @param string[] $multiValueProperties Properties that should be initialized as an array
      */
-    public function __construct(protected array $properties, protected array $requiredProperties)
+    public function __construct(protected array $properties, protected array $requiredProperties,
+                                array $multiValueProperties = [])
     {
         foreach ($this->properties as $property) {
-            $this->{$property} = null;
+            $this->{$property} = in_array($property, $multiValueProperties) ? [] : null;
         }
     }
 
     /**
      * Returns the DCATComplexEntity as a `{attribute} => {value}` array.
      *
-     * @return array A key => value array of the entity
+     * @return array<string, mixed> A key => value array of the entity
      */
     public function getData(): array
     {
@@ -42,7 +51,7 @@ abstract class DCATComplexEntity implements DCATEntity
             }
 
             if (is_array($prop)) {
-                /* @var DCATEntity[] $prop */
+                // @var DCATEntity[] $prop
                 foreach ($prop as $value) {
                     $data[$property][] = $value->getData();
                 }
@@ -50,7 +59,7 @@ abstract class DCATComplexEntity implements DCATEntity
                 continue;
             }
 
-            /* @var DCATEntity $prop */
+            // @var DCATEntity $prop
             $data[$property] = $prop->getData();
         }
 

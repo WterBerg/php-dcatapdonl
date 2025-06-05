@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * This file is part of the wterberg/dcat-ap-donl package.
+ *
+ * This source file is subject to the license that is
+ * bundled with this source code in the LICENSE.md file.
+ */
+
 namespace DCAT_AP_DONL;
 
 /**
@@ -10,24 +17,25 @@ namespace DCAT_AP_DONL;
  */
 class DCATLegalFoundation extends DCATComplexEntity
 {
-    /** @var string[] */
-    protected static $PROPERTIES = [
+    /**
+     * @var string[]
+     */
+    protected static array $PROPERTIES = [
         'reference', 'uri', 'label',
     ];
 
-    /** @var string[] */
-    protected static $REQUIRED_PROPERTIES = [
+    /**
+     * @var string[]
+     */
+    protected static array $REQUIRED_PROPERTIES = [
         'reference', 'uri', 'label',
     ];
 
-    /** @var DCATLiteral */
-    protected $reference;
+    protected ?DCATLiteral $reference;
 
-    /** @var DCATURI */
-    protected $uri;
+    protected ?DCATURI $uri;
 
-    /** @var DCATLiteral */
-    protected $label;
+    protected ?DCATLiteral $label;
 
     /**
      * DCATLegalFoundation constructor.
